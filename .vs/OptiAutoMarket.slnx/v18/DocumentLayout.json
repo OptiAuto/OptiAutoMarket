@@ -1,0 +1,394 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{708B2CC0-8D82-7301-0A28-3943ADBC954D}|OAM.Presentation.WebApi\\OAM.Presentation.WebApi.csproj|c:\\users\\asus\\desktop\\docs\\companies\\optiauto\\optiautomarket\\oam.presentation.webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{708B2CC0-8D82-7301-0A28-3943ADBC954D}|OAM.Presentation.WebApi\\OAM.Presentation.WebApi.csproj|solutionrelative:oam.presentation.webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D40E2B-7BB9-88A4-18D0-C903A1DD5197}|OAM.Application.Validators\\OAM.Application.Validators.csproj|c:\\users\\asus\\desktop\\docs\\companies\\optiauto\\optiautomarket\\oam.application.validators\\validators\\vehicledtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D40E2B-7BB9-88A4-18D0-C903A1DD5197}|OAM.Application.Validators\\OAM.Application.Validators.csproj|solutionrelative:oam.application.validators\\validators\\vehicledtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D40E2B-7BB9-88A4-18D0-C903A1DD5197}|OAM.Application.Validators\\OAM.Application.Validators.csproj|c:\\users\\asus\\desktop\\docs\\companies\\optiauto\\optiautomarket\\oam.application.validators\\validators\\createmaintenancerecorddtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D40E2B-7BB9-88A4-18D0-C903A1DD5197}|OAM.Application.Validators\\OAM.Application.Validators.csproj|solutionrelative:oam.application.validators\\validators\\createmaintenancerecorddtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D40E2B-7BB9-88A4-18D0-C903A1DD5197}|OAM.Application.Validators\\OAM.Application.Validators.csproj|c:\\users\\asus\\desktop\\docs\\companies\\optiauto\\optiautomarket\\oam.application.validators\\validators\\createdefectdtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D40E2B-7BB9-88A4-18D0-C903A1DD5197}|OAM.Application.Validators\\OAM.Application.Validators.csproj|solutionrelative:oam.application.validators\\validators\\createdefectdtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{708B2CC0-8D82-7301-0A28-3943ADBC954D}|OAM.Presentation.WebApi\\OAM.Presentation.WebApi.csproj|c:\\users\\asus\\desktop\\docs\\companies\\optiauto\\optiautomarket\\oam.presentation.webapi\\controllers\\vehiclecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{708B2CC0-8D82-7301-0A28-3943ADBC954D}|OAM.Presentation.WebApi\\OAM.Presentation.WebApi.csproj|solutionrelative:oam.presentation.webapi\\controllers\\vehiclecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8DB301-0F1D-4FA1-A75E-E2A1B9A1A496}|OAM.Infrastructure.Repository.EF\\OAM.Infrastructure.Repository.EF.csproj|c:\\users\\asus\\desktop\\docs\\companies\\optiauto\\optiautomarket\\oam.infrastructure.repository.ef\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8DB301-0F1D-4FA1-A75E-E2A1B9A1A496}|OAM.Infrastructure.Repository.EF\\OAM.Infrastructure.Repository.EF.csproj|solutionrelative:oam.infrastructure.repository.ef\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8DB301-0F1D-4FA1-A75E-E2A1B9A1A496}|OAM.Infrastructure.Repository.EF\\OAM.Infrastructure.Repository.EF.csproj|c:\\users\\asus\\desktop\\docs\\companies\\optiauto\\optiautomarket\\oam.infrastructure.repository.ef\\repositories\\defectrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8DB301-0F1D-4FA1-A75E-E2A1B9A1A496}|OAM.Infrastructure.Repository.EF\\OAM.Infrastructure.Repository.EF.csproj|solutionrelative:oam.infrastructure.repository.ef\\repositories\\defectrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AB0DBA5-D82B-FA61-4E69-A678FFC3A81A}|OAM.Domain\\OAM.Domain.csproj|c:\\users\\asus\\desktop\\docs\\companies\\optiauto\\optiautomarket\\oam.domain\\entities\\defect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AB0DBA5-D82B-FA61-4E69-A678FFC3A81A}|OAM.Domain\\OAM.Domain.csproj|solutionrelative:oam.domain\\entities\\defect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AB0DBA5-D82B-FA61-4E69-A678FFC3A81A}|OAM.Domain\\OAM.Domain.csproj|c:\\users\\asus\\desktop\\docs\\companies\\optiauto\\optiautomarket\\oam.domain\\common\\iauditableentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AB0DBA5-D82B-FA61-4E69-A678FFC3A81A}|OAM.Domain\\OAM.Domain.csproj|solutionrelative:oam.domain\\common\\iauditableentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6A64DE2-1E2D-EB7B-BAE1-53C49B5F50FC}|OAM.Application.Dtos\\OAM.Application.Dtos.csproj|c:\\users\\asus\\desktop\\docs\\companies\\optiauto\\optiautomarket\\oam.application.dtos\\dtos\\vehicledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6A64DE2-1E2D-EB7B-BAE1-53C49B5F50FC}|OAM.Application.Dtos\\OAM.Application.Dtos.csproj|solutionrelative:oam.application.dtos\\dtos\\vehicledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AB0DBA5-D82B-FA61-4E69-A678FFC3A81A}|OAM.Domain\\OAM.Domain.csproj|c:\\users\\asus\\desktop\\docs\\companies\\optiauto\\optiautomarket\\oam.domain\\entities\\vehiclephoto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AB0DBA5-D82B-FA61-4E69-A678FFC3A81A}|OAM.Domain\\OAM.Domain.csproj|solutionrelative:oam.domain\\entities\\vehiclephoto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AB0DBA5-D82B-FA61-4E69-A678FFC3A81A}|OAM.Domain\\OAM.Domain.csproj|c:\\users\\asus\\desktop\\docs\\companies\\optiauto\\optiautomarket\\oam.domain\\common\\ientity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AB0DBA5-D82B-FA61-4E69-A678FFC3A81A}|OAM.Domain\\OAM.Domain.csproj|solutionrelative:oam.domain\\common\\ientity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8DB301-0F1D-4FA1-A75E-E2A1B9A1A496}|OAM.Infrastructure.Repository.EF\\OAM.Infrastructure.Repository.EF.csproj|c:\\users\\asus\\desktop\\docs\\companies\\optiauto\\optiautomarket\\oam.infrastructure.repository.ef\\unitofwork\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8DB301-0F1D-4FA1-A75E-E2A1B9A1A496}|OAM.Infrastructure.Repository.EF\\OAM.Infrastructure.Repository.EF.csproj|solutionrelative:oam.infrastructure.repository.ef\\unitofwork\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BDCCA66-3CD7-4878-A0C4-CE71B5675CCC}|OAM.Application.Service\\OAM.Application.Service.csproj|c:\\users\\asus\\desktop\\docs\\companies\\optiauto\\optiautomarket\\oam.application.service\\services\\vehiclephotoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BDCCA66-3CD7-4878-A0C4-CE71B5675CCC}|OAM.Application.Service\\OAM.Application.Service.csproj|solutionrelative:oam.application.service\\services\\vehiclephotoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket.Presentation.WebApi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket.Presentation.WebApi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Application\\Services\\VehicleService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OptiAutoMarket\\OptiAutoMarket\\Application\\Services\\VehicleService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\MaintenanceRecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\MaintenanceRecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\Defect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\Defect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\Vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\Vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Controllers\\VehicleController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OptiAutoMarket\\OptiAutoMarket\\Controllers\\VehicleController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Controllers\\WeatherForecastController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OptiAutoMarket\\OptiAutoMarket\\Controllers\\WeatherForecastController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Application\\Dtos\\VehicleDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OptiAutoMarket\\OptiAutoMarket\\Application\\Dtos\\VehicleDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket.Presentation.WebApi.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket.Presentation.WebApi.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "VehicleService.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Application\\Services\\VehicleService.cs",
+              "RelativeDocumentMoniker": "OptiAutoMarket\\OptiAutoMarket\\Application\\Services\\VehicleService.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Application\\Services\\VehicleService.cs",
+              "RelativeToolTip": "OptiAutoMarket\\OptiAutoMarket\\Application\\Services\\VehicleService.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T21:41:18.775Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VehicleDtoValidator.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Application.Validators\\Validators\\VehicleDtoValidator.cs",
+              "RelativeDocumentMoniker": "OAM.Application.Validators\\Validators\\VehicleDtoValidator.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Application.Validators\\Validators\\VehicleDtoValidator.cs",
+              "RelativeToolTip": "OAM.Application.Validators\\Validators\\VehicleDtoValidator.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T15:57:28.016Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CreateMaintenanceRecordDtoValidator.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Application.Validators\\Validators\\CreateMaintenanceRecordDtoValidator.cs",
+              "RelativeDocumentMoniker": "OAM.Application.Validators\\Validators\\CreateMaintenanceRecordDtoValidator.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Application.Validators\\Validators\\CreateMaintenanceRecordDtoValidator.cs",
+              "RelativeToolTip": "OAM.Application.Validators\\Validators\\CreateMaintenanceRecordDtoValidator.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T15:56:57.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CreateDefectDtoValidator.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Application.Validators\\Validators\\CreateDefectDtoValidator.cs",
+              "RelativeDocumentMoniker": "OAM.Application.Validators\\Validators\\CreateDefectDtoValidator.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Application.Validators\\Validators\\CreateDefectDtoValidator.cs",
+              "RelativeToolTip": "OAM.Application.Validators\\Validators\\CreateDefectDtoValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T15:55:25.257Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Presentation.WebApi\\Program.cs",
+              "RelativeDocumentMoniker": "OAM.Presentation.WebApi\\Program.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Presentation.WebApi\\Program.cs",
+              "RelativeToolTip": "OAM.Presentation.WebApi\\Program.cs",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAAAKgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T15:37:32.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VehicleController.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Presentation.WebApi\\Controllers\\VehicleController.cs",
+              "RelativeDocumentMoniker": "OAM.Presentation.WebApi\\Controllers\\VehicleController.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Presentation.WebApi\\Controllers\\VehicleController.cs",
+              "RelativeToolTip": "OAM.Presentation.WebApi\\Controllers\\VehicleController.cs",
+              "ViewState": "AgIAAGUAAAAAAAAAAADwvykAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T15:41:06.336Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DefectRepository.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Infrastructure.Repository.EF\\Repositories\\DefectRepository.cs",
+              "RelativeDocumentMoniker": "OAM.Infrastructure.Repository.EF\\Repositories\\DefectRepository.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Infrastructure.Repository.EF\\Repositories\\DefectRepository.cs",
+              "RelativeToolTip": "OAM.Infrastructure.Repository.EF\\Repositories\\DefectRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T00:06:26.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "VehicleDto.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Application.Dtos\\DTOs\\VehicleDto.cs",
+              "RelativeDocumentMoniker": "OAM.Application.Dtos\\DTOs\\VehicleDto.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Application.Dtos\\DTOs\\VehicleDto.cs",
+              "RelativeToolTip": "OAM.Application.Dtos\\DTOs\\VehicleDto.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T00:05:45.937Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Defect.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Domain\\Entities\\Defect.cs",
+              "RelativeDocumentMoniker": "OAM.Domain\\Entities\\Defect.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Domain\\Entities\\Defect.cs",
+              "RelativeToolTip": "OAM.Domain\\Entities\\Defect.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T00:05:06.931Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IAuditableEntity.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Domain\\Common\\IAuditableEntity.cs",
+              "RelativeDocumentMoniker": "OAM.Domain\\Common\\IAuditableEntity.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Domain\\Common\\IAuditableEntity.cs",
+              "RelativeToolTip": "OAM.Domain\\Common\\IAuditableEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T00:04:58.639Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Infrastructure.Repository.EF\\Persistence\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "OAM.Infrastructure.Repository.EF\\Persistence\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Infrastructure.Repository.EF\\Persistence\\ApplicationDbContext.cs",
+              "RelativeToolTip": "OAM.Infrastructure.Repository.EF\\Persistence\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA1wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T23:59:19.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "VehiclePhoto.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Domain\\Entities\\VehiclePhoto.cs",
+              "RelativeDocumentMoniker": "OAM.Domain\\Entities\\VehiclePhoto.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Domain\\Entities\\VehiclePhoto.cs",
+              "RelativeToolTip": "OAM.Domain\\Entities\\VehiclePhoto.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T00:05:28.141Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IEntity.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Domain\\Common\\IEntity.cs",
+              "RelativeDocumentMoniker": "OAM.Domain\\Common\\IEntity.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Domain\\Common\\IEntity.cs",
+              "RelativeToolTip": "OAM.Domain\\Common\\IEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T00:04:55.649Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "UnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Infrastructure.Repository.EF\\UnitOfWork\\UnitOfWork.cs",
+              "RelativeDocumentMoniker": "OAM.Infrastructure.Repository.EF\\UnitOfWork\\UnitOfWork.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Infrastructure.Repository.EF\\UnitOfWork\\UnitOfWork.cs",
+              "RelativeToolTip": "OAM.Infrastructure.Repository.EF\\UnitOfWork\\UnitOfWork.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwAoAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T23:59:37.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "VehiclePhotoService.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Application.Service\\Services\\VehiclePhotoService.cs",
+              "RelativeDocumentMoniker": "OAM.Application.Service\\Services\\VehiclePhotoService.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OAM.Application.Service\\Services\\VehiclePhotoService.cs",
+              "RelativeToolTip": "OAM.Application.Service\\Services\\VehiclePhotoService.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAgwFMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T23:47:58.023Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Defect.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\Defect.cs",
+              "RelativeDocumentMoniker": "OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\Defect.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\Defect.cs",
+              "RelativeToolTip": "OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\Defect.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T21:42:39.669Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Vehicle.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\Vehicle.cs",
+              "RelativeDocumentMoniker": "OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\Vehicle.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\Vehicle.cs",
+              "RelativeToolTip": "OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\Vehicle.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T21:41:34.194Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "VehicleController.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Controllers\\VehicleController.cs",
+              "RelativeDocumentMoniker": "OptiAutoMarket\\OptiAutoMarket\\Controllers\\VehicleController.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Controllers\\VehicleController.cs",
+              "RelativeToolTip": "OptiAutoMarket\\OptiAutoMarket\\Controllers\\VehicleController.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T21:37:03.231Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "OptiAutoMarket\\OptiAutoMarket\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "OptiAutoMarket\\OptiAutoMarket\\Controllers\\WeatherForecastController.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T21:37:15.909Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "OptiAutoMarket.Presentation.WebApi.csproj",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket.Presentation.WebApi.csproj",
+              "RelativeDocumentMoniker": "OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket.Presentation.WebApi.csproj",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket.Presentation.WebApi.csproj",
+              "RelativeToolTip": "OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket.Presentation.WebApi.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-19T21:32:53.142Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "MaintenanceRecord.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\MaintenanceRecord.cs",
+              "RelativeDocumentMoniker": "OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\MaintenanceRecord.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\MaintenanceRecord.cs",
+              "RelativeToolTip": "OptiAutoMarket\\OptiAutoMarket\\Domain\\Entities\\MaintenanceRecord.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T21:45:40.771Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "VehicleDto.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Application\\Dtos\\VehicleDto.cs",
+              "RelativeDocumentMoniker": "OptiAutoMarket\\OptiAutoMarket\\Application\\Dtos\\VehicleDto.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\Application\\Dtos\\VehicleDto.cs",
+              "RelativeToolTip": "OptiAutoMarket\\OptiAutoMarket\\Application\\Dtos\\VehicleDto.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T21:48:04.651Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "OptiAutoMarket.Presentation.WebApi.csproj",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket.Presentation.WebApi.csproj",
+              "RelativeDocumentMoniker": "OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket.Presentation.WebApi.csproj",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\DOCS\\COMPANIES\\OPTIAUTO\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket.Presentation.WebApi.csproj",
+              "RelativeToolTip": "OptiAutoMarket\\OptiAutoMarket\\OptiAutoMarket.Presentation.WebApi.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-19T21:34:01.787Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

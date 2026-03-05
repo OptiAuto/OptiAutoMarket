@@ -1,0 +1,34 @@
+{
+  "general": {
+    "password_page": {
+      "login_form_heading": "Entrez le mot de passe"
+    },
+    "accessibility": {
+      "skip_to_content": "Aller au contenu"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Nous contacter",
+      "sold_out": "Vendu",
+      "unavailable": "Indisponible"
+    }
+  },
+  "collections": {
+    "general": {
+      "no_matches": "Aucun véhicule ne correspond à vos critères.",
+      "items_count": {
+        "one": "{{ count }} véhicule",
+        "other": "{{ count }} véhicules"
+      }
+    },
+    "sorting": {
+      "title": "Trier par",
+      "manual": "En vedette",
+      "best_selling": "Meilleures ventes",
+      "price_ascending": "Prix croissant",
+      "price_descending": "Prix décroissant",
+      "created_descending": "Plus récents"
+    }
+  }
+}

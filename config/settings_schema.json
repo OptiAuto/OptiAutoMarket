@@ -1,0 +1,67 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "OptiAuto Market",
+    "theme_version": "1.0.0",
+    "theme_author": "OptiAuto",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Couleurs",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Couleur primaire",
+        "default": "#0f172a"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Couleur d'accent",
+        "default": "#f59e0b"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Fond",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Texte",
+        "default": "#1e293b"
+      }
+    ]
+  },
+  {
+    "name": "En-tête",
+    "settings": [
+      {
+        "type": "text",
+        "id": "header_phone",
+        "label": "Téléphone",
+        "default": "01 23 45 67 89"
+      },
+      {
+        "type": "text",
+        "id": "header_cta_text",
+        "label": "Texte bouton vente",
+        "default": "Vendre ma voiture"
+      }
+    ]
+  },
+  {
+    "name": "Pied de page",
+    "settings": [
+      {
+        "type": "text",
+        "id": "footer_copyright",
+        "label": "Copyright",
+        "default": "© 2025 OptiAuto Market. Tous droits réservés."
+      }
+    ]
+  }
+]

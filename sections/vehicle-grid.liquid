@@ -1,0 +1,67 @@
+{% comment %}
+  Section: Grille de véhicules - Dernières annonces
+{% endcomment %}
+
+<div class="vehicle-grid section">
+  <div class="page-width">
+    <h2 class="section__title">{{ section.settings.title | default: "Nos dernières voitures" }}</h2>
+
+    {% assign collection = section.settings.collection | default: collections.all %}
+    {% assign products_to_show = section.settings.limit | default: 8 %}
+
+    <div class="vehicle-grid__list">
+      {% for product in collection.products limit: products_to_show %}
+        {% render 'vehicle-card', product: product %}
+      {% else %}
+        <p class="vehicle-grid__empty">Aucun véhicule pour le moment. Ajoutez des produits dans votre boutique.</p>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.show_button %}
+      <div class="vehicle-grid__more">
+        <a href="{{ collection.url }}" class="btn btn--outline">{{ section.settings.button_text | default: "Voir toutes nos voitures" }}</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Grille véhicules",
+  "class": "section-vehicle-grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Nos dernières voitures"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Nombre de véhicules",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Afficher le bouton",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Texte du bouton",
+      "default": "Voir toutes nos voitures"
+    }
+  ]
+}
+{% endschema %}

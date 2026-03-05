@@ -1,0 +1,96 @@
+{% comment %}
+  Section: Hero - Page d'accueil
+{% endcomment %}
+
+<div class="hero" style="--hero-height: {{ section.settings.height }}vh;">
+  <div class="hero__bg">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 1920 | image_tag: loading: 'eager', class: 'hero__bg-image' }}
+    {% else %}
+      <div class="hero__bg-placeholder"></div>
+    {% endif %}
+    <div class="hero__overlay"></div>
+  </div>
+
+  <div class="hero__content page-width">
+    <h1 class="hero__title">{{ section.settings.title | default: "Trouvez la voiture de vos rêves" }}</h1>
+    <p class="hero__subtitle">{{ section.settings.subtitle | default: "Des milliers de véhicules d'occasion contrôlés, garantis et au meilleur prix." }}</p>
+
+    <div class="hero__actions">
+      <a href="{{ section.settings.cta_link | default: routes.collections_url }}" class="btn btn--primary btn--lg">
+        {{ section.settings.cta_text | default: "Acheter un véhicule" }}
+      </a>
+      <a href="/pages/vendre-ma-voiture" class="btn btn--outline btn--lg">
+        {{ section.settings.cta_secondary | default: "Vendre sa voiture" }}
+      </a>
+    </div>
+
+    {% if section.settings.show_search %}
+      <div class="hero__search">
+        <form action="{{ routes.search_url }}" method="get" class="hero__search-form">
+          <input type="hidden" name="type" value="product">
+          <input type="search" name="q" placeholder="Marque, modèle..." class="hero__search-input" aria-label="Rechercher un véhicule">
+          <button type="submit" class="btn btn--primary">Rechercher</button>
+        </form>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero",
+  "class": "section-hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image de fond"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Trouvez la voiture de vos rêves"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Sous-titre",
+      "default": "Des milliers de véhicules d'occasion contrôlés, garantis et au meilleur prix."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texte bouton principal",
+      "default": "Acheter un véhicule"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Lien bouton principal"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary",
+      "label": "Texte bouton secondaire",
+      "default": "Vendre sa voiture"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Afficher la recherche",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "Hauteur",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "default": 85
+    }
+  ]
+}
+{% endschema %}

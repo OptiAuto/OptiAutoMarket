@@ -1,0 +1,40 @@
+{% comment %}
+  Snippet: Carte véhicule pour la grille
+  Utilise les metafields produit pour: marque, modèle, année, km, carburant, boîte
+{% endcomment %}
+
+<a href="{{ product.url }}" class="vehicle-card">
+  <div class="vehicle-card__image">
+    {% if product.featured_image != blank %}
+      {{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: product.title }}
+    {% else %}
+      <div class="vehicle-card__placeholder">
+        <span>🚗</span>
+      </div>
+    {% endif %}
+    {% assign price_indicator = product.metafields.custom.price_indicator | default: '' %}
+    {% if price_indicator != blank %}
+      <span class="vehicle-card__badge vehicle-card__badge--{{ price_indicator | handleize }}">{{ price_indicator }}</span>
+    {% endif %}
+  </div>
+
+  <div class="vehicle-card__content">
+    <span class="vehicle-card__price">{{ product.price | money }}</span>
+    <h3 class="vehicle-card__title">{{ product.title }}</h3>
+
+    <div class="vehicle-card__specs">
+      {% if product.metafields.custom.year != blank %}
+        <span>{{ product.metafields.custom.year }}</span>
+      {% endif %}
+      {% if product.metafields.custom.mileage != blank %}
+        <span>{{ product.metafields.custom.mileage | append: ' km' }}</span>
+      {% endif %}
+      {% if product.metafields.custom.fuel_type != blank %}
+        <span>{{ product.metafields.custom.fuel_type }}</span>
+      {% endif %}
+      {% if product.metafields.custom.transmission != blank %}
+        <span>{{ product.metafields.custom.transmission }}</span>
+      {% endif %}
+    </div>
+  </div>
+</a>

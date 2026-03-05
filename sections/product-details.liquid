@@ -1,0 +1,44 @@
+<div class="product-details section section--alt">
+  <div class="page-width">
+    <h2>Caractéristiques détaillées</h2>
+    <div class="product-details__grid">
+      {% if product.metafields.custom.power %}
+        <div class="product-details__item">
+          <span>Puissance</span>
+          <strong>{{ product.metafields.custom.power }}</strong>
+        </div>
+      {% endif %}
+      {% if product.metafields.custom.color %}
+        <div class="product-details__item">
+          <span>Couleur</span>
+          <strong>{{ product.metafields.custom.color }}</strong>
+        </div>
+      {% endif %}
+      {% if product.metafields.custom.doors %}
+        <div class="product-details__item">
+          <span>Portes</span>
+          <strong>{{ product.metafields.custom.doors }}</strong>
+        </div>
+      {% endif %}
+      {% if product.metafields.custom.seats %}
+        <div class="product-details__item">
+          <span>Places</span>
+          <strong>{{ product.metafields.custom.seats }}</strong>
+        </div>
+      {% endif %}
+      {% if product.metafields.custom.co2 %}
+        <div class="product-details__item">
+          <span>CO2</span>
+          <strong>{{ product.metafields.custom.co2 }} g/km</strong>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Détails produit",
+  "class": "section-product-details"
+}
+{% endschema %}

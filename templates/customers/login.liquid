@@ -1,0 +1,12 @@
+{% layout 'theme' %}
+<div class="customer-login page-width">
+  <h1>Connexion</h1>
+  {% form 'customer_login' %}
+    {{ form.errors | default_errors }}
+    <label for="customer_email">Email</label>
+    <input type="email" name="customer[email]" id="customer_email">
+    <label for="customer_password">Mot de passe</label>
+    <input type="password" name="customer[password]" id="customer_password">
+    <button type="submit">Se connecter</button>
+  {% endform %}
+</div>

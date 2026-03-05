@@ -1,0 +1,31 @@
+<div class="cart page-width">
+  <h1>Panier</h1>
+  {% if cart.item_count > 0 %}
+    <form action="{{ routes.cart_url }}" method="post">
+      {% for item in cart.items %}
+        <div class="cart-item">
+          <a href="{{ item.url }}">{{ item.title }}</a>
+          <span>{{ item.final_line_price | money }}</span>
+          <input type="number" name="updates[]" value="{{ item.quantity }}" min="0">
+        </div>
+      {% endfor %}
+      <p>Total : {{ cart.total_price | money }}</p>
+      <button type="submit" name="update">Mettre à jour</button>
+      <button type="submit" name="checkout">Commander</button>
+    </form>
+  {% else %}
+    <p>Votre panier est vide.</p>
+  {% endif %}
+</div>
+
+<style>
+.cart { padding: 48px 0; }
+.cart-item { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; }
+</style>
+
+{% schema %}
+{
+  "name": "Panier",
+  "class": "section-main-cart"
+}
+{% endschema %}

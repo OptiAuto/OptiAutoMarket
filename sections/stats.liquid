@@ -1,0 +1,58 @@
+{% comment %}
+  Section: Statistiques (acheteurs, annonces, ventes)
+{% endcomment %}
+
+<div class="stats section section--alt">
+  <div class="page-width">
+    <div class="stats__grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'stat' %}
+          <div class="stats__item" {{ block.shopify_attributes }}>
+            <span class="stats__number">{{ block.settings.number }}</span>
+            <span class="stats__label">{{ block.settings.label }}</span>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      {% if section.blocks.size == 0 %}
+        <div class="stats__item">
+          <span class="stats__number">67 000+</span>
+          <span class="stats__label">acheteurs inscrits</span>
+        </div>
+        <div class="stats__item">
+          <span class="stats__number">1 100 000+</span>
+          <span class="stats__label">annonces diffusées</span>
+        </div>
+        <div class="stats__item">
+          <span class="stats__number">54 000+</span>
+          <span class="stats__label">voitures vendues</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Statistiques",
+  "class": "section-stats",
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistique",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Nombre"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Libellé"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

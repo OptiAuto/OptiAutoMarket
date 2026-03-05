@@ -1,0 +1,82 @@
+{% comment %}
+  Section: Filtres de recherche pour le catalogue
+{% endcomment %}
+
+<div class="collection-filters">
+  <form class="collection-filters__form" id="CollectionFilters">
+    <div class="collection-filters__inner page-width">
+      <div class="collection-filters__group">
+        <label>Marque</label>
+        <select name="filter.v.option.marque" class="collection-filters__select">
+          <option value="">Toutes</option>
+          {% for tag in collection.all_tags %}
+            {% if tag contains 'marque:' %}
+              <option value="{{ tag | remove: 'marque:' }}">{{ tag | remove: 'marque:' }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+      <div class="collection-filters__group">
+        <label>Prix max</label>
+        <select name="filter.v.price.gte" class="collection-filters__select">
+          <option value="">Tous les prix</option>
+          <option value="5000">5 000 €</option>
+          <option value="10000">10 000 €</option>
+          <option value="15000">15 000 €</option>
+          <option value="20000">20 000 €</option>
+          <option value="30000">30 000 €</option>
+          <option value="50000">50 000 €</option>
+          <option value="100000">100 000 €</option>
+        </select>
+      </div>
+      <div class="collection-filters__group">
+        <label>Année min</label>
+        <select name="filter.v.option.annee" class="collection-filters__select">
+          <option value="">Toutes</option>
+          {% for i in (2010..2025) reversed %}
+            <option value="{{ i }}">{{ i }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="collection-filters__group">
+        <label>Kilométrage max</label>
+        <select name="filter.v.option.mileage" class="collection-filters__select">
+          <option value="">Tous</option>
+          <option value="50000">50 000 km</option>
+          <option value="100000">100 000 km</option>
+          <option value="150000">150 000 km</option>
+          <option value="200000">200 000 km</option>
+        </select>
+      </div>
+      <div class="collection-filters__group">
+        <label>Carburant</label>
+        <select name="filter.v.option.carburant" class="collection-filters__select">
+          <option value="">Tous</option>
+          <option value="Essence">Essence</option>
+          <option value="Diesel">Diesel</option>
+          <option value="Électrique">Électrique</option>
+          <option value="Hybride">Hybride</option>
+        </select>
+      </div>
+      <div class="collection-filters__group">
+        <label>Boîte</label>
+        <select name="filter.v.option.boite" class="collection-filters__select">
+          <option value="">Toutes</option>
+          <option value="Manuelle">Manuelle</option>
+          <option value="Automatique">Automatique</option>
+        </select>
+      </div>
+      <div class="collection-filters__actions">
+        <button type="submit" class="btn btn--primary">Filtrer</button>
+        <a href="{{ collection.url }}" class="btn btn--outline">Réinitialiser</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% schema %}
+{
+  "name": "Filtres collection",
+  "class": "section-collection-filters"
+}
+{% endschema %}

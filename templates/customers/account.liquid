@@ -1,0 +1,7 @@
+{% layout 'theme' %}
+<div class="customer-account page-width">
+  <h1>Mon compte</h1>
+  <p>Bienvenue, {{ customer.first_name }}.</p>
+  <a href="{{ routes.account_addresses_url }}">Mes adresses</a>
+  <a href="{{ routes.account_logout_url }}">Déconnexion</a>
+</div>
