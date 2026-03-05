@@ -1,0 +1,45 @@
+
+<section class="cars">
+
+<h2>Catalogue voitures</h2>
+
+<div class="filters">
+<select id="brandFilter">
+<option value="">Marque</option>
+<option>Renault</option>
+<option>Peugeot</option>
+<option>BMW</option>
+<option>Audi</option>
+<option>Volkswagen</option>
+</select>
+
+<select id="fuelFilter">
+<option value="">Carburant</option>
+<option>Essence</option>
+<option>Diesel</option>
+<option>Hybride</option>
+<option>Electrique</option>
+</select>
+</div>
+
+<div class="car-grid">
+{% for product in collection.products %}
+
+<div class="car-card"
+data-brand="{{ product.vendor }}"
+data-fuel="{{ product.metafields.custom.fuel }}">
+
+<img src="{{ product.featured_image | image_url: width: 600 }}">
+
+<h3>{{ product.title }}</h3>
+
+<p class="price">{{ product.price | money }}</p>
+
+<a class="btn" href="{{ product.url }}">Voir</a>
+
+</div>
+
+{% endfor %}
+</div>
+
+</section>

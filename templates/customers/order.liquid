@@ -1,6 +1,0 @@
-{% layout 'theme' %}
-<div class="customer-order page-width">
-  <h1>Commande {{ order.name }}</h1>
-  <p>Date : {{ order.created_at | date: "%d/%m/%Y" }}</p>
-  <p>Total : {{ order.total_price | money }}</p>
-</div>

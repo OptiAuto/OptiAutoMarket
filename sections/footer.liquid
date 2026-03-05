@@ -1,64 +1,6 @@
-{% comment %}
-  Section: Pied de page OptiAuto Market
-{% endcomment %}
 
-<footer class="footer">
-  <div class="footer__main page-width">
-    <div class="footer__grid">
-      <div class="footer__brand">
-        <a href="{{ routes.root_url }}" class="footer__logo">
-          <span class="footer__logo-text">OptiAuto</span>
-          <span class="footer__logo-sub">Market</span>
-        </a>
-        <p class="footer__tagline">Achetez ou vendez votre véhicule d'occasion en toute sérénité. Contrôle, transparence et accompagnement personnalisé.</p>
-      </div>
-
-      <div class="footer__links">
-        <h4>Acheter</h4>
-        <ul>
-          <li><a href="{{ routes.collections_url }}">Toutes nos voitures</a></li>
-          <li><a href="/collections/citadine">Citadines</a></li>
-          <li><a href="/collections/suv">SUV & 4x4</a></li>
-          <li><a href="/collections/berline">Berlines</a></li>
-          <li><a href="/collections/utilitaire">Utilitaires</a></li>
-        </ul>
-      </div>
-
-      <div class="footer__links">
-        <h4>Vendre votre véhicule</h4>
-        <ul>
-          <li><a href="/pages/vendre-ma-voiture">Vendre ma voiture</a></li>
-          <li><a href="/pages/estimation">Estimation en ligne</a></li>
-          <li><a href="/pages/reprise">Reprise et revente</a></li>
-        </ul>
-      </div>
-
-      <div class="footer__links">
-        <h4>Informations</h4>
-        <ul>
-          <li><a href="/pages/comment-ca-marche">Comment ça marche</a></li>
-          <li><a href="/pages/garanties">Nos garanties</a></li>
-          <li><a href="/pages/financement">Financement</a></li>
-          <li><a href="/pages/contact">Contact</a></li>
-        </ul>
-      </div>
-
-      <div class="footer__contact">
-        <h4>Contact</h4>
-        <a href="tel:{{ settings.header_phone }}">{{ settings.header_phone }}</a>
-      </div>
-    </div>
-
-    <div class="footer__bottom">
-      <p class="footer__copyright">{{ settings.footer_copyright }}</p>
-    </div>
+<footer class="site-footer">
+  <div class="container">
+    <p>© {{ shop.name }} {{ 'now' | date: '%Y' }}</p>
   </div>
 </footer>
-
-{% schema %}
-{
-  "name": "Pied de page",
-  "type": "footer",
-  "class": "section-footer"
-}
-{% endschema %}
