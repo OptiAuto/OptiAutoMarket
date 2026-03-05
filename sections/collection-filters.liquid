@@ -1,82 +1,134 @@
 {% comment %}
-  Section: Filtres de recherche pour le catalogue
+  Section: Filtres de recherche pour le catalogue véhicules
+  Style La Centrale, Capcar, Carizy - Filtres complets et robustes
+  Les produits doivent avoir les tags: marque:XXX, modele:XXX, carrosserie:XXX, carburant:XXX, boite:XXX
 {% endcomment %}
 
+{% render 'vehicle-filters-data' %}
+
 <div class="collection-filters">
-  <form class="collection-filters__form" id="CollectionFilters">
+  <form class="collection-filters__form" id="CollectionFilters" action="{{ collection.url }}" method="get">
     <div class="collection-filters__inner page-width">
       <div class="collection-filters__group">
-        <label>Marque</label>
-        <select name="filter.v.option.marque" class="collection-filters__select">
-          <option value="">Toutes</option>
-          {% for tag in collection.all_tags %}
-            {% if tag contains 'marque:' %}
-              <option value="{{ tag | remove: 'marque:' }}">{{ tag | remove: 'marque:' }}</option>
-            {% endif %}
+        <label for="filter-marque">Marque</label>
+        <select name="filter.p.tag" id="filter-marque" class="collection-filters__select" data-filter-type="marque">
+          <option value="">Toutes les marques</option>
+          {% for marque in marques %}
+            {% assign marque_tag = 'marque:' | append: marque %}
+            <option value="{{ marque_tag }}" {% if current_tags contains marque_tag %}selected{% endif %}>{{ marque }}</option>
           {% endfor %}
         </select>
       </div>
+
       <div class="collection-filters__group">
-        <label>Prix max</label>
-        <select name="filter.v.price.gte" class="collection-filters__select">
-          <option value="">Tous les prix</option>
-          <option value="5000">5 000 €</option>
-          <option value="10000">10 000 €</option>
-          <option value="15000">15 000 €</option>
-          <option value="20000">20 000 €</option>
-          <option value="30000">30 000 €</option>
-          <option value="50000">50 000 €</option>
-          <option value="100000">100 000 €</option>
-        </select>
-      </div>
-      <div class="collection-filters__group">
-        <label>Année min</label>
-        <select name="filter.v.option.annee" class="collection-filters__select">
-          <option value="">Toutes</option>
-          {% for i in (2010..2025) reversed %}
-            <option value="{{ i }}">{{ i }}</option>
+        <label for="filter-modele">Modèle</label>
+        <select name="filter.p.tag" id="filter-modele" class="collection-filters__select" data-filter-type="modele">
+          <option value="">Tous les modèles</option>
+          {% for modele in modeles %}
+            <option value="modele:{{ modele }}">{{ modele }}</option>
           {% endfor %}
         </select>
       </div>
+
       <div class="collection-filters__group">
-        <label>Kilométrage max</label>
-        <select name="filter.v.option.mileage" class="collection-filters__select">
-          <option value="">Tous</option>
-          <option value="50000">50 000 km</option>
-          <option value="100000">100 000 km</option>
-          <option value="150000">150 000 km</option>
-          <option value="200000">200 000 km</option>
+        <label for="filter-carrosserie">Carrosserie</label>
+        <select name="filter.p.tag" id="filter-carrosserie" class="collection-filters__select">
+          <option value="">Tous les types</option>
+          {% for carrosserie in carrosseries %}
+            <option value="carrosserie:{{ carrosserie }}">{{ carrosserie }}</option>
+          {% endfor %}
         </select>
       </div>
+
+      <div class="collection-filters__group collection-filters__group--range">
+        <label>Prix (€)</label>
+        <div class="collection-filters__range">
+          <input type="number" name="filter.v.price.gte" id="filter-prix-min" class="collection-filters__input" placeholder="Min" min="0" step="1000" inputmode="numeric">
+          <span class="collection-filters__range-sep">–</span>
+          <input type="number" name="filter.v.price.lte" id="filter-prix-max" class="collection-filters__input" placeholder="Max" min="0" step="1000" inputmode="numeric">
+        </div>
+      </div>
+
+      <div class="collection-filters__group collection-filters__group--range">
+        <label>Kilométrage</label>
+        <div class="collection-filters__range">
+          <input type="number" name="filter_km_min" id="filter-km-min" class="collection-filters__input" placeholder="Min" min="0" step="1000" inputmode="numeric">
+          <span class="collection-filters__range-sep">–</span>
+          <input type="number" name="filter_km_max" id="filter-km-max" class="collection-filters__input" placeholder="Max" min="0" step="1000" inputmode="numeric">
+        </div>
+      </div>
+
+      <div class="collection-filters__group collection-filters__group--range">
+        <label>Année</label>
+        <div class="collection-filters__range">
+          <input type="number" name="filter_annee_min" id="filter-annee-min" class="collection-filters__input" placeholder="Min" min="1990" max="2030" step="1" inputmode="numeric">
+          <span class="collection-filters__range-sep">–</span>
+          <input type="number" name="filter_annee_max" id="filter-annee-max" class="collection-filters__input" placeholder="Max" min="1990" max="2030" step="1" inputmode="numeric">
+        </div>
+      </div>
+
       <div class="collection-filters__group">
-        <label>Carburant</label>
-        <select name="filter.v.option.carburant" class="collection-filters__select">
+        <label for="filter-carburant">Carburant</label>
+        <select name="filter.p.tag" id="filter-carburant" class="collection-filters__select">
           <option value="">Tous</option>
-          <option value="Essence">Essence</option>
-          <option value="Diesel">Diesel</option>
-          <option value="Électrique">Électrique</option>
-          <option value="Hybride">Hybride</option>
+          {% for carburant in carburants %}
+            <option value="carburant:{{ carburant }}">{{ carburant }}</option>
+          {% endfor %}
         </select>
       </div>
+
       <div class="collection-filters__group">
-        <label>Boîte</label>
-        <select name="filter.v.option.boite" class="collection-filters__select">
+        <label for="filter-boite">Boîte de vitesses</label>
+        <select name="filter.p.tag" id="filter-boite" class="collection-filters__select">
           <option value="">Toutes</option>
-          <option value="Manuelle">Manuelle</option>
-          <option value="Automatique">Automatique</option>
+          {% for boite in boites %}
+            <option value="boite:{{ boite }}">{{ boite }}</option>
+          {% endfor %}
         </select>
       </div>
+
       <div class="collection-filters__actions">
-        <button type="submit" class="btn btn--primary">Filtrer</button>
-        <a href="{{ collection.url }}" class="btn btn--outline">Réinitialiser</a>
+        <button type="submit" class="btn btn--primary">Rechercher</button>
+        <a href="{{ collection.url }}" class="btn btn--outline">Réinitialiser les filtres</a>
       </div>
     </div>
   </form>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('CollectionFilters');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var baseUrl = form.action.split('?')[0];
+        var params = [];
+        form.querySelectorAll('select').forEach(function(sel) {
+          if (!sel.value) return;
+          if (sel.name === 'filter.p.tag') params.push('filter.p.tag=' + encodeURIComponent(sel.value));
+        });
+        var prixMin = form.querySelector('#filter-prix-min');
+        var prixMax = form.querySelector('#filter-prix-max');
+        if (prixMin && prixMin.value) params.push('filter.v.price.gte=' + prixMin.value);
+        if (prixMax && prixMax.value) params.push('filter.v.price.lte=' + prixMax.value);
+        var kmMin = form.querySelector('#filter-km-min');
+        var kmMax = form.querySelector('#filter-km-max');
+        if (kmMin && kmMin.value) params.push('filter_km_min=' + kmMin.value);
+        if (kmMax && kmMax.value) params.push('filter_km_max=' + kmMax.value);
+        var anneeMin = form.querySelector('#filter-annee-min');
+        var anneeMax = form.querySelector('#filter-annee-max');
+        if (anneeMin && anneeMin.value) params.push('filter_annee_min=' + anneeMin.value);
+        if (anneeMax && anneeMax.value) params.push('filter_annee_max=' + anneeMax.value);
+        window.location.href = params.length ? baseUrl + '?' + params.join('&') : baseUrl;
+      });
+    }
+  });
+</script>
+
 {% schema %}
 {
   "name": "Filtres collection",
-  "class": "section-collection-filters"
+  "class": "section-collection-filters",
+  "settings": []
 }
 {% endschema %}

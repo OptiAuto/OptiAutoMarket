@@ -4,7 +4,7 @@
 
 <div class="vehicle-grid section">
   <div class="page-width">
-    <h2 class="section__title">{{ section.settings.title | default: "Nos dernières voitures" }}</h2>
+    <h2 class="section__title">{{ section.settings.title | default: "Nos dernières voitures d'occasion" }}</h2>
 
     {% assign collection = section.settings.collection | default: collections.all %}
     {% assign products_to_show = section.settings.limit | default: 8 %}
@@ -19,7 +19,7 @@
 
     {% if section.settings.show_button %}
       <div class="vehicle-grid__more">
-        <a href="{{ collection.url }}" class="btn btn--outline">{{ section.settings.button_text | default: "Voir toutes nos voitures" }}</a>
+        <a href="{{ collection.url }}" class="btn btn--outline">{{ section.settings.button_text | default: "Voir tout le catalogue" }}</a>
       </div>
     {% endif %}
   </div>

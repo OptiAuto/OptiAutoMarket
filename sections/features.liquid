@@ -4,30 +4,30 @@
 
 <div class="features section section--alt">
   <div class="page-width">
-    <h2 class="section__title">{{ section.settings.title | default: "Bienvenue chez OptiAuto" }}</h2>
-    <p class="section__subtitle">{{ section.settings.subtitle | default: "Achetez une voiture d'occasion sans stress. On vous accompagne de A à Z !" }}</p>
+    <h2 class="section__title">{{ section.settings.title | default: "Pourquoi nous choisir" }}</h2>
+    <p class="section__subtitle">{{ section.settings.subtitle | default: "Achetez une voiture d'occasion sans stress. Nous vous accompagnons de A à Z avec transparence et professionnalisme." }}</p>
 
     <div class="features__grid">
       <div class="features__card">
         <span class="features__icon">👨‍🔧</span>
-        <h3>Voitures contrôlées</h3>
-        <p>Les véhicules sont contrôlés sur 200 points de contrôle, et leur bon état mécanique est vérifié de manière transparente.</p>
+        <h3>Véhicules contrôlés</h3>
+        <p>Chaque véhicule est inspecté selon un protocole rigoureux. L'état mécanique et l'historique sont vérifiés et documentés de manière transparente.</p>
         {% if section.settings.link1 != blank %}
           <a href="{{ section.settings.link1 }}" class="features__link">En savoir plus →</a>
         {% endif %}
       </div>
       <div class="features__card">
         <span class="features__icon">🚗</span>
-        <h3>Meilleur qualité / prix</h3>
-        <p>Familiale, sportive, électrique, utilitaire... Trouvez votre bonheur en quelques clics.</p>
+        <h3>Rapport qualité-prix garanti</h3>
+        <p>Citadine, berline, SUV, utilitaire ou électrique : trouvez le véhicule adapté à vos besoins et à votre budget parmi notre sélection.</p>
         {% if section.settings.link2 != blank %}
           <a href="{{ section.settings.link2 }}" class="features__link">En savoir plus →</a>
         {% endif %}
       </div>
       <div class="features__card">
         <span class="features__icon">👍</span>
-        <h3>Garantie incluse</h3>
-        <p>C'est presque comme du neuf, sans le prix du neuf, avec une garantie de 6 mois minimum.</p>
+        <h3>Garantie constructeur incluse</h3>
+        <p>Bénéficiez d'une garantie minimale de 6 mois sur l'ensemble de nos véhicules. Achetez l'esprit tranquille, comme en concession.</p>
         {% if section.settings.link3 != blank %}
           <a href="{{ section.settings.link3 }}" class="features__link">En savoir plus →</a>
         {% endif %}
@@ -37,7 +37,7 @@
     {% if section.settings.cta_text != blank %}
       <div class="features__cta">
         <p>{{ section.settings.cta_text }}</p>
-        <a href="/pages/vendre-ma-voiture" class="btn btn--primary">{{ section.settings.cta_button | default: "Je vends ma voiture" }}</a>
+        <a href="/pages/vendre-ma-voiture" class="btn btn--primary">{{ section.settings.cta_button | default: "Estimer et vendre ma voiture" }}</a>
       </div>
     {% endif %}
   </div>
@@ -79,7 +79,7 @@
       "type": "text",
       "id": "cta_text",
       "label": "Texte CTA vente",
-      "default": "Vous souhaitez vendre votre voiture ? Pas de problème on est là !"
+      "default": "Vous souhaitez vendre votre voiture ? Nous vous proposons une estimation gratuite et un accompagnement personnalisé."
     },
     {
       "type": "text",

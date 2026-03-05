@@ -13,8 +13,8 @@
   </div>
 
   <div class="hero__content page-width">
-    <h1 class="hero__title">{{ section.settings.title | default: "Trouvez la voiture de vos rêves" }}</h1>
-    <p class="hero__subtitle">{{ section.settings.subtitle | default: "Des milliers de véhicules d'occasion contrôlés, garantis et au meilleur prix." }}</p>
+    <h1 class="hero__title">{{ section.settings.title | default: "Voiture d'occasion : achetez ou vendez au meilleur prix" }}</h1>
+    <p class="hero__subtitle">{{ section.settings.subtitle | default: "Achetez une voiture d'occasion en toute confiance. Véhicules contrôlés, garantis et accompagnés de A à Z." }}</p>
 
     <div class="hero__actions">
       <a href="{{ section.settings.cta_link | default: routes.collections_url }}" class="btn btn--primary btn--lg">
@@ -29,7 +29,7 @@
       <div class="hero__search">
         <form action="{{ routes.search_url }}" method="get" class="hero__search-form">
           <input type="hidden" name="type" value="product">
-          <input type="search" name="q" placeholder="Marque, modèle..." class="hero__search-input" aria-label="Rechercher un véhicule">
+          <input type="search" name="q" placeholder="Marque, modèle ou référence..." class="hero__search-input" aria-label="Rechercher un véhicule">
           <button type="submit" class="btn btn--primary">Rechercher</button>
         </form>
       </div>
@@ -51,13 +51,13 @@
       "type": "text",
       "id": "title",
       "label": "Titre",
-      "default": "Trouvez la voiture de vos rêves"
+      "default": "Voiture d'occasion : achetez ou vendez au meilleur prix"
     },
     {
       "type": "textarea",
       "id": "subtitle",
       "label": "Sous-titre",
-      "default": "Des milliers de véhicules d'occasion contrôlés, garantis et au meilleur prix."
+      "default": "Achetez une voiture d'occasion en toute confiance. Véhicules contrôlés, garantis et accompagnés de A à Z."
     },
     {
       "type": "text",

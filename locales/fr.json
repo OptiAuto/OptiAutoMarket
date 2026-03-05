@@ -9,14 +9,14 @@
   },
   "products": {
     "product": {
-      "add_to_cart": "Nous contacter",
+      "add_to_cart": "Demander une démonstration",
       "sold_out": "Vendu",
       "unavailable": "Indisponible"
     }
   },
   "collections": {
     "general": {
-      "no_matches": "Aucun véhicule ne correspond à vos critères.",
+      "no_matches": "Aucun véhicule ne correspond à vos critères de recherche. Modifiez vos filtres ou consultez notre catalogue complet.",
       "items_count": {
         "one": "{{ count }} véhicule",
         "other": "{{ count }} véhicules"
@@ -30,5 +30,17 @@
       "price_descending": "Prix décroissant",
       "created_descending": "Plus récents"
     }
+  },
+  "filters": {
+    "marque": "Marque",
+    "modele": "Modèle",
+    "carrosserie": "Carrosserie",
+    "prix_max": "Prix max",
+    "annee_min": "Année min",
+    "km_max": "Kilométrage max",
+    "carburant": "Carburant",
+    "boite": "Boîte de vitesses",
+    "search": "Rechercher",
+    "reset": "Réinitialiser les filtres"
   }
 }
