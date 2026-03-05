@@ -1,0 +1,164 @@
+{% comment %}
+  Template: Page détail véhicule
+  Style CapCar - Galerie photos, fiche technique, options, garantie, contact
+{% endcomment %}
+
+<div class="product-page">
+  <div class="container">
+
+    <nav class="breadcrumb">
+      <a href="{{ routes.root_url }}">Accueil</a>
+      <span>/</span>
+      <a href="/collections/voitures">Voitures d'occasion</a>
+      <span>/</span>
+      <span>{{ product.vendor }} {{ product.metafields.custom.model | default: product.title }}</span>
+    </nav>
+
+    <div class="product-grid">
+
+      {%- comment -%} ═══ GALERIE PHOTOS ═══ {%- endcomment -%}
+      <div class="product-gallery">
+        <div class="product-gallery__main" id="MainImage">
+          {% if product.featured_image != blank %}
+            <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.title | escape }}" id="MainImg">
+          {% else %}
+            <div class="product-gallery__placeholder">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            </div>
+          {% endif %}
+        </div>
+        {% if product.images.size > 1 %}
+          <div class="product-gallery__thumbs">
+            {% for image in product.images %}
+              <button class="product-gallery__thumb {% if forloop.first %}active{% endif %}" data-src="{{ image | image_url: width: 800 }}" onclick="document.getElementById('MainImg').src=this.dataset.src; document.querySelectorAll('.product-gallery__thumb').forEach(t=>t.classList.remove('active')); this.classList.add('active');">
+                <img src="{{ image | image_url: width: 120, height: 90, crop: 'center' }}" alt="Photo {{ forloop.index }}" loading="lazy" width="120" height="90">
+              </button>
+            {% endfor %}
+          </div>
+        {% endif %}
+        <p class="product-gallery__count">{{ product.images.size }} photo{% if product.images.size > 1 %}s{% endif %}</p>
+      </div>
+
+      {%- comment -%} ═══ INFOS PRINCIPALES ═══ {%- endcomment -%}
+      <div class="product-info">
+        {% if product.metafields.custom.badge != blank %}
+          <span class="product-info__badge">{{ product.metafields.custom.badge }}</span>
+        {% endif %}
+
+        <div class="product-info__price">{{ product.price | money_without_trailing_zeros }}</div>
+
+        <h1 class="product-info__title">{{ product.vendor }} {{ product.metafields.custom.model | default: product.title }}</h1>
+
+        {% if product.metafields.custom.trim != blank %}
+          <p class="product-info__trim">{{ product.metafields.custom.trim }}</p>
+        {% endif %}
+
+        {% if product.metafields.custom.engine != blank %}
+          <p class="product-info__engine">{{ product.metafields.custom.engine }}</p>
+        {% endif %}
+
+        <div class="product-info__badges">
+          <span class="trust-badge">Véhicule contrôlé</span>
+          <span class="trust-badge">Garantie incluse</span>
+          <span class="trust-badge">Paiement sécurisé</span>
+        </div>
+
+        {%- comment -%} ═══ INFORMATIONS CLÉS ═══ {%- endcomment -%}
+        <div class="product-info__keyinfo">
+          <h2>Informations clés</h2>
+          <div class="keyinfo-grid">
+            {% if product.metafields.custom.model != blank %}
+              <div class="keyinfo-item"><span class="keyinfo-label">Modèle</span><span class="keyinfo-value">{{ product.metafields.custom.model }}</span></div>
+            {% endif %}
+            {% if product.metafields.custom.year != blank %}
+              <div class="keyinfo-item"><span class="keyinfo-label">Mise en circulation</span><span class="keyinfo-value">{{ product.metafields.custom.year }}</span></div>
+            {% endif %}
+            {% if product.metafields.custom.mileage != blank %}
+              <div class="keyinfo-item"><span class="keyinfo-label">Kilométrage</span><span class="keyinfo-value">{{ product.metafields.custom.mileage }} km</span></div>
+            {% endif %}
+            {% if product.metafields.custom.fuel != blank %}
+              <div class="keyinfo-item"><span class="keyinfo-label">Carburant</span><span class="keyinfo-value">{{ product.metafields.custom.fuel }}</span></div>
+            {% endif %}
+            {% if product.metafields.custom.gearbox != blank %}
+              <div class="keyinfo-item"><span class="keyinfo-label">Boîte de vitesses</span><span class="keyinfo-value">{{ product.metafields.custom.gearbox }}</span></div>
+            {% endif %}
+            {% if product.metafields.custom.transmission != blank %}
+              <div class="keyinfo-item"><span class="keyinfo-label">Transmission</span><span class="keyinfo-value">{{ product.metafields.custom.transmission }}</span></div>
+            {% endif %}
+            {% if product.metafields.custom.power != blank %}
+              <div class="keyinfo-item"><span class="keyinfo-label">Puissance</span><span class="keyinfo-value">{{ product.metafields.custom.power }}</span></div>
+            {% endif %}
+            {% if product.metafields.custom.critair != blank %}
+              <div class="keyinfo-item"><span class="keyinfo-label">Crit'Air</span><span class="keyinfo-value">{{ product.metafields.custom.critair }}</span></div>
+            {% endif %}
+            {% if product.metafields.custom.color != blank %}
+              <div class="keyinfo-item"><span class="keyinfo-label">Couleur</span><span class="keyinfo-value">{{ product.metafields.custom.color }}</span></div>
+            {% endif %}
+            {% if product.metafields.custom.doors != blank %}
+              <div class="keyinfo-item"><span class="keyinfo-label">Portes</span><span class="keyinfo-value">{{ product.metafields.custom.doors }}</span></div>
+            {% endif %}
+            {% if product.metafields.custom.seats != blank %}
+              <div class="keyinfo-item"><span class="keyinfo-label">Places</span><span class="keyinfo-value">{{ product.metafields.custom.seats }}</span></div>
+            {% endif %}
+            {% if product.metafields.custom.co2 != blank %}
+              <div class="keyinfo-item"><span class="keyinfo-label">Émissions CO₂</span><span class="keyinfo-value">{{ product.metafields.custom.co2 }} g/km</span></div>
+            {% endif %}
+          </div>
+        </div>
+
+        {%- comment -%} ═══ ÉQUIPEMENTS ET OPTIONS ═══ {%- endcomment -%}
+        {% if product.metafields.custom.options != blank %}
+          <div class="product-info__options">
+            <h2>Équipements et options</h2>
+            <ul class="options-list">
+              {% assign options_list = product.metafields.custom.options | split: ',' %}
+              {% for opt in options_list %}
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+                  {{ opt | strip }}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        {%- comment -%} ═══ DESCRIPTION ═══ {%- endcomment -%}
+        {% if product.description != blank %}
+          <div class="product-info__desc">
+            <h2>Description</h2>
+            {{ product.description }}
+          </div>
+        {% endif %}
+
+        {%- comment -%} ═══ GARANTIE ═══ {%- endcomment -%}
+        <div class="product-info__guarantee">
+          <h2>Garantie</h2>
+          <div class="guarantee-card">
+            <div class="guarantee-card__item guarantee-card__item--included">
+              <strong>Garantie 6 mois incluse</strong>
+              <p>Moteur, boîte de vitesses, direction, suspension, freinage, climatisation, électricité.</p>
+            </div>
+            <div class="guarantee-card__item">
+              <strong>Extension 12 mois</strong>
+              <p>Prolongez votre tranquillité d'esprit avec une couverture étendue.</p>
+            </div>
+          </div>
+        </div>
+
+        {%- comment -%} ═══ CONTACT ═══ {%- endcomment -%}
+        <div class="product-info__contact">
+          <h2>Intéressé par ce véhicule ?</h2>
+          <p>Réservez une visite ou un essai routier. Notre équipe est disponible pour répondre à vos questions.</p>
+          <div class="product-info__contact-actions">
+            <a href="tel:{{ settings.phone }}" class="btn btn--primary btn--lg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>
+              Appeler : {{ settings.phone }}
+            </a>
+            <a href="mailto:{{ settings.email }}" class="btn btn--ghost btn--lg">Envoyer un message</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

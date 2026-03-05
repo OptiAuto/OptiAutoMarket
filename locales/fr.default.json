@@ -1,5 +1,57 @@
 {
   "general": {
-    "welcome": "Bienvenue"
+    "skip_to_content": "Aller au contenu",
+    "search_placeholder": "Marque, modèle ou mot-clé",
+    "no_results": "Aucun véhicule ne correspond à votre recherche.",
+    "all": "Tous",
+    "show_more": "Voir plus",
+    "reset": "Réinitialiser"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Demander un rendez-vous",
+      "sold_out": "Vendu",
+      "unavailable": "Indisponible",
+      "contact_us": "Nous contacter"
+    }
+  },
+  "collections": {
+    "general": {
+      "no_matches": "Aucun véhicule ne correspond à vos critères de recherche.",
+      "results_count": {
+        "one": "{{ count }} véhicule trouvé",
+        "other": "{{ count }} véhicules trouvés"
+      }
+    },
+    "sorting": {
+      "title": "Trier par",
+      "relevance": "Pertinence",
+      "price_asc": "Prix croissant",
+      "price_desc": "Prix décroissant",
+      "date_desc": "Plus récents",
+      "km_asc": "Km croissant",
+      "km_desc": "Km décroissant"
+    }
+  },
+  "filters": {
+    "title": "Filtrer les véhicules",
+    "brand": "Marque",
+    "model": "Modèle",
+    "body_type": "Catégorie",
+    "fuel": "Carburant",
+    "gearbox": "Boîte de vitesses",
+    "transmission": "Transmission",
+    "seats": "Nombre de places",
+    "critair": "Crit'Air",
+    "color": "Couleur",
+    "price": "Prix",
+    "year": "Année",
+    "mileage": "Kilométrage",
+    "min": "Min",
+    "max": "Max",
+    "search": "Rechercher",
+    "reset_all": "Réinitialiser les filtres",
+    "more_filters": "Plus de filtres",
+    "fewer_filters": "Moins de filtres"
   }
 }

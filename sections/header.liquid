@@ -1,10 +1,50 @@
-
 <header class="site-header">
-  <div class="container">
-    <h1 class="logo">{{ shop.name }}</h1>
-    <nav>
-      <a href="/">Accueil</a>
-      <a href="/collections/cars">Voitures</a>
+  <div class="header-top">
+    <div class="container header-top__inner">
+      <span class="header-top__text">Véhicules d'occasion contrôlés et garantis &bull; Paiement sécurisé &bull; Accompagnement personnalisé</span>
+      <a href="tel:{{ settings.phone }}" class="header-top__phone">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>
+        {{ settings.phone }}
+      </a>
+    </div>
+  </div>
+
+  <div class="header-main">
+    <div class="container header-main__inner">
+      <a href="{{ routes.root_url }}" class="header-logo">
+        <strong>OptiAuto</strong><span>Market</span>
+      </a>
+
+      <nav class="header-nav" id="MainNav" aria-label="Navigation principale">
+        <a href="{{ routes.root_url }}" class="header-nav__link">Accueil</a>
+        <a href="/collections/voitures" class="header-nav__link">Acheter</a>
+        <a href="/pages/vendre" class="header-nav__link">Vendre</a>
+        <a href="/pages/comment-ca-marche" class="header-nav__link">Comment ça marche</a>
+        <a href="/pages/garanties" class="header-nav__link">Garanties</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="/pages/vendre" class="btn btn--accent btn--sm">Vendre ma voiture</a>
+      </div>
+
+      <button class="header-burger" id="MenuToggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="header-mobile" id="MobileMenu" aria-hidden="true">
+    <nav class="header-mobile__nav">
+      <a href="{{ routes.root_url }}">Accueil</a>
+      <a href="/collections/voitures">Acheter un véhicule</a>
+      <a href="/pages/vendre">Vendre ma voiture</a>
+      <a href="/pages/comment-ca-marche">Comment ça marche</a>
+      <a href="/pages/garanties">Nos garanties</a>
+      <a href="tel:{{ settings.phone }}">{{ settings.phone }}</a>
     </nav>
   </div>
 </header>
+
+{% schema %}
+{ "name": "En-tête", "class": "section-header" }
+{% endschema %}

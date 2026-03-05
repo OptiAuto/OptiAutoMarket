@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "hero": { "type": "hero", "settings": {} },
+    "features": { "type": "features", "settings": {} },
+    "latest-vehicles": { "type": "vehicle-grid", "settings": {} },
+    "stats": { "type": "stats", "settings": {} },
+    "testimonials": { "type": "testimonials", "settings": {} }
+  },
+  "order": ["hero", "features", "latest-vehicles", "stats", "testimonials"]
+}

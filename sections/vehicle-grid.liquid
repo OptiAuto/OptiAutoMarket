@@ -1,0 +1,31 @@
+<section class="latest-vehicles">
+  <div class="container">
+    <h2 class="section-title">{{ section.settings.title | default: "Nos dernières voitures d'occasion" }}</h2>
+    <p class="section-subtitle">{{ section.settings.subtitle | default: "Contrôlées, garanties et au meilleur prix." }}</p>
+
+    <div class="vgrid">
+      {% assign col = collections['voitures'] | default: collections.all %}
+      {% for product in col.products limit: section.settings.limit %}
+        {% render 'vehicle-card', product: product %}
+      {% else %}
+        <p class="vgrid__empty">Aucun véhicule disponible pour le moment.</p>
+      {% endfor %}
+    </div>
+
+    <div class="section-cta">
+      <a href="/collections/voitures" class="btn btn--primary btn--lg">Voir tout le catalogue</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Grille véhicules",
+  "class": "section-vehicle-grid",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Titre", "default": "Nos dernières voitures d'occasion" },
+    { "type": "text", "id": "subtitle", "label": "Sous-titre", "default": "Contrôlées, garanties et au meilleur prix." },
+    { "type": "range", "id": "limit", "label": "Nombre de véhicules", "min": 4, "max": 24, "step": 2, "default": 8 }
+  ]
+}
+{% endschema %}

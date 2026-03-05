@@ -1,0 +1,65 @@
+{% comment %}
+  Données complètes pour les filtres véhicules
+  Sources : CapCar, La Centrale, AutoHero, Carizy, Spoticar, Le Bon Coin
+{% endcomment %}
+
+{% assign filter_brands = "Abarth,Alfa Romeo,Alpine,Audi,BMW,Citroën,Cupra,Dacia,DS,Fiat,Ford,Honda,Hyundai,Jaguar,Jeep,Kia,Land Rover,Lexus,Mazda,Mercedes-Benz,MG,Mini,Mitsubishi,Nissan,Opel,Peugeot,Porsche,Renault,Seat,Skoda,Smart,Suzuki,Tesla,Toyota,Volkswagen,Volvo" | split: "," %}
+
+{% assign filter_body_types = "Berline,Berline compacte,Break,Cabriolet,Citadine,Compact,Coupé,Crossover,Ludospace,Monospace,SUV,4x4,Pick-up,Utilitaire" | split: "," %}
+
+{% assign filter_fuels = "Essence,Diesel,Électrique,Hybride essence,Hybride diesel,Essence / GPL,E85 (Flexfuel)" | split: "," %}
+
+{% assign filter_gearboxes = "Manuelle,Automatique,Semi-automatique" | split: "," %}
+
+{% assign filter_transmissions = "Traction avant,Propulsion arrière,4 roues motrices (AWD)" | split: "," %}
+
+{% assign filter_seats = "2,4,5,6,7,8,9" | split: "," %}
+
+{% assign filter_critairs = "Crit'Air 0 (Électrique),Crit'Air 1,Crit'Air 2,Crit'Air 3,Crit'Air 4,Crit'Air 5" | split: "," %}
+
+{% assign filter_colors = "Noir,Blanc,Gris,Argent,Bleu,Rouge,Vert,Marron,Beige,Orange,Jaune,Violet" | split: "," %}
+
+{% comment %}
+  Modèles par marque — top ventes France (La Centrale, CapCar)
+  Utilisé en JS pour filtrage dynamique marque → modèle
+{% endcomment %}
+<script id="ModelsData" type="application/json">
+{
+  "Abarth": ["500","595","695"],
+  "Alfa Romeo": ["Giulia","Giulietta","Stelvio","Tonale","MiTo"],
+  "Alpine": ["A110"],
+  "Audi": ["A1","A1 Sportback","A3","A3 Sportback","A3 Cabriolet","A4","A4 Avant","A5","A5 Sportback","A6","Q2","Q3","Q5","Q7","Q8","e-tron","TT"],
+  "BMW": ["Série 1","Série 2","Série 3","Série 4","Série 5","X1","X2","X3","X4","X5","X6","Z4","i3","i4","iX","iX3"],
+  "Citroën": ["C1","C3","C3 Aircross","C4","C4 Picasso","C5","C5 Aircross","C5 X","Berlingo","SpaceTourer","Ami"],
+  "Cupra": ["Ateca","Born","Formentor","Leon"],
+  "Dacia": ["Duster","Jogger","Logan","Sandero","Spring"],
+  "DS": ["DS 3","DS 3 Crossback","DS 4","DS 5","DS 7","DS 7 Crossback","DS 9"],
+  "Fiat": ["500","500X","500L","Panda","Tipo","Punto","Doblo"],
+  "Ford": ["Fiesta","Focus","Kuga","Puma","EcoSport","Mustang","Mustang Mach-E","Tourneo","Transit"],
+  "Honda": ["Civic","CR-V","HR-V","Jazz","e:Ny1","ZR-V"],
+  "Hyundai": ["i10","i20","i30","Kona","Tucson","Santa Fe","Ioniq","Ioniq 5","Ioniq 6","Bayon"],
+  "Jaguar": ["E-Pace","F-Pace","I-Pace","XE","XF"],
+  "Jeep": ["Avenger","Compass","Renegade","Wrangler","Grand Cherokee"],
+  "Kia": ["Ceed","Niro","Picanto","Sportage","Stonic","EV6","Sorento","XCeed"],
+  "Land Rover": ["Defender","Discovery","Discovery Sport","Evoque","Range Rover","Velar"],
+  "Lexus": ["CT","IS","NX","RX","UX","ES"],
+  "Mazda": ["CX-3","CX-30","CX-5","CX-60","Mazda2","Mazda3","MX-5","MX-30"],
+  "Mercedes-Benz": ["Classe A","Classe B","Classe C","Classe E","Classe S","CLA","CLE","GLA","GLB","GLC","GLE","GLS","EQA","EQB","EQC","EQE","EQS","Vito"],
+  "MG": ["MG4","ZS","ZS EV","HS","Marvel R"],
+  "Mini": ["Cooper","Countryman","Clubman","Cabrio","John Cooper Works"],
+  "Mitsubishi": ["ASX","Eclipse Cross","Outlander","Space Star"],
+  "Nissan": ["Juke","Leaf","Micra","Qashqai","X-Trail","Ariya","Townstar"],
+  "Opel": ["Adam","Astra","Corsa","Crossland","Grandland","Mokka","Mokka-e","Insignia","Vivaro"],
+  "Peugeot": ["108","208","2008","308","3008","408","508","508 SW","5008","Partner","Rifter","Traveller","e-208","e-2008"],
+  "Porsche": ["718","911","Cayenne","Macan","Panamera","Taycan"],
+  "Renault": ["Arkana","Austral","Captur","Clio","Espace","Kangoo","Mégane","Mégane E-Tech","Renault 5","Scénic","Talisman","Twingo","Zoé","Trafic"],
+  "Seat": ["Arona","Ateca","Ibiza","Leon","Tarraco"],
+  "Skoda": ["Enyaq","Fabia","Kamiq","Karoq","Kodiaq","Octavia","Superb","Scala"],
+  "Smart": ["Fortwo","Forfour","#1"],
+  "Suzuki": ["Ignis","Jimny","S-Cross","Swift","Vitara"],
+  "Tesla": ["Model 3","Model S","Model X","Model Y"],
+  "Toyota": ["Aygo","Aygo X","C-HR","Camry","Corolla","Corolla Touring Sport","Highlander","Land Cruiser","RAV4","Supra","Yaris","Yaris Cross","bZ4X","Proace"],
+  "Volkswagen": ["Arteon","Caddy","Golf","ID.3","ID.4","ID.5","ID.7","Passat","Polo","T-Cross","T-Roc","Taigo","Tiguan","Tiguan Allspace","Touareg","Touran","Transporter","Up!"],
+  "Volvo": ["C40","S60","S90","V40","V60","V90","XC40","XC60","XC90","EX30","EX90"]
+}
+</script>

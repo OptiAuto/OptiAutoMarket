@@ -1,45 +1,189 @@
+{% comment %}
+  Template: Collection voitures - Filtres complets + grille véhicules
+  Style inspiré CapCar, La Centrale, AutoHero
+{% endcomment %}
 
-<section class="cars">
+{% render 'filters-data' %}
 
-<h2>Catalogue voitures</h2>
+<div class="collection-page">
+  <div class="container">
 
-<div class="filters">
-<select id="brandFilter">
-<option value="">Marque</option>
-<option>Renault</option>
-<option>Peugeot</option>
-<option>BMW</option>
-<option>Audi</option>
-<option>Volkswagen</option>
-</select>
+    {%- comment -%} Barre de résultats {%- endcomment -%}
+    <div class="collection-header">
+      <div>
+        <h1 class="collection-header__title">Voitures d'occasion en vente</h1>
+        <p class="collection-header__subtitle">Trouvez votre prochaine voiture au meilleur prix, contrôlée et garantie.</p>
+      </div>
+      <div class="collection-header__count" id="ResultsCount">
+        {{ collection.products_count }} véhicule{% if collection.products_count > 1 %}s{% endif %}
+      </div>
+    </div>
 
-<select id="fuelFilter">
-<option value="">Carburant</option>
-<option>Essence</option>
-<option>Diesel</option>
-<option>Hybride</option>
-<option>Electrique</option>
-</select>
+    {%- comment -%} ═══════════ FILTRES ═══════════ {%- endcomment -%}
+    <div class="filters" id="FiltersBar">
+      <div class="filters__row filters__row--main">
+
+        <div class="filters__group">
+          <label for="f-brand">Marque</label>
+          <select id="f-brand" class="filters__select">
+            <option value="">Toutes les marques</option>
+            {% for b in filter_brands %}
+              <option value="{{ b | handleize }}">{{ b }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="filters__group">
+          <label for="f-model">Modèle</label>
+          <select id="f-model" class="filters__select" disabled>
+            <option value="">Tous les modèles</option>
+          </select>
+        </div>
+
+        <div class="filters__group">
+          <label for="f-body">Catégorie</label>
+          <select id="f-body" class="filters__select">
+            <option value="">Tous les types</option>
+            {% for bt in filter_body_types %}
+              <option value="{{ bt | handleize }}">{{ bt }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="filters__group">
+          <label for="f-fuel">Carburant</label>
+          <select id="f-fuel" class="filters__select">
+            <option value="">Tous</option>
+            {% for fu in filter_fuels %}
+              <option value="{{ fu | handleize }}">{{ fu }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="filters__group">
+          <label for="f-gearbox">Boîte de vitesses</label>
+          <select id="f-gearbox" class="filters__select">
+            <option value="">Toutes</option>
+            {% for gb in filter_gearboxes %}
+              <option value="{{ gb | handleize }}">{{ gb }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <button type="button" class="filters__toggle-more" id="ToggleMoreFilters">Plus de filtres</button>
+      </div>
+
+      {%- comment -%} Ligne 2 : filtres avancés (masqués par défaut) {%- endcomment -%}
+      <div class="filters__row filters__row--extra" id="ExtraFilters" style="display:none;">
+
+        <div class="filters__group filters__group--range">
+          <label>Prix (€)</label>
+          <div class="filters__range">
+            <input type="number" id="f-price-min" class="filters__input" placeholder="Min" min="0" step="500">
+            <span class="filters__sep">–</span>
+            <input type="number" id="f-price-max" class="filters__input" placeholder="Max" min="0" step="500">
+          </div>
+        </div>
+
+        <div class="filters__group filters__group--range">
+          <label>Kilométrage</label>
+          <div class="filters__range">
+            <input type="number" id="f-km-min" class="filters__input" placeholder="Min" min="0" step="5000">
+            <span class="filters__sep">–</span>
+            <input type="number" id="f-km-max" class="filters__input" placeholder="Max" min="0" step="5000">
+          </div>
+        </div>
+
+        <div class="filters__group filters__group--range">
+          <label>Année</label>
+          <div class="filters__range">
+            <input type="number" id="f-year-min" class="filters__input" placeholder="Min" min="1990" max="2030">
+            <span class="filters__sep">–</span>
+            <input type="number" id="f-year-max" class="filters__input" placeholder="Max" min="1990" max="2030">
+          </div>
+        </div>
+
+        <div class="filters__group">
+          <label for="f-transmission">Transmission</label>
+          <select id="f-transmission" class="filters__select">
+            <option value="">Toutes</option>
+            {% for tr in filter_transmissions %}
+              <option value="{{ tr | handleize }}">{{ tr }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="filters__group">
+          <label for="f-seats">Places</label>
+          <select id="f-seats" class="filters__select">
+            <option value="">Toutes</option>
+            {% for s in filter_seats %}
+              <option value="{{ s }}">{{ s }} places</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="filters__group">
+          <label for="f-critair">Crit'Air</label>
+          <select id="f-critair" class="filters__select">
+            <option value="">Tous</option>
+            {% for ca in filter_critairs %}
+              <option value="{{ ca | handleize }}">{{ ca }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="filters__group">
+          <label for="f-color">Couleur</label>
+          <select id="f-color" class="filters__select">
+            <option value="">Toutes</option>
+            {% for co in filter_colors %}
+              <option value="{{ co | handleize }}">{{ co }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="filters__actions">
+        <button type="button" class="btn btn--primary" id="ApplyFilters">Rechercher</button>
+        <button type="button" class="btn btn--ghost" id="ResetFilters">Réinitialiser</button>
+      </div>
+    </div>
+
+    {%- comment -%} Tri {%- endcomment -%}
+    <div class="collection-toolbar">
+      <select id="SortBy" class="filters__select filters__select--sort">
+        <option value="relevance">Pertinence</option>
+        <option value="price-asc">Prix croissant</option>
+        <option value="price-desc">Prix décroissant</option>
+        <option value="date-desc">Plus récents</option>
+        <option value="km-asc">Km croissant</option>
+        <option value="km-desc">Km décroissant</option>
+      </select>
+    </div>
+
+    {%- comment -%} Grille de véhicules {%- endcomment -%}
+    <div class="vgrid" id="VehicleGrid">
+      {% for product in collection.products %}
+        {% render 'vehicle-card', product: product %}
+      {% else %}
+        <p class="vgrid__empty">Aucun véhicule disponible pour le moment.</p>
+      {% endfor %}
+    </div>
+
+    {% if collection.products.size == 0 %}
+      <div class="vgrid__no-results" id="NoResults" style="display:none;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <p>Aucun véhicule ne correspond à vos critères de recherche.</p>
+        <button class="btn btn--ghost" onclick="document.getElementById('ResetFilters').click()">Réinitialiser les filtres</button>
+      </div>
+    {% endif %}
+
+    <div class="vgrid__no-results" id="NoResults" style="display:none;">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <p>Aucun véhicule ne correspond à vos critères de recherche.</p>
+      <button class="btn btn--ghost" onclick="document.getElementById('ResetFilters').click()">Réinitialiser les filtres</button>
+    </div>
+
+  </div>
 </div>
-
-<div class="car-grid">
-{% for product in collection.products %}
-
-<div class="car-card"
-data-brand="{{ product.vendor }}"
-data-fuel="{{ product.metafields.custom.fuel }}">
-
-<img src="{{ product.featured_image | image_url: width: 600 }}">
-
-<h3>{{ product.title }}</h3>
-
-<p class="price">{{ product.price | money }}</p>
-
-<a class="btn" href="{{ product.url }}">Voir</a>
-
-</div>
-
-{% endfor %}
-</div>
-
-</section>

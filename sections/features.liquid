@@ -1,0 +1,47 @@
+<section class="features">
+  <div class="container">
+    <h2 class="section-title">{{ section.settings.title | default: "Pourquoi nous faire confiance" }}</h2>
+    <p class="section-subtitle">{{ section.settings.subtitle | default: "Un processus transparent et sécurisé, de la sélection du véhicule à la remise des clés." }}</p>
+    <div class="features__grid">
+      <div class="feature-card">
+        <div class="feature-card__icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+        </div>
+        <h3>Véhicules contrôlés</h3>
+        <p>Chaque véhicule est inspecté sur 200 points de contrôle par un expert indépendant. État mécanique et historique documentés avec transparence.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card__icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Garantie incluse</h3>
+        <p>Tous nos véhicules sont couverts par une garantie de 6 mois minimum. Moteur, boîte, direction, suspension, freinage et climatisation.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card__icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        </div>
+        <h3>Paiement sécurisé</h3>
+        <p>Transaction sécurisée et encadrée. Le paiement est protégé et les fonds ne sont libérés qu'après la remise du véhicule.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card__icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </div>
+        <h3>Meilleur prix garanti</h3>
+        <p>Grâce à notre modèle sans concession physique, nous proposons des prix inférieurs de 15 à 30 % par rapport au marché traditionnel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Avantages",
+  "class": "section-features",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Titre", "default": "Pourquoi nous faire confiance" },
+    { "type": "textarea", "id": "subtitle", "label": "Sous-titre", "default": "Un processus transparent et sécurisé, de la sélection du véhicule à la remise des clés." }
+  ]
+}
+{% endschema %}

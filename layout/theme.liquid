@@ -1,23 +1,27 @@
-
 <!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>{{ shop.name }} - {{ page_title }}</title>
+  <title>{{ page_title }} – {{ shop.name }}</title>
+  <meta name="description" content="{{ page_description | escape }}">
   {{ content_for_header }}
-  <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
-  <script src="{{ 'filters.js' | asset_url }}" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
 </head>
 <body>
+  <a href="#main" class="skip-link">Aller au contenu</a>
 
-{% section 'header' %}
+  {% section 'header' %}
 
-<main>
-{{ content_for_layout }}
-</main>
+  <main id="main">
+    {{ content_for_layout }}
+  </main>
 
-{% section 'footer' %}
+  {% section 'footer' %}
 
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
 </body>
 </html>
