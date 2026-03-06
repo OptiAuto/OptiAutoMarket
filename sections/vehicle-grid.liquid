@@ -1,7 +1,6 @@
 <section class="latest-vehicles">
   <div class="container">
     <h2 class="section-title">{{ section.settings.title | default: "Nos dernières voitures d'occasion" }}</h2>
-    <p class="section-subtitle">{{ section.settings.subtitle | default: "Inspectées, garanties et au meilleur prix." }}</p>
 
     <div class="vgrid">
       {% assign col = collections['voitures-doccasion'] | default: collections.all %}
