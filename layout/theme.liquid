@@ -7,6 +7,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>{{ page_title }} – {{ shop.name }}</title>
   <meta name="description" content="{{ page_description | escape }}">
+  {% if request.path == '/' %}<meta http-equiv="refresh" content="0;url=/collections/voitures-doccasion">{% endif %}
   {{ content_for_header }}
   <link rel="icon" type="image/png" href="{{ 'logo.png' | asset_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +19,41 @@
   <a href="#main" class="skip-link">Aller au contenu</a>
 
   {% section 'header' %}
+
+  <div class="contact-overlay" id="GlobalContactOverlay" aria-hidden="true">
+    <div class="contact-modal">
+      <button type="button" class="contact-modal__close" id="CloseGlobalContact" aria-label="Fermer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <h3>Envoyer un message</h3>
+      <p>Une question ? Envoyez-nous un message.</p>
+      <form id="GlobalContactForm" action="/contact#contact_form" method="post">
+        <input type="hidden" name="form_type" value="contact">
+        <input type="hidden" name="utf8" value="✓">
+        <input type="hidden" name="contact[subject]" value="Demande de contact">
+        <div class="contact-form__group">
+          <label>Email</label>
+          <input type="email" name="contact[email]" class="contact-form__input" placeholder="votre@email.com">
+        </div>
+        <div class="contact-form__group">
+          <label>Téléphone <span class="required">*</span></label>
+          <input type="tel" name="contact[phone]" class="contact-form__input" placeholder="06 XX XX XX XX" required>
+          <div class="contact-form__error" id="GlobalPhoneError">Veuillez renseigner votre numéro</div>
+        </div>
+        <div class="contact-form__group">
+          <label>Message <span class="required">*</span></label>
+          <textarea name="contact[body]" class="contact-form__input" placeholder="Votre message..." required></textarea>
+          <div class="contact-form__error" id="GlobalMessageError">Veuillez rédiger votre message</div>
+        </div>
+        <button type="submit" class="btn btn--primary btn--lg" style="width:100%" id="GlobalContactSubmitBtn">Envoyer</button>
+      </form>
+      <div class="contact-form__success" id="GlobalContactSuccess" style="display:none;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <h4>Message envoyé !</h4>
+        <p>Nous vous répondrons dans les plus brefs délais.</p>
+      </div>
+    </div>
+  </div>
 
   <main id="main">
     {{ content_for_layout }}

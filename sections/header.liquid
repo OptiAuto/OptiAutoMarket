@@ -1,7 +1,7 @@
 <header class="site-header">
   <div class="header-main">
     <div class="container header-main__inner">
-      <a href="{{ routes.root_url }}" class="header-logo">
+      <a href="/collections/voitures-doccasion" class="header-logo">
         <img src="{{ 'logo.png' | asset_url }}" alt="OptiAuto" class="header-logo__img" width="220" height="72">
       </a>
 
@@ -9,7 +9,7 @@
         <a href="/collections/voitures-doccasion" class="header-nav__link {% if request.path contains 'voitures' or request.path == '/' %}is-active{% endif %}">Acheter</a>
         <a href="/pages/vendre" class="header-nav__link {% if request.path contains 'vendre' %}is-active{% endif %}">Vendre</a>
         <a href="/pages/garanties" class="header-nav__link {% if request.path contains 'garanties' %}is-active{% endif %}">Garanties</a>
-        <a href="/pages/contact" class="header-nav__link {% if request.path contains 'contact' %}is-active{% endif %}">Contact</a>
+        <button type="button" class="header-nav__link" id="OpenGlobalContact">Contact</button>
       </nav>
 
       <div class="header-actions">
@@ -44,7 +44,7 @@
       <a href="/collections/voitures-doccasion">Acheter</a>
       <a href="/pages/vendre">Vendre ma voiture</a>
       <a href="/pages/garanties">Nos garanties</a>
-      <a href="/pages/contact">Contact</a>
+      <a href="#" id="OpenGlobalContactMobile">Contact</a>
       <a href="tel:{{ settings.phone }}" class="header-mobile__phone">{{ settings.phone }}</a>
     </nav>
   </div>

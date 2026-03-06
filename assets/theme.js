@@ -15,12 +15,78 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.style.overflow = open ? 'hidden' : '';
     });
     mobile.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () {
+      a.addEventListener('click', function (e) {
+        if (a.id === 'OpenGlobalContactMobile') return;
         mobile.classList.remove('is-open');
         burger.classList.remove('is-open');
         burger.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       });
+    });
+  }
+
+  /* ── Global Contact Modal ───────────────────────────── */
+  var globalOverlay = document.getElementById('GlobalContactOverlay');
+  var globalForm = document.getElementById('GlobalContactForm');
+  var globalSuccess = document.getElementById('GlobalContactSuccess');
+
+  function openGlobalContact() {
+    if (globalOverlay) {
+      globalOverlay.classList.add('is-open');
+      globalOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    if (mobile && burger) {
+      mobile.classList.remove('is-open');
+      burger.classList.remove('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  function closeGlobalContact() {
+    if (globalOverlay) {
+      globalOverlay.classList.remove('is-open');
+      globalOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  }
+
+  var openGlobalBtn = document.getElementById('OpenGlobalContact');
+  if (openGlobalBtn) openGlobalBtn.addEventListener('click', function (e) { e.preventDefault(); openGlobalContact(); });
+  var openGlobalMobile = document.getElementById('OpenGlobalContactMobile');
+  if (openGlobalMobile) openGlobalMobile.addEventListener('click', function (e) { e.preventDefault(); openGlobalContact(); });
+  var closeGlobalBtn = document.getElementById('CloseGlobalContact');
+  if (closeGlobalBtn) closeGlobalBtn.addEventListener('click', closeGlobalContact);
+  if (globalOverlay) globalOverlay.addEventListener('click', function (e) { if (e.target === globalOverlay) closeGlobalContact(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && globalOverlay && globalOverlay.classList.contains('is-open')) closeGlobalContact();
+  });
+
+  if (globalForm) {
+    globalForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var phone = globalForm.querySelector('[name="contact[phone]"]');
+      var msg = globalForm.querySelector('[name="contact[body]"]');
+      var phoneErr = document.getElementById('GlobalPhoneError');
+      var msgErr = document.getElementById('GlobalMessageError');
+      if (phoneErr) phoneErr.style.display = 'none';
+      if (msgErr) msgErr.style.display = 'none';
+      phone.classList.remove('contact-form__input--error');
+      msg.classList.remove('contact-form__input--error');
+      var valid = true;
+      if (!phone.value.trim()) { if (phoneErr) phoneErr.style.display = 'block'; phone.classList.add('contact-form__input--error'); valid = false; }
+      if (!msg.value.trim()) { if (msgErr) msgErr.style.display = 'block'; msg.classList.add('contact-form__input--error'); valid = false; }
+      if (!valid) return;
+      var submitBtn = document.getElementById('GlobalContactSubmitBtn');
+      if (submitBtn) submitBtn.disabled = true;
+      var formData = new FormData(globalForm);
+      fetch('/contact#contact_form', { method: 'POST', body: formData, headers: { 'Accept': 'text/html' } })
+        .then(function () {
+          globalForm.style.display = 'none';
+          if (globalSuccess) globalSuccess.style.display = 'block';
+          setTimeout(closeGlobalContact, 2500);
+        })
+        .catch(function () { if (submitBtn) submitBtn.disabled = false; })
+        .finally(function () { if (submitBtn) submitBtn.disabled = false; });
     });
   }
 

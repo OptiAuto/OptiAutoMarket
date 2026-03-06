@@ -204,6 +204,10 @@ ul { list-style: none; }
   color: var(--gray-600);
   text-decoration: none;
   transition: color .2s ease;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
 }
 .header-nav__link::after {
   content: '';
@@ -1179,6 +1183,7 @@ ul { list-style: none; }
 .product-info__contact h2 { border: none; }
 .product-info__contact p { color: var(--gray-600); margin-bottom: 20px; font-size: 15px; }
 .product-info__contact-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.product-info__contact-actions .btn { min-height: 48px; padding: 14px 32px; font-size: 15px; min-width: 200px; justify-content: center; }
 
 /* ════════════════════════════════════════════════════════
    FOOTER

@@ -1,0 +1,154 @@
+<div class="estimation-page">
+  <div class="container">
+    <header class="estimation-header">
+      <h1>Vendre ma voiture</h1>
+      <p>Obtenez une estimation gratuite en quelques clics. Renseignez les informations de votre véhicule.</p>
+    </header>
+
+    <form class="estimation-form" id="EstimationForm" action="/contact#contact_form" method="post">
+      <input type="hidden" name="form_type" value="contact">
+      <input type="hidden" name="utf8" value="✓">
+      <input type="hidden" name="contact[subject]" value="Demande d'estimation - Vendre ma voiture">
+      <input type="hidden" name="contact[body]" id="EstimationBody" value="">
+
+      <div class="estimation-grid">
+        <div class="estimation-form__group">
+          <label for="est-email">Email</label>
+          <input type="email" id="est-email" name="contact[email]" class="estimation-form__input" placeholder="votre@email.com">
+        </div>
+        <div class="estimation-form__group">
+          <label for="est-phone">Téléphone</label>
+          <input type="tel" id="est-phone" name="contact[phone]" class="estimation-form__input" placeholder="06 XX XX XX XX">
+        </div>
+        <div class="estimation-form__group">
+          <label for="est-plaque">Plaque <span class="required">*</span></label>
+          <input type="text" id="est-plaque" class="estimation-form__input" placeholder="AB-123-CD" required maxlength="20">
+        </div>
+        <div class="estimation-form__group">
+          <label for="est-modele">Modèle <span class="required">*</span></label>
+          <input type="text" id="est-modele" class="estimation-form__input" placeholder="ex. Renault Clio" required maxlength="120">
+        </div>
+        <div class="estimation-form__group">
+          <label for="est-carburant">Carburant <span class="required">*</span></label>
+          <select id="est-carburant" class="estimation-form__input" required>
+            <option value="">— Choisir —</option>
+            <option value="Essence">Essence</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Hybride">Hybride</option>
+            <option value="Hybride rechargeable">Hybride rechargeable</option>
+            <option value="Électrique">Électrique</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+        <div class="estimation-form__group">
+          <label for="est-boite">Boîte de vitesse <span class="required">*</span></label>
+          <select id="est-boite" class="estimation-form__input" required>
+            <option value="">— Choisir —</option>
+            <option value="Manuelle">Manuelle</option>
+            <option value="Automatique">Automatique</option>
+            <option value="Semi-automatique">Semi-automatique</option>
+            <option value="Robotisée">Robotisée</option>
+          </select>
+        </div>
+        <div class="estimation-form__group">
+          <label for="est-annee">Année d'immatriculation <span class="required">*</span></label>
+          <input type="number" id="est-annee" class="estimation-form__input" placeholder="ex. 2019" min="1990" max="2030" required>
+        </div>
+        <div class="estimation-form__group">
+          <label for="est-km">Kilométrage <span class="required">*</span></label>
+          <input type="number" id="est-km" class="estimation-form__input" placeholder="ex. 45000" min="0" step="1000" required>
+        </div>
+      </div>
+
+      <div class="estimation-form__block">
+        <label class="estimation-form__block-label">État mécanique</label>
+        <div class="estimation-form__radios">
+          <label class="estimation-form__radio"><input type="radio" name="est-mecanique" value="Excellent"> Excellent</label>
+          <label class="estimation-form__radio"><input type="radio" name="est-mecanique" value="Bon"> Bon</label>
+          <label class="estimation-form__radio"><input type="radio" name="est-mecanique" value="Moyen"> Moyen</label>
+          <label class="estimation-form__radio"><input type="radio" name="est-mecanique" value="Mauvais"> Mauvais</label>
+        </div>
+      </div>
+
+      <div class="estimation-form__block">
+        <label class="estimation-form__block-label">État carrosserie</label>
+        <div class="estimation-form__radios">
+          <label class="estimation-form__radio"><input type="radio" name="est-carrosserie" value="Excellent"> Excellent</label>
+          <label class="estimation-form__radio"><input type="radio" name="est-carrosserie" value="Bon"> Bon</label>
+          <label class="estimation-form__radio"><input type="radio" name="est-carrosserie" value="Moyen"> Moyen</label>
+          <label class="estimation-form__radio"><input type="radio" name="est-carrosserie" value="Mauvais"> Mauvais</label>
+        </div>
+      </div>
+
+      <div class="estimation-form__submit">
+        <button type="submit" class="btn btn--primary btn--lg" id="EstimationSubmitBtn">Envoyer</button>
+      </div>
+
+      <div class="estimation-form__success" id="EstimationSuccess" style="display:none;">
+        <p><strong>Demande envoyée.</strong> Nous vous recontacterons rapidement pour votre estimation.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+  .estimation-page { padding: 40px 0 80px; }
+  .estimation-header { text-align: center; margin-bottom: 40px; }
+  .estimation-header h1 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; color: var(--gray-900); margin-bottom: 12px; }
+  .estimation-header p { color: var(--gray-600); font-size: 16px; max-width: 560px; margin: 0 auto; }
+  .estimation-form { max-width: 640px; margin: 0 auto; background: var(--white); padding: 32px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--gray-200); }
+  .estimation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  @media (max-width: 600px) { .estimation-grid { grid-template-columns: 1fr; } .estimation-form { padding: 24px; } }
+  .estimation-form__group label { display: block; font-size: 14px; font-weight: 600; color: var(--gray-800); margin-bottom: 6px; }
+  .estimation-form__group .required { color: var(--red); }
+  .estimation-form__input { width: 100%; padding: 12px 14px; border: 1px solid var(--gray-300); border-radius: var(--radius); font-size: 15px; color: var(--gray-900); font-family: inherit; }
+  .estimation-form__input:focus { outline: none; border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(48,104,200,.1); }
+  .estimation-form__block { margin-bottom: 24px; }
+  .estimation-form__block-label { display: block; font-size: 14px; font-weight: 600; color: var(--gray-800); margin-bottom: 10px; }
+  .estimation-form__radios { display: flex; flex-wrap: wrap; gap: 12px; }
+  .estimation-form__radio { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; color: var(--gray-700); cursor: pointer; }
+  .estimation-form__radio input { width: 18px; height: 18px; accent-color: var(--blue-700); }
+  .estimation-form__submit { margin-top: 32px; }
+  .estimation-form__submit .btn { width: 100%; min-height: 50px; font-size: 16px; }
+  .estimation-form__success { margin-top: 24px; padding: 20px; background: var(--blue-50); border-radius: var(--radius); color: var(--blue-800); }
+</style>
+
+<script>
+(function() {
+  var form = document.getElementById('EstimationForm');
+  var bodyHidden = document.getElementById('EstimationBody');
+  var successEl = document.getElementById('EstimationSuccess');
+  if (!form || !bodyHidden) return;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var meca = form.querySelector('input[name="est-mecanique"]:checked');
+    var carr = form.querySelector('input[name="est-carrosserie"]:checked');
+    var lines = [
+      'Plaque: ' + (document.getElementById('est-plaque').value || '-'),
+      'Modèle: ' + (document.getElementById('est-modele').value || '-'),
+      'Carburant: ' + (document.getElementById('est-carburant').value || '-'),
+      'Boîte de vitesse: ' + (document.getElementById('est-boite').value || '-'),
+      'Année: ' + (document.getElementById('est-annee').value || '-'),
+      'Kilométrage: ' + (document.getElementById('est-km').value || '-') + ' km',
+      'État mécanique: ' + (meca ? meca.value : '-'),
+      'État carrosserie: ' + (carr ? carr.value : '-')
+    ];
+    bodyHidden.value = lines.join('\n');
+
+    var btn = document.getElementById('EstimationSubmitBtn');
+    if (btn) btn.disabled = true;
+
+    fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'text/html' } })
+      .then(function() {
+        form.querySelector('.estimation-grid').style.display = 'none';
+        form.querySelectorAll('.estimation-form__block').forEach(function(el) { el.style.display = 'none'; });
+        form.querySelector('.estimation-form__submit').style.display = 'none';
+        if (successEl) successEl.style.display = 'block';
+      })
+      .catch(function() { if (btn) btn.disabled = false; })
+      .finally(function() { if (btn) btn.disabled = false; });
+  });
+})();
+</script>
