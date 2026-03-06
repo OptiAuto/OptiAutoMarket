@@ -603,31 +603,20 @@ ul { list-style: none; }
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
 }
 
-/* ── Filter Block (accordion) ──────────────────────────── */
-.filter-block { border-bottom: 1px solid var(--gray-100); }
+/* ── Filter Block (always visible) ─────────────────────── */
+.filter-block { border-bottom: 1px solid var(--gray-100); padding: 14px 20px; }
 .filter-block:last-of-type { border-bottom: none; }
 
-.filter-block__toggle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 14px 20px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--gray-800);
-  text-align: left;
-  transition: all var(--transition);
+.filter-block__label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--blue-900);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
 }
-.filter-block__toggle:hover { background: var(--gray-50); }
-.filter-block__toggle svg {
-  transition: transform var(--transition);
-  flex-shrink: 0;
-  color: var(--gray-500);
-}
-.filter-block__toggle.is-open svg { transform: rotate(180deg); }
 
-.filter-block__body { padding: 0 20px 16px; }
+.filter-block__body { /* always visible, no toggle */ }
 
 /* ── Filter Controls ───────────────────────────────────── */
 .filter-select {

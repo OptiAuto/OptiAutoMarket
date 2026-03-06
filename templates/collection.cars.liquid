@@ -12,7 +12,6 @@
 
     <div class="collection-layout">
 
-      {%- comment -%} ═══ SIDEBAR FILTRES ═══ {%- endcomment -%}
       <aside class="filters-sidebar" id="FiltersSidebar">
         <div class="filters-sidebar__header">
           <h2 class="filters-sidebar__title">
@@ -23,11 +22,8 @@
         </div>
 
         {%- comment -%} 1. MARQUE {%- endcomment -%}
-        <div class="filter-block" data-filter="brand">
-          <button class="filter-block__toggle is-open" type="button">
-            <span>Marque</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
+        <div class="filter-block">
+          <div class="filter-block__label">Marque</div>
           <div class="filter-block__body">
             <input type="text" class="filter-search" placeholder="Rechercher une marque..." data-search="f-brand">
             <select id="f-brand" class="filter-select" size="6">
@@ -40,11 +36,8 @@
         </div>
 
         {%- comment -%} 2. MODÈLE {%- endcomment -%}
-        <div class="filter-block" data-filter="model">
-          <button class="filter-block__toggle is-open" type="button">
-            <span>Modèle</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
+        <div class="filter-block">
+          <div class="filter-block__label">Modèle</div>
           <div class="filter-block__body">
             <select id="f-model" class="filter-select" size="5" disabled>
               <option value="">Sélectionnez d'abord une marque</option>
@@ -53,12 +46,9 @@
         </div>
 
         {%- comment -%} 3. CATÉGORIE {%- endcomment -%}
-        <div class="filter-block" data-filter="body">
-          <button class="filter-block__toggle" type="button">
-            <span>Catégorie</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="filter-block__body" style="display:none;">
+        <div class="filter-block">
+          <div class="filter-block__label">Catégorie</div>
+          <div class="filter-block__body">
             <select id="f-body" class="filter-select" size="6">
               <option value="">Tous les types</option>
               {% for bt in filter_body_types %}
@@ -69,12 +59,9 @@
         </div>
 
         {%- comment -%} 4. ANNÉE {%- endcomment -%}
-        <div class="filter-block" data-filter="year">
-          <button class="filter-block__toggle" type="button">
-            <span>Année</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="filter-block__body" style="display:none;">
+        <div class="filter-block">
+          <div class="filter-block__label">Année</div>
+          <div class="filter-block__body">
             <div class="filter-range">
               <input type="number" id="f-year-min" class="filter-input" placeholder="Min" min="1990" max="2030">
               <span class="filter-range__sep">à</span>
@@ -84,33 +71,27 @@
         </div>
 
         {%- comment -%} 5. KILOMÉTRAGE {%- endcomment -%}
-        <div class="filter-block" data-filter="km">
-          <button class="filter-block__toggle" type="button">
-            <span>Kilométrage</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="filter-block__body" style="display:none;">
+        <div class="filter-block">
+          <div class="filter-block__label">Kilométrage</div>
+          <div class="filter-block__body">
             <div class="filter-range">
               <input type="number" id="f-km-min" class="filter-input" placeholder="Min" min="0" step="5000">
               <span class="filter-range__sep">à</span>
               <input type="number" id="f-km-max" class="filter-input" placeholder="Max" min="0" step="5000">
             </div>
             <div class="filter-shortcuts">
-              <button type="button" data-max="f-km-max" data-val="20000">< 20 000</button>
-              <button type="button" data-max="f-km-max" data-val="50000">< 50 000</button>
-              <button type="button" data-max="f-km-max" data-val="100000">< 100 000</button>
-              <button type="button" data-max="f-km-max" data-val="150000">< 150 000</button>
+              <button type="button" data-max="f-km-max" data-val="20000">&lt; 20 000</button>
+              <button type="button" data-max="f-km-max" data-val="50000">&lt; 50 000</button>
+              <button type="button" data-max="f-km-max" data-val="100000">&lt; 100 000</button>
+              <button type="button" data-max="f-km-max" data-val="150000">&lt; 150 000</button>
             </div>
           </div>
         </div>
 
         {%- comment -%} 6. CARBURANT {%- endcomment -%}
-        <div class="filter-block" data-filter="fuel">
-          <button class="filter-block__toggle" type="button">
-            <span>Carburant</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="filter-block__body" style="display:none;">
+        <div class="filter-block">
+          <div class="filter-block__label">Carburant</div>
+          <div class="filter-block__body">
             <select id="f-fuel" class="filter-select" size="6">
               <option value="">Tous</option>
               {% for fu in filter_fuels %}
@@ -121,12 +102,9 @@
         </div>
 
         {%- comment -%} 7. BOÎTE DE VITESSE {%- endcomment -%}
-        <div class="filter-block" data-filter="gearbox">
-          <button class="filter-block__toggle" type="button">
-            <span>Boîte de vitesse</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="filter-block__body" style="display:none;">
+        <div class="filter-block">
+          <div class="filter-block__label">Boîte de vitesse</div>
+          <div class="filter-block__body">
             <select id="f-gearbox" class="filter-select" size="4">
               <option value="">Toutes</option>
               {% for gb in filter_gearboxes %}
@@ -137,11 +115,8 @@
         </div>
 
         {%- comment -%} 8. PRIX {%- endcomment -%}
-        <div class="filter-block" data-filter="price">
-          <button class="filter-block__toggle is-open" type="button">
-            <span>Prix (€)</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
+        <div class="filter-block">
+          <div class="filter-block__label">Prix (€)</div>
           <div class="filter-block__body">
             <div class="filter-range">
               <input type="number" id="f-price-min" class="filter-input" placeholder="Min" min="0" step="500">
@@ -149,22 +124,19 @@
               <input type="number" id="f-price-max" class="filter-input" placeholder="Max" min="0" step="500">
             </div>
             <div class="filter-shortcuts">
-              <button type="button" data-max="f-price-max" data-val="5000">< 5 000 €</button>
-              <button type="button" data-max="f-price-max" data-val="10000">< 10 000 €</button>
-              <button type="button" data-max="f-price-max" data-val="15000">< 15 000 €</button>
-              <button type="button" data-max="f-price-max" data-val="25000">< 25 000 €</button>
-              <button type="button" data-max="f-price-max" data-val="40000">< 40 000 €</button>
+              <button type="button" data-max="f-price-max" data-val="5000">&lt; 5 000 €</button>
+              <button type="button" data-max="f-price-max" data-val="10000">&lt; 10 000 €</button>
+              <button type="button" data-max="f-price-max" data-val="15000">&lt; 15 000 €</button>
+              <button type="button" data-max="f-price-max" data-val="25000">&lt; 25 000 €</button>
+              <button type="button" data-max="f-price-max" data-val="40000">&lt; 40 000 €</button>
             </div>
           </div>
         </div>
 
         {%- comment -%} 9. NOMBRE DE PLACES {%- endcomment -%}
-        <div class="filter-block" data-filter="seats">
-          <button class="filter-block__toggle" type="button">
-            <span>Nombre de places</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="filter-block__body" style="display:none;">
+        <div class="filter-block">
+          <div class="filter-block__label">Nombre de places</div>
+          <div class="filter-block__body">
             <select id="f-seats" class="filter-select" size="5">
               <option value="">Toutes</option>
               {% for s in filter_seats %}
@@ -175,12 +147,9 @@
         </div>
 
         {%- comment -%} 10. CRIT'AIR {%- endcomment -%}
-        <div class="filter-block" data-filter="critair">
-          <button class="filter-block__toggle" type="button">
-            <span>Crit'Air</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="filter-block__body" style="display:none;">
+        <div class="filter-block">
+          <div class="filter-block__label">Crit'Air</div>
+          <div class="filter-block__body">
             <select id="f-critair" class="filter-select" size="5">
               <option value="">Tous</option>
               {% for ca in filter_critairs %}
@@ -191,12 +160,9 @@
         </div>
 
         {%- comment -%} 11. COULEUR {%- endcomment -%}
-        <div class="filter-block" data-filter="color">
-          <button class="filter-block__toggle" type="button">
-            <span>Couleur</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="filter-block__body" style="display:none;">
+        <div class="filter-block">
+          <div class="filter-block__label">Couleur</div>
+          <div class="filter-block__body">
             <select id="f-color" class="filter-select" size="6">
               <option value="">Toutes</option>
               {% for co in filter_colors %}
@@ -207,33 +173,27 @@
         </div>
 
         {%- comment -%} 12. PUISSANCE {%- endcomment -%}
-        <div class="filter-block" data-filter="power">
-          <button class="filter-block__toggle" type="button">
-            <span>Puissance (ch)</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="filter-block__body" style="display:none;">
+        <div class="filter-block">
+          <div class="filter-block__label">Puissance (ch)</div>
+          <div class="filter-block__body">
             <div class="filter-range">
               <input type="number" id="f-power-min" class="filter-input" placeholder="Min ch" min="0" step="10">
               <span class="filter-range__sep">à</span>
               <input type="number" id="f-power-max" class="filter-input" placeholder="Max ch" min="0" step="10">
             </div>
             <div class="filter-shortcuts">
-              <button type="button" data-max="f-power-max" data-val="100">< 100 ch</button>
-              <button type="button" data-max="f-power-max" data-val="150">< 150 ch</button>
-              <button type="button" data-max="f-power-max" data-val="200">< 200 ch</button>
-              <button type="button" data-max="f-power-max" data-val="300">< 300 ch</button>
+              <button type="button" data-max="f-power-max" data-val="100">&lt; 100 ch</button>
+              <button type="button" data-max="f-power-max" data-val="150">&lt; 150 ch</button>
+              <button type="button" data-max="f-power-max" data-val="200">&lt; 200 ch</button>
+              <button type="button" data-max="f-power-max" data-val="300">&lt; 300 ch</button>
             </div>
           </div>
         </div>
 
         {%- comment -%} 13. GARANTIE {%- endcomment -%}
-        <div class="filter-block" data-filter="guarantee">
-          <button class="filter-block__toggle" type="button">
-            <span>Garantie</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="filter-block__body" style="display:none;">
+        <div class="filter-block">
+          <div class="filter-block__label">Garantie</div>
+          <div class="filter-block__body">
             <select id="f-guarantee" class="filter-select" size="5">
               <option value="">Toutes</option>
               {% for g in filter_guarantees %}
@@ -244,12 +204,9 @@
         </div>
 
         {%- comment -%} 14. TVA RÉCUPÉRABLE {%- endcomment -%}
-        <div class="filter-block" data-filter="tva">
-          <button class="filter-block__toggle" type="button">
-            <span>TVA récupérable</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="filter-block__body" style="display:none;">
+        <div class="filter-block">
+          <div class="filter-block__label">TVA récupérable</div>
+          <div class="filter-block__body">
             <select id="f-tva" class="filter-select" size="3">
               <option value="">Indifférent</option>
               {% for t in filter_tva %}
@@ -267,9 +224,7 @@
         </div>
       </aside>
 
-      {%- comment -%} ═══ ZONE RÉSULTATS ═══ {%- endcomment -%}
       <div class="collection-results">
-
         <div class="collection-toolbar">
           <div class="collection-toolbar__count" id="ResultsCount">
             {{ collection.products_count }} véhicule{% if collection.products_count > 1 %}s{% endif %}
