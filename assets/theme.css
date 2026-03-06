@@ -1197,22 +1197,24 @@ ul { list-style: none; }
 .site-footer {
   background: var(--blue-900);
   color: rgba(255,255,255,.75);
-  padding: 64px 0 0;
+  padding: 32px 0 0;
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  gap: 24px;
   justify-items: center;
   text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 @media (max-width: 900px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 20px; max-width: 400px; }
 }
 @media (max-width: 600px) {
-  .footer-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 16px; max-width: 280px; }
 }
 
 .footer-col { text-align: center; }
@@ -1235,8 +1237,8 @@ ul { list-style: none; }
 .footer-col a:hover { color: var(--white); }
 
 .footer-bottom {
-  margin-top: 48px;
-  padding: 24px 0;
+  margin-top: 28px;
+  padding: 16px 0;
   border-top: 1px solid rgba(255,255,255,.1);
   display: flex;
   justify-content: center;
