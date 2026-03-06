@@ -1,0 +1,14 @@
+1) Pour le carburant, Je veux la liste ci-dessous avec la valeur autre pour tout le reste
+Essence
+Diesel
+Hybride
+Hybride rechargeable
+Électrique
+Autre
+
+2) Le logo OptiAuto n'est pas mis en valeur et il n'est pas visible
+3) La liste déroulante doivent être multi choix avec des cases à cochées, et les écriture légèrement plus grandes 
+et foncées et quand on clique dessus, il faut quelle soit colorées en bleu et plus foncées
+4) enlevez Trouvez votre prochaine voiture au meilleur prix, contrôlée et garantie.
+5) enlever Nous vous accompagnons de la sélection à la remise des clés.
+6) la finition de la voiture n'est pas bien visible elle est un peu effacée exemple : Intens 1.0 TCe 90
