@@ -1,3 +1,65 @@
+apport de sécurité OptiAuto
+Avant (vulnérabilités trouvées)
+Faille	Risque	Status
+Mot de passe admin envoyé en clair comme token	Critique	Corrigé
+Token stocké dans localStorage (XSS = vol)	Critique	Corrigé
+Aucun rate limiting (brute force)	Élevé	Corrigé
+Aucun header de sécurité HTTP	Élevé	Corrigé
+XSS via innerHTML avec données non échappées	Élevé	Corrigé
+Pas de CSRF protection	Moyen	Corrigé
+Pas de validation des uploads (magic bytes)	Moyen	Corrigé
+Erreurs internes exposées au client	Moyen	Corrigé
+Pas de CSP sur le thème Shopify	Moyen	Corrigé
+Inputs non sanitisés côté serveur	Moyen	Corrigé
+Mesures implémentées
+1. Authentification JWT (jsonwebtoken)
+Le mot de passe n'est plus jamais renvoyé au client
+Un JWT signé HS256 avec expiration de 4h est généré
+Le JWT contient un jti unique par session
+Stockage dans sessionStorage (détruit à la fermeture du navigateur) au lieu de localStorage
+2. Hachage bcrypt (12 rounds)
+Le mot de passe admin est haché au démarrage du serveur
+Comparaison via bcrypt.compareSync (timing-safe)
+3. Helmet (headers de sécurité)
+Content-Security-Policy : restreint les sources de scripts, styles, images, connexions
+Strict-Transport-Security (HSTS) : force HTTPS pendant 1 an
+X-Frame-Options: DENY : bloque l'inclusion en iframe
+X-Content-Type-Options: nosniff : empêche le MIME sniffing
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy : désactive caméra, micro, géoloc, paiement
+4. Rate Limiting (express-rate-limit)
+Login : max 5 tentatives / 15 minutes par IP
+API : max 60 requêtes / minute
+5. Protection CSRF
+Token CSRF généré à chaque connexion
+Vérifié sur toutes les requêtes mutantes (POST, PUT, PATCH, DELETE)
+Comparaison timing-safe via crypto.timingSafeEqual
+6. Protection XSS (côté client)
+Zéro innerHTML avec des données utilisateur
+Tout est construit via document.createElement + textContent
+Plus aucun onclick inline dans le HTML
+Fonction d'échappement esc() disponible
+7. Validation / Sanitisation serveur
+sanitizeStr() : supprime <>, tronque à 1000 chars
+sanitizeHtml() : supprime <script>, onerror=, javascript:
+validateId() : vérifie que les IDs sont des entiers positifs
+validateImageBuffer() : vérifie les magic bytes (JPEG/PNG/WebP/GIF)
+Noms de fichiers nettoyés (caractères alphanumériques uniquement)
+Liste blanche des clés de métafields autorisées
+8. Audit Logging
+Chaque action (login, création, modification, suppression) est loggée avec timestamp et IP
+9. Autres
+Serveur écoute uniquement sur 127.0.0.1 (pas accessible depuis le réseau)
+X-Powered-By désactivé
+Cache désactivé (no-store)
+robots: noindex, nofollow sur l'admin
+HPP (HTTP Parameter Pollution) protection
+Limite de taille des requêtes (1 Mo JSON, 8 Mo images)
+.gitignore renforcé (.env, node_modules/, clés, logs)
+Aucun token Shopify exposé dans le code front (vérifié par grep)
+
+
+
 1) Pour le carburant, Je veux la liste ci-dessous avec la valeur autre pour tout le reste
 Essence
 Diesel
@@ -12,3 +74,15 @@ et foncées et quand on clique dessus, il faut quelle soit colorées en bleu et 
 4) enlevez Trouvez votre prochaine voiture au meilleur prix, contrôlée et garantie.
 5) enlever Nous vous accompagnons de la sélection à la remise des clés.
 6) la finition de la voiture n'est pas bien visible elle est un peu effacée exemple : Intens 1.0 TCe 90
+
+
+
+
+1) Dans la liste de carburant, on doit scroller pour voir toutes la valeurs, je veux quelle soit visibles sans scroller
+2) Je veux une fonctionnalité d'administration, ou je peux ajouter un nouveau véhicule, le modifier ou le désactiver sans passer par l'interface shopify pour ajouter un article
+L'administrateur, ne doit pas venir sur shopify pour modifier quoi que ce soit ça doit se faire via l'appli, il choisi toute les caractéristique de la voiture puis en enregistrant ça met à jour dans shopify
+3) Met voiture le texte Voitures d'occasion en vente au milieur et remonte les filtres en haut
+4) Y'a beaucoup de blanc dans l'image, enleve le blanc resize la pour qu'on voit clairement le texte à l'intérieur
+5) Change le numéro de téléphone au 06 02 54 18 25
+6) Quand on clique sur Envoyer un message, une popup doit s'ouvrir avec les champ Email, Téléphone, Message, 
+(le message est obligatoire, le numéro de téléphone aussi) en cliquant le bouton dans la popup un message doit envoyé à contact.optiauto@gmail.com
