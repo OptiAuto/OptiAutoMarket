@@ -1,0 +1,44 @@
+<div class="cart-page">
+  <div class="container">
+    <h1>Votre panier</h1>
+    {% if cart.item_count > 0 %}
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Produit</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart.items %}
+            <tr>
+              <td>
+                <a href="{{ item.url }}">{{ item.product.title }}</a>
+              </td>
+              <td>{{ item.price | money }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.line_price | money }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="cart-total">
+        <strong>Total : {{ cart.total_price | money }}</strong>
+      </div>
+    {% else %}
+      <p>Votre panier est vide.</p>
+      <a href="/collections/voitures-doccasion" class="btn btn--primary">Voir les véhicules</a>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  .cart-page { padding: 48px 0 80px; }
+  .cart-page h1 { font-size: 2rem; font-weight: 800; color: #0f2255; margin-bottom: 32px; }
+  .cart-table { width: 100%; border-collapse: collapse; }
+  .cart-table th, .cart-table td { padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: left; }
+  .cart-table th { font-size: 13px; color: #718096; text-transform: uppercase; letter-spacing: 0.05em; }
+  .cart-total { text-align: right; margin-top: 24px; font-size: 18px; color: #1B3C87; }
+</style>

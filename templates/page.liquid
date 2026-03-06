@@ -1,0 +1,31 @@
+<div class="page-content">
+  <div class="container">
+    <h1 class="page-content__title">{{ page.title }}</h1>
+    <div class="page-content__body">
+      {{ page.content }}
+    </div>
+  </div>
+</div>
+
+<style>
+  .page-content { padding: 48px 0 80px; }
+  .page-content__title {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: #0f2255;
+    margin-bottom: 32px;
+    letter-spacing: -0.02em;
+  }
+  .page-content__body {
+    max-width: 800px;
+    color: #4a5568;
+    line-height: 1.8;
+    font-size: 15px;
+  }
+  .page-content__body h2 { font-size: 1.4rem; color: #1a202c; margin: 32px 0 12px; font-weight: 700; }
+  .page-content__body h3 { font-size: 1.1rem; color: #1a202c; margin: 24px 0 8px; font-weight: 600; }
+  .page-content__body p { margin-bottom: 16px; }
+  .page-content__body ul, .page-content__body ol { padding-left: 24px; margin-bottom: 16px; }
+  .page-content__body li { margin-bottom: 8px; }
+  .page-content__body a { color: #1B3C87; text-decoration: underline; }
+</style>
