@@ -1,7 +1,5 @@
 <section class="latest-vehicles">
   <div class="container">
-    <h2 class="section-title">{{ section.settings.title | default: "Nos dernières voitures d'occasion" }}</h2>
-
     <div class="vgrid">
       {% assign col = collections['voitures-doccasion'] | default: collections.all %}
       {% for product in col.products limit: section.settings.limit %}
@@ -22,8 +20,6 @@
   "name": "Grille véhicules",
   "class": "section-vehicle-grid",
   "settings": [
-    { "type": "text", "id": "title", "label": "Titre", "default": "Nos dernières voitures d'occasion" },
-    { "type": "text", "id": "subtitle", "label": "Sous-titre", "default": "Inspectées, garanties et au meilleur prix." },
     { "type": "range", "id": "limit", "label": "Nombre de véhicules", "min": 4, "max": 24, "step": 2, "default": 8 }
   ]
 }

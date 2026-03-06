@@ -74,9 +74,12 @@ ul { list-style: none; }
 /* ── Container ──────────────────────────────────────────── */
 .container {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 40px;
+}
+@media (max-width: 640px) {
+  .container { padding: 0 20px; }
 }
 
 /* ── Buttons ──────────────────────────────────────────── */
@@ -183,15 +186,14 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
-  gap: 32px;
+  height: 64px;
+  gap: 24px;
 }
 
 .header-logo__img {
-  height: 68px;
+  height: 48px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,.08));
 }
 
 .header-nav {
@@ -238,7 +240,7 @@ ul { list-style: none; }
   top: 0; left: 0; right: 0; bottom: 0;
   background: var(--white);
   z-index: 99;
-  padding-top: 80px;
+  padding-top: 64px;
   overflow-y: auto;
 }
 .header-mobile.is-open { display: block; }
@@ -431,7 +433,7 @@ ul { list-style: none; }
 /* ════════════════════════════════════════════════════════
    LATEST VEHICLES (homepage grid)
    ════════════════════════════════════════════════════════ */
-.latest-vehicles { padding: 72px 0; }
+.latest-vehicles { padding: 40px 0 56px; }
 
 /* ════════════════════════════════════════════════════════
    VEHICLE GRID
@@ -567,8 +569,8 @@ ul { list-style: none; }
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   position: sticky;
-  top: 88px;
-  max-height: calc(100vh - 100px);
+  top: 72px;
+  max-height: calc(100vh - 84px);
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--gray-300) transparent;
@@ -1183,7 +1185,7 @@ textarea.contact-form__input { resize: vertical; min-height: 120px; }
    UTILITY & RESPONSIVE
    ════════════════════════════════════════════════════════ */
 @media (max-width: 640px) {
-  .container { padding: 0 16px; }
-  .features, .testimonials, .latest-vehicles { padding: 48px 0; }
+  .features, .testimonials { padding: 48px 0; }
+  .latest-vehicles { padding: 24px 0 40px; }
   .vgrid { grid-template-columns: 1fr; gap: 16px; }
 }
