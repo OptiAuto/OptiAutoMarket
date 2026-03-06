@@ -744,8 +744,8 @@ ul { list-style: none; }
 
 /* ── Filter Block (always visible) ─────────────────────── */
 .filter-block {
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--gray-200);
+  padding: 18px 20px;
+  border-bottom: 2px solid var(--gray-300);
 }
 .filter-block:last-of-type { border-bottom: none; }
 
