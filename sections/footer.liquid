@@ -2,10 +2,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="{{ routes.root_url }}" class="footer-logo">
-          <img src="{{ 'logo.png' | asset_url }}" alt="OptiAuto" width="140" height="50" style="filter: brightness(0) invert(1);">
-        </a>
-        <p>Vente, achat et reprise de véhicules. Inspection rigoureuse, garantie incluse, accompagnement personnalisé.</p>
+        <a href="{{ routes.root_url }}" class="footer-logo">{{ shop.name }}</a>
       </div>
 
       <div class="footer-col">
@@ -25,7 +22,6 @@
           <li><a href="/pages/vendre">Vendre ma voiture</a></li>
           <li><a href="/pages/estimation">Estimation gratuite</a></li>
           <li><a href="/pages/reprise">Reprise véhicule</a></li>
-          <li><a href="/pages/financement">Financement</a></li>
         </ul>
       </div>
 

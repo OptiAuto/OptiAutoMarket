@@ -1,0 +1,71 @@
+{% comment %}
+  Template : Politique de confidentialité
+  Assigner ce template à la page dont le handle est "confidentialite".
+{% endcomment %}
+<div class="page-content legal-content">
+  <div class="container">
+    <h1 class="page-content__title">Politique de confidentialité</h1>
+    <div class="page-content__body">
+
+      <h2>Qui est responsable du traitement de vos données ?</h2>
+      <p>Vos données personnelles sont traitées par <strong>{{ shop.name }}</strong> (ci-après « nous »), en qualité de responsable du traitement.</p>
+      <p>Vous pouvez nous contacter à l'adresse {{ settings.email | default: '[contact@exemple.fr]' }} ou par courrier à l'adresse du siège indiquée dans nos <a href="/pages/mentions-legales">mentions légales</a>.</p>
+
+      <h2>Pour quelles finalités recueillons-nous vos données ?</h2>
+      <p>Nous recueillons et traitons vos données personnelles pour les finalités suivantes :</p>
+      <ul>
+        <li><strong>Gestion des demandes de contact</strong> : réponse à vos questions, demandes de renseignements ou de prise de rendez-vous (fondement : relation précontractuelle ou intérêt légitime).</li>
+        <li><strong>Gestion des demandes d'estimation ou de reprise</strong> : traitement de votre demande de vente ou reprise de véhicule (fondement : relation précontractuelle).</li>
+        <li><strong>Gestion de la relation client et des ventes</strong> : suivi des réservations, des achats et des formalités liées à la vente de véhicules (fondement : exécution du contrat).</li>
+        <li><strong>Envoi de communications commerciales</strong> : avec votre accord lorsque la réglementation l'exige, envoi d'actualités, d'offres ou d'invitations (fondement : consentement et/ou intérêt légitime).</li>
+        <li><strong>Amélioration de nos services</strong> : analyses statistiques, enquêtes de satisfaction, amélioration du site et de l'offre (fondement : intérêt légitime).</li>
+        <li><strong>Respect de nos obligations légales</strong> : conservation de pièces justificatives, réponse aux réclamations ou exercice de vos droits (fondement : obligation légale).</li>
+      </ul>
+
+      <h2>Quelles données sont collectées ?</h2>
+      <p>Selon les cas, nous pouvons collecter : nom, prénom, adresse e-mail, numéro de téléphone, adresse postale, informations relatives au véhicule (marque, modèle, kilométrage, etc.) et, le cas échéant, des données de navigation (adresse IP, cookies) pour le bon fonctionnement du site et la mesure d'audience.</p>
+
+      <h2>Durée de conservation</h2>
+      <p>Vos données sont conservées pendant la durée nécessaire à la réalisation des finalités décrites ci-dessus, puis pour la durée imposée par la loi (obligations comptables, prescription, etc.). Les données de prospection sont conservées jusqu'à votre opposition ou retrait de consentement, dans la limite des durées autorisées (ex. 3 ans à compter du dernier contact pour la prospection).</p>
+
+      <h2>Destinataires de vos données</h2>
+      <p>Vos données peuvent être communiquées aux services internes de {{ shop.name }} et, le cas échéant, à des prestataires techniques (hébergement, envoi d'e-mails, outils de gestion) dans le cadre strict de leurs missions. Ces prestataires sont soumis à des obligations de confidentialité et de sécurité.</p>
+      <p>En cas de transfert hors de l'Espace économique européen, des garanties appropriées (clauses contractuelles types, etc.) sont mises en place conformément à la réglementation.</p>
+
+      <h2>Vos droits</h2>
+      <p>Vous disposez des droits suivants concernant vos données personnelles :</p>
+      <ul>
+        <li><strong>Droit d'accès</strong> : obtenir une copie de vos données.</li>
+        <li><strong>Droit de rectification</strong> : faire corriger des données inexactes ou incomplètes.</li>
+        <li><strong>Droit à l'effacement</strong> : demander la suppression de vos données dans les limites prévues par la loi.</li>
+        <li><strong>Droit à la limitation du traitement</strong> : demander la limitation du traitement dans certains cas.</li>
+        <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format structuré et usuel.</li>
+        <li><strong>Droit d'opposition</strong> : vous opposer au traitement, notamment à la prospection commerciale.</li>
+        <li><strong>Droit de retirer votre consentement</strong> : à tout moment pour les traitements fondés sur le consentement.</li>
+      </ul>
+      <p>Pour exercer ces droits, contactez-nous à {{ settings.email | default: '[contact@exemple.fr]' }} ou par courrier en justifiant de votre identité. Vous disposez également du droit d'introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>).</p>
+
+      <h2>Cookies</h2>
+      <p>Le site peut utiliser des cookies pour assurer le bon fonctionnement de la navigation, mémoriser vos préférences ou mesurer l'audience. Vous pouvez configurer votre navigateur pour refuser ou supprimer les cookies. Certaines fonctionnalités du site peuvent en être affectées.</p>
+      <p>Pour plus d'informations sur la gestion des cookies selon votre navigateur : Chrome, Firefox, Safari, Edge (paramètres « Confidentialité » ou « Cookies »).</p>
+
+      <h2>Modifications</h2>
+      <p>Nous nous réservons le droit de modifier la présente politique de confidentialité. Toute modification substantielle fera l'objet d'une information sur le site ou par e-mail lorsque la réglementation l'exige. Nous vous invitons à consulter régulièrement cette page.</p>
+
+      <p><em>Dernière mise à jour : [date]</em></p>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .page-content { padding: 48px 0 80px; }
+  .page-content__title { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: #0f2255; margin-bottom: 32px; letter-spacing: -0.02em; }
+  .page-content__body { max-width: 800px; color: #4a5568; line-height: 1.8; font-size: 15px; }
+  .page-content__body h2 { font-size: 1.35rem; color: #1a202c; margin: 32px 0 12px; font-weight: 700; }
+  .page-content__body h3 { font-size: 1.1rem; color: #1a202c; margin: 24px 0 8px; font-weight: 600; }
+  .page-content__body p { margin-bottom: 16px; }
+  .page-content__body ul, .page-content__body ol { padding-left: 24px; margin-bottom: 16px; }
+  .page-content__body li { margin-bottom: 8px; }
+  .page-content__body a { color: #1B3C87; text-decoration: underline; }
+</style>

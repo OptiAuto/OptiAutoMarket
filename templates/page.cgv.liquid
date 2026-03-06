@@ -1,0 +1,65 @@
+{% comment %}
+  Template : Conditions générales de vente
+  Assigner ce template à la page dont le handle est "cgv".
+{% endcomment %}
+<div class="page-content legal-content">
+  <div class="container">
+    <h1 class="page-content__title">Conditions générales de vente</h1>
+    <div class="page-content__body">
+
+      <h2>Préambule</h2>
+      <p>Les présentes Conditions Générales de Vente (CGV) ont pour objet de définir les relations contractuelles entre <strong>{{ shop.name }}</strong> (ci-après « le Vendeur » ou « nous ») et tout acheteur (ci-après « l'Acheteur » ou « le Client ») souhaitant acquérir un véhicule d'occasion proposé sur le site {{ shop.url }}.</p>
+      <p>En passant commande, l'Acheteur reconnaît avoir pris connaissance des présentes CGV et les accepter sans réserve.</p>
+
+      <h2>1. Objet et champ d'application</h2>
+      <p>Les présentes CGV s'appliquent à toutes les ventes de véhicules d'occasion effectuées par {{ shop.name }}, à l'exclusion des prestations ou produits faisant l'objet de conditions particulières.</p>
+
+      <h2>2. Produits et informations</h2>
+      <p>Les véhicules proposés sont présentés avec les caractéristiques et le prix indiqués au moment de la consultation. Les photographies et descriptions sont fournies à titre indicatif. Le Vendeur s'efforce d'assurer l'exactitude des informations mais ne peut garantir l'absence d'erreur ou d'omission.</p>
+      <p>Chaque véhicule fait l'objet, dans la mesure du possible, d'un contrôle et d'une inspection préalable. L'Acheteur est invité à vérifier le véhicule et à poser toutes les questions utiles avant toute réservation ou achat.</p>
+
+      <h2>3. Prix et modalités de paiement</h2>
+      <p>Les prix des véhicules sont indiqués en euros TTC (ou HT selon le cas). Ils peuvent ne pas inclure les frais de carte grise, d'immatriculation ou d'autres frais administratifs, qui seront précisés avant la conclusion du contrat.</p>
+      <p>Le règlement peut être effectué selon les modalités proposées par le Vendeur (virement, chèque de banque, etc.). La réservation ou la vente peut être subordonnée au versement d'un acompte ou au paiement intégral selon les conditions communiquées à l'Acheteur.</p>
+
+      <h2>4. Réservation et commande</h2>
+      <p>La réservation d'un véhicule peut être effectuée via le site ou par contact direct (téléphone, e-mail). Elle peut être assortie d'un délai de rétractation conformément à la réglementation en vigueur. Les frais de réservation ou de dossier, s'ils existent, sont indiqués avant toute validation.</p>
+      <p>En cas d'indisponibilité du véhicule après réservation, le Vendeur s'engage à en informer l'Acheteur et à proposer, selon les cas, un véhicule de remplacement ou le remboursement des sommes versées.</p>
+
+      <h2>5. Livraison / remise du véhicule</h2>
+      <p>La remise du véhicule a lieu au lieu et à la date convenus avec l'Acheteur. Les délais sont donnés à titre indicatif. Un retard de livraison ne peut donner lieu à annulation de commande, pénalités ou indemnités, sauf disposition contraire ou faute lourde du Vendeur.</p>
+      <p>L'Acheteur est tenu de prendre livraison du véhicule dans les délais convenus. À défaut, le Vendeur pourra, après mise en demeure restée infructueuse, annuler la vente et conserver les sommes versées selon les conditions prévues au contrat.</p>
+
+      <h2>6. Garanties</h2>
+      <p>Les véhicules d'occasion peuvent bénéficier de la garantie légale des vices cachés (articles 1641 et suivants du Code civil) et, le cas échéant, de la garantie légale de conformité (articles L. 211-4 et suivants du Code de la consommation). Une garantie commerciale complémentaire peut être proposée ; ses conditions sont précisées dans le contrat ou le bon de commande.</p>
+      <p>En cas de litige relatif à un vice caché ou à un défaut de conformité, l'Acheteur doit en informer le Vendeur par écrit dans les délais légaux et permettre toute expertise ou vérification utile.</p>
+
+      <h2>7. Documents et formalités</h2>
+      <p>Le Vendeur remet à l'Acheteur les documents nécessaires à l'immatriculation et à l'usage du véhicule (carte grise, certificat de cession, etc.). Les démarches d'immatriculation peuvent être effectuées par le Vendeur ou par l'Acheteur selon les modalités convenues.</p>
+
+      <h2>8. Responsabilité</h2>
+      <p>La responsabilité du Vendeur est limitée au montant des sommes effectivement perçues au titre de la vente en cause, sauf en cas de faute lourde ou de dommages directs et prévisibles. Le Vendeur ne saurait être tenu responsable des dommages indirects.</p>
+
+      <h2>9. Données personnelles</h2>
+      <p>Les données personnelles collectées dans le cadre de la vente sont traitées conformément à notre <a href="/pages/confidentialite">politique de confidentialité</a> et au RGPD.</p>
+
+      <h2>10. Droit applicable et litiges</h2>
+      <p>Les présentes CGV sont soumises au droit français. En cas de litige, une solution amiable sera recherchée avant toute action judiciaire. À défaut d'accord, les tribunaux français seront seuls compétents.</p>
+
+      <h2>11. Contact</h2>
+      <p>Pour toute question : {{ settings.email | default: '[contact@exemple.fr]' }} ou {{ settings.phone | default: '[téléphone]' }}.</p>
+
+      <p><em>Dernière mise à jour : [date]</em></p>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .page-content { padding: 48px 0 80px; }
+  .page-content__title { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: #0f2255; margin-bottom: 32px; letter-spacing: -0.02em; }
+  .page-content__body { max-width: 800px; color: #4a5568; line-height: 1.8; font-size: 15px; }
+  .page-content__body h2 { font-size: 1.35rem; color: #1a202c; margin: 32px 0 12px; font-weight: 700; }
+  .page-content__body p { margin-bottom: 16px; }
+  .page-content__body a { color: #1B3C87; text-decoration: underline; }
+</style>

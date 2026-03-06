@@ -1,0 +1,55 @@
+{% comment %}
+  Template : Mentions légales
+  Assigner ce template à la page dont le handle est "mentions-legales".
+{% endcomment %}
+<div class="page-content legal-content">
+  <div class="container">
+    <h1 class="page-content__title">Mentions légales</h1>
+    <div class="page-content__body">
+
+      <p>Le site {{ shop.url }} est édité par <strong>{{ shop.name }}</strong>, société dont les coordonnées complètes sont disponibles sur demande ou dans les conditions générales de vente.</p>
+
+      <h2>Éditeur du site</h2>
+      <p><strong>{{ shop.name }}</strong><br>
+      [Raison sociale et forme juridique]<br>
+      [Siège social : adresse complète]<br>
+      [RCS, numéro de TVA intracommunautaire si applicable]</p>
+
+      <h2>Directeur de la publication</h2>
+      <p>Le directeur de la publication du site est [Nom du responsable].</p>
+
+      <h2>Contact</h2>
+      <p>Vous pouvez contacter la société par téléphone au {{ settings.phone | default: '[numéro]' }} ou par e-mail à {{ settings.email | default: '[contact@exemple.fr]' }}.</p>
+
+      <h2>Hébergement</h2>
+      <p>Ce site est hébergé par [nom de l'hébergeur], [adresse de l'hébergeur].</p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>L'ensemble du contenu de ce site (textes, images, graphismes, logo, icônes, etc.) est protégé par le droit d'auteur et le droit des marques. Toute reproduction, représentation ou exploitation non autorisée des contenus est interdite et susceptible de constituer une contrefaçon.</p>
+
+      <h2>Données personnelles</h2>
+      <p>Les informations recueillies sur ce site sont traitées conformément à notre <a href="/pages/confidentialite">politique de confidentialité</a> et au Règlement général sur la protection des données (RGPD). Vous disposez d'un droit d'accès, de rectification et d'opposition aux données vous concernant.</p>
+
+      <h2>Cookies</h2>
+      <p>Le site peut être amené à utiliser des cookies pour le bon fonctionnement de la navigation, la mesure d'audience ou l'amélioration de l'expérience utilisateur. Vous pouvez gérer vos préférences dans les paramètres de votre navigateur.</p>
+
+      <h2>Liens hypertextes</h2>
+      <p>Les liens vers d'autres sites internet ne sauraient engager la responsabilité de {{ shop.name }}. L'insertion de liens vers ce site est soumise à accord préalable.</p>
+
+      <p><em>Dernière mise à jour : [date]</em></p>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .page-content { padding: 48px 0 80px; }
+  .page-content__title { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: #0f2255; margin-bottom: 32px; letter-spacing: -0.02em; }
+  .page-content__body { max-width: 800px; color: #4a5568; line-height: 1.8; font-size: 15px; }
+  .page-content__body h2 { font-size: 1.35rem; color: #1a202c; margin: 32px 0 12px; font-weight: 700; }
+  .page-content__body h3 { font-size: 1.1rem; color: #1a202c; margin: 24px 0 8px; font-weight: 600; }
+  .page-content__body p { margin-bottom: 16px; }
+  .page-content__body ul, .page-content__body ol { padding-left: 24px; margin-bottom: 16px; }
+  .page-content__body li { margin-bottom: 8px; }
+  .page-content__body a { color: #1B3C87; text-decoration: underline; }
+</style>
