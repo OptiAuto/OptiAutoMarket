@@ -1,26 +1,40 @@
 <section class="stats">
   <div class="container">
-    <div class="stats__grid">
-      <div class="stats__item">
-        <span class="stats__number">54 000+</span>
-        <span class="stats__label">véhicules vendus</span>
-      </div>
-      <div class="stats__item">
-        <span class="stats__number">98%</span>
-        <span class="stats__label">clients satisfaits</span>
-      </div>
-      <div class="stats__item">
-        <span class="stats__number">200</span>
-        <span class="stats__label">points de contrôle</span>
-      </div>
-      <div class="stats__item">
-        <span class="stats__number">6 mois</span>
-        <span class="stats__label">de garantie minimum</span>
-      </div>
+    <div class="stats-grid">
+      {% for block in section.blocks %}
+        <div class="stat" {{ block.shopify_attributes }}>
+          <span class="stat__number">{{ block.settings.value }}</span>
+          <span class="stat__label">{{ block.settings.label }}</span>
+        </div>
+      {% endfor %}
     </div>
   </div>
 </section>
 
 {% schema %}
-{ "name": "Statistiques", "class": "section-stats" }
+{
+  "name": "Chiffres clés",
+  "class": "section-stats",
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Chiffre",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Valeur", "default": "2 500+" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Véhicules vendus" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Chiffres clés",
+      "blocks": [
+        { "type": "stat", "settings": { "value": "2 500+", "label": "Véhicules vendus" } },
+        { "type": "stat", "settings": { "value": "98 %", "label": "Clients satisfaits" } },
+        { "type": "stat", "settings": { "value": "200", "label": "Points de contrôle" } },
+        { "type": "stat", "settings": { "value": "24 mois", "label": "Garantie possible" } }
+      ]
+    }
+  ]
+}
 {% endschema %}

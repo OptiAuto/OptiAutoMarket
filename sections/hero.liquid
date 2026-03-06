@@ -1,17 +1,16 @@
 <section class="hero">
-  <div class="hero__bg"></div>
-  <div class="hero__overlay"></div>
   <div class="hero__content container">
-    <h1 class="hero__title">{{ section.settings.title | default: "Voiture d'occasion : achetez en toute confiance" }}</h1>
-    <p class="hero__subtitle">{{ section.settings.subtitle | default: "Véhicules contrôlés sur 200 points, garantis et au meilleur prix. Nous vous accompagnons de A à Z." }}</p>
+    <h1 class="hero__title">{{ section.settings.title | default: "Trouvez votre prochaine voiture d'occasion" }}</h1>
+    <p class="hero__subtitle">{{ section.settings.subtitle | default: "Véhicules inspectés, garantis et au meilleur prix. Nous vous accompagnons de la sélection à la remise des clés." }}</p>
     <div class="hero__actions">
-      <a href="/collections/voitures" class="btn btn--accent btn--lg">Voir les véhicules</a>
-      <a href="/pages/vendre" class="btn btn--white btn--lg">Vendre ma voiture</a>
+      <a href="/collections/voitures-doccasion" class="btn btn--white btn--lg">Voir les véhicules</a>
+      <a href="/pages/vendre" class="btn btn--outline-white btn--lg">Vendre ma voiture</a>
     </div>
     <form action="{{ routes.search_url }}" method="get" class="hero__search">
       <input type="hidden" name="type" value="product">
+      <svg class="hero__search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <input type="search" name="q" placeholder="Rechercher par marque, modèle..." class="hero__search-input" aria-label="Rechercher">
-      <button type="submit" class="btn btn--primary">Rechercher</button>
+      <button type="submit" class="btn btn--accent">Rechercher</button>
     </form>
   </div>
 </section>
@@ -21,8 +20,8 @@
   "name": "Hero",
   "class": "section-hero",
   "settings": [
-    { "type": "text", "id": "title", "label": "Titre", "default": "Voiture d'occasion : achetez en toute confiance" },
-    { "type": "textarea", "id": "subtitle", "label": "Sous-titre", "default": "Véhicules contrôlés sur 200 points, garantis et au meilleur prix. Nous vous accompagnons de A à Z." }
+    { "type": "text", "id": "title", "label": "Titre", "default": "Trouvez votre prochaine voiture d'occasion" },
+    { "type": "textarea", "id": "subtitle", "label": "Sous-titre", "default": "Véhicules inspectés, garantis et au meilleur prix. Nous vous accompagnons de la sélection à la remise des clés." }
   ]
 }
 {% endschema %}

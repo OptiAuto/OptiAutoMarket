@@ -2,9 +2,9 @@
   "sections": {
     "hero": { "type": "hero", "settings": {} },
     "features": { "type": "features", "settings": {} },
-    "latest-vehicles": { "type": "vehicle-grid", "settings": {} },
+    "vehicle-grid": { "type": "vehicle-grid", "settings": { "limit": 8 } },
     "stats": { "type": "stats", "settings": {} },
     "testimonials": { "type": "testimonials", "settings": {} }
   },
-  "order": ["hero", "features", "latest-vehicles", "stats", "testimonials"]
+  "order": ["hero", "features", "vehicle-grid", "stats", "testimonials"]
 }

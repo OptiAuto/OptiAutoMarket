@@ -1,9 +1,9 @@
 <header class="site-header">
   <div class="header-top">
     <div class="container header-top__inner">
-      <span class="header-top__text">Véhicules d'occasion contrôlés et garantis &bull; Paiement sécurisé &bull; Accompagnement personnalisé</span>
+      <span class="header-top__text">Vente &bull; Achat &bull; Reprise &mdash; Véhicules contrôlés et garantis</span>
       <a href="tel:{{ settings.phone }}" class="header-top__phone">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>
         {{ settings.phone }}
       </a>
     </div>
@@ -12,18 +12,22 @@
   <div class="header-main">
     <div class="container header-main__inner">
       <a href="{{ routes.root_url }}" class="header-logo">
-        <strong>OptiAuto</strong><span>Market</span>
+        <img src="{{ 'logo.png' | asset_url }}" alt="OptiAuto" class="header-logo__img" width="160" height="56">
       </a>
 
       <nav class="header-nav" id="MainNav" aria-label="Navigation principale">
-        <a href="{{ routes.root_url }}" class="header-nav__link">Accueil</a>
-        <a href="/collections/voitures" class="header-nav__link">Acheter</a>
-        <a href="/pages/vendre" class="header-nav__link">Vendre</a>
+        <a href="{{ routes.root_url }}" class="header-nav__link {% if request.path == '/' %}is-active{% endif %}">Accueil</a>
+        <a href="/collections/voitures-doccasion" class="header-nav__link {% if request.path contains 'voitures' %}is-active{% endif %}">Acheter</a>
+        <a href="/pages/vendre" class="header-nav__link {% if request.path contains 'vendre' %}is-active{% endif %}">Vendre</a>
         <a href="/pages/comment-ca-marche" class="header-nav__link">Comment ça marche</a>
         <a href="/pages/garanties" class="header-nav__link">Garanties</a>
+        <a href="/pages/contact" class="header-nav__link">Contact</a>
       </nav>
 
       <div class="header-actions">
+        <a href="tel:{{ settings.phone }}" class="header-actions__phone">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
         <a href="/pages/vendre" class="btn btn--accent btn--sm">Vendre ma voiture</a>
       </div>
 
@@ -36,11 +40,12 @@
   <div class="header-mobile" id="MobileMenu" aria-hidden="true">
     <nav class="header-mobile__nav">
       <a href="{{ routes.root_url }}">Accueil</a>
-      <a href="/collections/voitures">Acheter un véhicule</a>
+      <a href="/collections/voitures-doccasion">Acheter un véhicule</a>
       <a href="/pages/vendre">Vendre ma voiture</a>
       <a href="/pages/comment-ca-marche">Comment ça marche</a>
       <a href="/pages/garanties">Nos garanties</a>
-      <a href="tel:{{ settings.phone }}">{{ settings.phone }}</a>
+      <a href="/pages/contact">Contact</a>
+      <a href="tel:{{ settings.phone }}" class="header-mobile__phone">{{ settings.phone }}</a>
     </nav>
   </div>
 </header>

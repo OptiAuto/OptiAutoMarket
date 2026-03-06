@@ -3,7 +3,7 @@
   Affiche : photo, nom, motorisation, finition, année, km, carburant, boîte, prix
 {% endcomment %}
 
-<a href="{{ product.url }}" class="vcard" data-brand="{{ product.vendor | handleize }}" data-fuel="{{ product.metafields.custom.fuel | handleize }}" data-gearbox="{{ product.metafields.custom.gearbox | handleize }}" data-body="{{ product.metafields.custom.body_type | handleize }}" data-year="{{ product.metafields.custom.year }}" data-km="{{ product.metafields.custom.mileage }}" data-seats="{{ product.metafields.custom.seats }}" data-critair="{{ product.metafields.custom.critair | handleize }}" data-color="{{ product.metafields.custom.color | handleize }}" data-transmission="{{ product.metafields.custom.transmission | handleize }}" data-price="{{ product.price }}">
+<a href="{{ product.url }}" class="vcard" data-brand="{{ product.vendor | handleize }}" data-model="{{ product.metafields.custom.model | handleize }}" data-fuel="{{ product.metafields.custom.fuel | handleize }}" data-gearbox="{{ product.metafields.custom.gearbox | handleize }}" data-body="{{ product.metafields.custom.body_type | handleize }}" data-year="{{ product.metafields.custom.year }}" data-km="{{ product.metafields.custom.mileage }}" data-seats="{{ product.metafields.custom.seats }}" data-critair="{{ product.metafields.custom.critair | handleize }}" data-color="{{ product.metafields.custom.color | handleize }}" data-transmission="{{ product.metafields.custom.transmission | handleize }}" data-price="{{ product.price }}">
 
   <div class="vcard__img">
     {% if product.featured_image != blank %}

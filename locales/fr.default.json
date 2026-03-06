@@ -1,57 +1,37 @@
 {
   "general": {
-    "skip_to_content": "Aller au contenu",
-    "search_placeholder": "Marque, modèle ou mot-clé",
-    "no_results": "Aucun véhicule ne correspond à votre recherche.",
-    "all": "Tous",
-    "show_more": "Voir plus",
-    "reset": "Réinitialiser"
+    "search": {
+      "placeholder": "Marque, modèle ou référence...",
+      "title": "Résultats de recherche",
+      "no_results": "Aucun résultat pour « {{ terms }} »."
+    },
+    "404": {
+      "title": "Page introuvable",
+      "text": "La page que vous recherchez n'existe plus ou a été déplacée.",
+      "link": "Retour à l'accueil"
+    }
   },
   "products": {
     "product": {
-      "add_to_cart": "Demander un rendez-vous",
+      "add_to_cart": "Ajouter au panier",
+      "price": "Prix",
       "sold_out": "Vendu",
       "unavailable": "Indisponible",
-      "contact_us": "Nous contacter"
+      "description": "Description",
+      "from_price_html": "À partir de {{ price }}"
     }
   },
   "collections": {
     "general": {
-      "no_matches": "Aucun véhicule ne correspond à vos critères de recherche.",
-      "results_count": {
-        "one": "{{ count }} véhicule trouvé",
-        "other": "{{ count }} véhicules trouvés"
-      }
-    },
-    "sorting": {
-      "title": "Trier par",
-      "relevance": "Pertinence",
-      "price_asc": "Prix croissant",
-      "price_desc": "Prix décroissant",
-      "date_desc": "Plus récents",
-      "km_asc": "Km croissant",
-      "km_desc": "Km décroissant"
+      "no_matches": "Aucun véhicule ne correspond à vos critères.",
+      "items_with_count": "{{ count }} véhicule(s)"
     }
   },
-  "filters": {
-    "title": "Filtrer les véhicules",
-    "brand": "Marque",
-    "model": "Modèle",
-    "body_type": "Catégorie",
-    "fuel": "Carburant",
-    "gearbox": "Boîte de vitesses",
-    "transmission": "Transmission",
-    "seats": "Nombre de places",
-    "critair": "Crit'Air",
-    "color": "Couleur",
-    "price": "Prix",
-    "year": "Année",
-    "mileage": "Kilométrage",
-    "min": "Min",
-    "max": "Max",
-    "search": "Rechercher",
-    "reset_all": "Réinitialiser les filtres",
-    "more_filters": "Plus de filtres",
-    "fewer_filters": "Moins de filtres"
+  "cart": {
+    "general": {
+      "title": "Panier",
+      "empty": "Votre panier est vide.",
+      "continue_shopping": "Continuer les achats"
+    }
   }
 }

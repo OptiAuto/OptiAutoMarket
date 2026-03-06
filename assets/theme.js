@@ -1,66 +1,74 @@
-/**
- * OptiAuto Market - Theme JavaScript
- * Filtres véhicules, tri, menu mobile, galerie marque→modèle
- */
+/* ════════════════════════════════════════════════════════
+   OptiAuto – Main JavaScript
+   ════════════════════════════════════════════════════════ */
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ═══════ MOBILE MENU ═══════ */
-  var menuToggle = document.getElementById('MenuToggle');
-  var mobileMenu = document.getElementById('MobileMenu');
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener('click', function () {
-      var open = mobileMenu.classList.toggle('is-open');
-      menuToggle.setAttribute('aria-expanded', open);
-      mobileMenu.setAttribute('aria-hidden', !open);
+  /* ── Mobile Menu ─────────────────────────────────────── */
+  const burger = document.getElementById('MenuToggle');
+  const mobile = document.getElementById('MobileMenu');
+  if (burger && mobile) {
+    burger.addEventListener('click', function () {
+      const open = mobile.classList.toggle('is-open');
+      burger.classList.toggle('is-open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
     });
-  }
-
-  /* ═══════ MODELS DATA (marque → modèle) ═══════ */
-  var modelsData = {};
-  var modelsScript = document.getElementById('ModelsData');
-  if (modelsScript) {
-    try { modelsData = JSON.parse(modelsScript.textContent); } catch (e) { /* silent */ }
-  }
-
-  /* ═══════ BRAND → MODEL DEPENDENCY ═══════ */
-  var brandSelect = document.getElementById('f-brand');
-  var modelSelect = document.getElementById('f-model');
-  if (brandSelect && modelSelect) {
-    brandSelect.addEventListener('change', function () {
-      var brandHandle = brandSelect.value;
-      modelSelect.innerHTML = '<option value="">Tous les modèles</option>';
-      if (!brandHandle) { modelSelect.disabled = true; return; }
-      var brandName = brandSelect.options[brandSelect.selectedIndex].textContent;
-      var models = modelsData[brandName] || [];
-      if (models.length === 0) { modelSelect.disabled = true; return; }
-      modelSelect.disabled = false;
-      models.forEach(function (m) {
-        var opt = document.createElement('option');
-        opt.value = m.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-        opt.textContent = m;
-        modelSelect.appendChild(opt);
+    mobile.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        mobile.classList.remove('is-open');
+        burger.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
       });
     });
   }
 
-  /* ═══════ MORE FILTERS TOGGLE ═══════ */
-  var toggleBtn = document.getElementById('ToggleMoreFilters');
-  var extraFilters = document.getElementById('ExtraFilters');
-  if (toggleBtn && extraFilters) {
-    toggleBtn.addEventListener('click', function () {
-      var visible = extraFilters.style.display !== 'none';
-      extraFilters.style.display = visible ? 'none' : 'flex';
-      toggleBtn.textContent = visible ? 'Plus de filtres' : 'Moins de filtres';
+  /* ── Brand → Model dynamic filter ───────────────────── */
+  const modelsScript = document.getElementById('ModelsData');
+  const brandSelect = document.getElementById('f-brand');
+  const modelSelect = document.getElementById('f-model');
+  var modelsData = {};
+
+  if (modelsScript) {
+    try { modelsData = JSON.parse(modelsScript.textContent); } catch (e) { /* noop */ }
+  }
+
+  if (brandSelect && modelSelect) {
+    brandSelect.addEventListener('change', function () {
+      var brand = this.options[this.selectedIndex].text;
+      modelSelect.innerHTML = '<option value="">Tous les modèles</option>';
+      if (brand && modelsData[brand]) {
+        modelsData[brand].forEach(function (m) {
+          var opt = document.createElement('option');
+          opt.value = m.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+          opt.textContent = m;
+          modelSelect.appendChild(opt);
+        });
+        modelSelect.disabled = false;
+      } else {
+        modelSelect.disabled = true;
+      }
     });
   }
 
-  /* ═══════ CLIENT-SIDE FILTERING ═══════ */
+  /* ── Toggle more filters ─────────────────────────────── */
+  var moreBtn = document.getElementById('ToggleMoreFilters');
+  var extraRow = document.getElementById('ExtraFilters');
+  if (moreBtn && extraRow) {
+    moreBtn.addEventListener('click', function () {
+      var visible = extraRow.style.display !== 'none';
+      extraRow.style.display = visible ? 'none' : 'flex';
+      moreBtn.textContent = visible ? 'Plus de filtres' : 'Moins de filtres';
+    });
+  }
+
+  /* ── Client-side Filtering ───────────────────────────── */
+  var cards = Array.from(document.querySelectorAll('#VehicleGrid .vcard'));
+  var noResults = document.getElementById('NoResults');
+  var countEl = document.getElementById('ResultsCount');
   var applyBtn = document.getElementById('ApplyFilters');
   var resetBtn = document.getElementById('ResetFilters');
-  var grid = document.getElementById('VehicleGrid');
-  var noResults = document.getElementById('NoResults');
-  var resultsCount = document.getElementById('ResultsCount');
 
   function getVal(id) {
     var el = document.getElementById(id);
@@ -68,18 +76,16 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   function getNum(id) {
     var v = getVal(id);
-    return v ? parseInt(v, 10) : null;
+    return v === '' ? null : Number(v);
   }
 
   function applyFilters() {
-    if (!grid) return;
-    var cards = grid.querySelectorAll('.vcard');
     var brand = getVal('f-brand');
     var model = getVal('f-model');
     var body = getVal('f-body');
     var fuel = getVal('f-fuel');
     var gearbox = getVal('f-gearbox');
-    var transmission = getVal('f-transmission');
+    var trans = getVal('f-transmission');
     var seats = getVal('f-seats');
     var critair = getVal('f-critair');
     var color = getVal('f-color');
@@ -90,70 +96,73 @@ document.addEventListener('DOMContentLoaded', function () {
     var yearMin = getNum('f-year-min');
     var yearMax = getNum('f-year-max');
 
-    var visible = 0;
-    cards.forEach(function (card) {
+    var shown = 0;
+
+    cards.forEach(function (c) {
       var show = true;
-      if (brand && card.dataset.brand !== brand) show = false;
-      if (model && card.dataset.model !== model) show = false;
-      if (body && card.dataset.body !== body) show = false;
-      if (fuel && card.dataset.fuel !== fuel) show = false;
-      if (gearbox && card.dataset.gearbox !== gearbox) show = false;
-      if (transmission && card.dataset.transmission !== transmission) show = false;
-      if (seats && card.dataset.seats !== seats) show = false;
-      if (critair && card.dataset.critair !== critair) show = false;
-      if (color && card.dataset.color !== color) show = false;
+      var d = c.dataset;
 
-      var cardPrice = parseInt(card.dataset.price, 10) / 100;
-      var cardKm = parseInt(card.dataset.km, 10);
-      var cardYear = parseInt(card.dataset.year, 10);
+      if (brand && d.brand !== brand) show = false;
+      if (model && d.model !== model) show = false;
+      if (body && d.body !== body) show = false;
+      if (fuel && d.fuel !== fuel) show = false;
+      if (gearbox && d.gearbox !== gearbox) show = false;
+      if (trans && d.transmission !== trans) show = false;
+      if (seats && d.seats !== seats) show = false;
+      if (critair && d.critair !== critair) show = false;
+      if (color && d.color !== color) show = false;
 
-      if (priceMin !== null && cardPrice < priceMin) show = false;
-      if (priceMax !== null && cardPrice > priceMax) show = false;
-      if (kmMin !== null && cardKm < kmMin) show = false;
-      if (kmMax !== null && cardKm > kmMax) show = false;
-      if (yearMin !== null && cardYear < yearMin) show = false;
-      if (yearMax !== null && cardYear > yearMax) show = false;
+      var price = parseInt(d.price, 10) / 100;
+      if (priceMin !== null && price < priceMin) show = false;
+      if (priceMax !== null && price > priceMax) show = false;
 
-      card.style.display = show ? '' : 'none';
-      if (show) visible++;
+      var km = parseInt(d.km, 10);
+      if (kmMin !== null && km < kmMin) show = false;
+      if (kmMax !== null && km > kmMax) show = false;
+
+      var year = parseInt(d.year, 10);
+      if (yearMin !== null && year < yearMin) show = false;
+      if (yearMax !== null && year > yearMax) show = false;
+
+      c.style.display = show ? '' : 'none';
+      if (show) shown++;
     });
 
-    if (noResults) noResults.style.display = visible === 0 ? '' : 'none';
-    if (resultsCount) {
-      resultsCount.textContent = visible + ' véhicule' + (visible > 1 ? 's' : '');
-    }
+    if (noResults) noResults.style.display = (shown === 0 && cards.length > 0) ? '' : 'none';
+    if (countEl) countEl.textContent = shown + ' véhicule' + (shown > 1 ? 's' : '');
   }
 
   if (applyBtn) applyBtn.addEventListener('click', applyFilters);
 
   if (resetBtn) {
     resetBtn.addEventListener('click', function () {
-      var selects = document.querySelectorAll('.filters select');
-      selects.forEach(function (s) { s.selectedIndex = 0; });
-      var inputs = document.querySelectorAll('.filters input');
-      inputs.forEach(function (i) { i.value = ''; });
-      if (modelSelect) { modelSelect.innerHTML = '<option value="">Tous les modèles</option>'; modelSelect.disabled = true; }
-      applyFilters();
+      document.querySelectorAll('.filters select').forEach(function (s) { s.selectedIndex = 0; });
+      document.querySelectorAll('.filters input').forEach(function (i) { i.value = ''; });
+      if (modelSelect) modelSelect.disabled = true;
+      cards.forEach(function (c) { c.style.display = ''; });
+      if (noResults) noResults.style.display = 'none';
+      if (countEl) countEl.textContent = cards.length + ' véhicule' + (cards.length > 1 ? 's' : '');
     });
   }
 
-  /* ═══════ SORTING ═══════ */
+  /* ── Sorting ──────────────────────────────────────────── */
   var sortSelect = document.getElementById('SortBy');
+  var grid = document.getElementById('VehicleGrid');
+
   if (sortSelect && grid) {
     sortSelect.addEventListener('change', function () {
-      var cards = Array.from(grid.querySelectorAll('.vcard'));
-      var sort = sortSelect.value;
-      cards.sort(function (a, b) {
-        switch (sort) {
-          case 'price-asc': return (parseInt(a.dataset.price)||0) - (parseInt(b.dataset.price)||0);
-          case 'price-desc': return (parseInt(b.dataset.price)||0) - (parseInt(a.dataset.price)||0);
-          case 'km-asc': return (parseInt(a.dataset.km)||0) - (parseInt(b.dataset.km)||0);
-          case 'km-desc': return (parseInt(b.dataset.km)||0) - (parseInt(a.dataset.km)||0);
-          case 'date-desc': return (parseInt(b.dataset.year)||0) - (parseInt(a.dataset.year)||0);
+      var key = this.value;
+      var sorted = cards.slice().sort(function (a, b) {
+        switch (key) {
+          case 'price-asc': return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+          case 'price-desc': return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+          case 'km-asc': return parseInt(a.dataset.km) - parseInt(b.dataset.km);
+          case 'km-desc': return parseInt(b.dataset.km) - parseInt(a.dataset.km);
+          case 'date-desc': return parseInt(b.dataset.year) - parseInt(a.dataset.year);
           default: return 0;
         }
       });
-      cards.forEach(function (c) { grid.appendChild(c); });
+      sorted.forEach(function (c) { grid.appendChild(c); });
     });
   }
 

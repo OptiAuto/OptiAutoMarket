@@ -1,33 +1,51 @@
 <section class="testimonials">
   <div class="container">
-    <h2 class="section-title">Ils nous font confiance</h2>
-    <p class="section-subtitle">Découvrez les retours d'expérience de nos clients.</p>
+    <h2 class="section-title">{{ section.settings.title | default: "Ils nous font confiance" }}</h2>
+    <p class="section-subtitle">{{ section.settings.subtitle | default: "Plus de 2 500 clients accompagnés depuis notre création." }}</p>
 
-    <div class="testimonials__grid">
-      <div class="testimonial-card">
-        <div class="testimonial-card__stars">★★★★★</div>
-        <p class="testimonial-card__text">Site clair, explications précises et réponses immédiates. Achat réglé en moins d'une semaine, sans stress. À recommander.</p>
-        <div class="testimonial-card__author"><strong>Delphine R.</strong><span>Janvier 2026</span></div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-card__stars">★★★★★</div>
-        <p class="testimonial-card__text">Tout à fait satisfait de l'achat de mon véhicule. L'équipe a toujours été réactive dans nos échanges. Je recommande sans hésiter.</p>
-        <div class="testimonial-card__author"><strong>Stéphane N.</strong><span>Janvier 2026</span></div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-card__stars">★★★★★</div>
-        <p class="testimonial-card__text">J'ai pu vendre ma voiture en trois jours. Professionnalisme et réactivité au rendez-vous. Le site est très bien fait.</p>
-        <div class="testimonial-card__author"><strong>Bernard A.</strong><span>Janvier 2026</span></div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-card__stars">★★★★★</div>
-        <p class="testimonial-card__text">Agent très professionnel, à l'écoute du client, avec une excellente gestion de mon dossier. Très satisfait de l'accompagnement.</p>
-        <div class="testimonial-card__author"><strong>Thierry M.</strong><span>Décembre 2025</span></div>
-      </div>
+    <div class="testimonials-grid">
+      {% for block in section.blocks %}
+        <div class="testimonial" {{ block.shopify_attributes }}>
+          <div class="testimonial__stars">★★★★★</div>
+          <p class="testimonial__text">{{ block.settings.text }}</p>
+          <div class="testimonial__author">
+            <span class="testimonial__name">{{ block.settings.name }}</span>
+            <span class="testimonial__info">{{ block.settings.info }}</span>
+          </div>
+        </div>
+      {% endfor %}
     </div>
   </div>
 </section>
 
 {% schema %}
-{ "name": "Témoignages", "class": "section-testimonials" }
+{
+  "name": "Témoignages",
+  "class": "section-testimonials",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Titre", "default": "Ils nous font confiance" },
+    { "type": "text", "id": "subtitle", "label": "Sous-titre", "default": "Plus de 2 500 clients accompagnés depuis notre création." }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Témoignage",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Texte", "default": "Service au top ! La voiture correspondait parfaitement à la description." },
+        { "type": "text", "id": "name", "label": "Nom", "default": "Marie D." },
+        { "type": "text", "id": "info", "label": "Détails", "default": "Peugeot 3008, avril 2025" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Témoignages",
+      "blocks": [
+        { "type": "testimonial", "settings": { "text": "Service impeccable du début à la fin. Le véhicule correspondait parfaitement à l'annonce et le processus d'achat a été simple et rapide. Je recommande sans hésiter.", "name": "Marie D.", "info": "Peugeot 3008 – mars 2025" } },
+        { "type": "testimonial", "settings": { "text": "J'ai vendu ma voiture en 48h avec un prix juste. L'équipe est professionnelle et réactive. Une expérience bien supérieure à ce que j'avais connu jusqu'ici.", "name": "Julien P.", "info": "Renault Mégane – janvier 2025" } },
+        { "type": "testimonial", "settings": { "text": "Excellent rapport qualité-prix et un accompagnement sérieux. La garantie comprise dans le prix m'a vraiment rassuré. Merci à toute l'équipe !", "name": "Sophie L.", "info": "Volkswagen Golf – février 2025" } }
+      ]
+    }
+  ]
+}
 {% endschema %}
