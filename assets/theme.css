@@ -190,6 +190,10 @@ ul { list-style: none; }
   gap: 24px;
 }
 
+.header-logo {
+  margin-right: auto;
+  flex-shrink: 0;
+}
 .header-logo__img {
   height: 48px;
   width: auto;
