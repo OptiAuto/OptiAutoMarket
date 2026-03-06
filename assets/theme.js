@@ -90,6 +90,42 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ── Estimation form (page Vendre) ─────────────────────── */
+  var estimationForm = document.getElementById('EstimationForm');
+  var estimationBody = document.getElementById('EstimationBody');
+  var estimationSuccess = document.getElementById('EstimationSuccess');
+  if (estimationForm && estimationBody) {
+    estimationForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var meca = estimationForm.querySelector('input[name="est-mecanique"]:checked');
+      var carr = estimationForm.querySelector('input[name="est-carrosserie"]:checked');
+      var lines = [
+        'Plaque: ' + (document.getElementById('est-plaque') && document.getElementById('est-plaque').value || '-'),
+        'Modèle: ' + (document.getElementById('est-modele') && document.getElementById('est-modele').value || '-'),
+        'Carburant: ' + (document.getElementById('est-carburant') && document.getElementById('est-carburant').value || '-'),
+        'Boîte de vitesse: ' + (document.getElementById('est-boite') && document.getElementById('est-boite').value || '-'),
+        'Année: ' + (document.getElementById('est-annee') && document.getElementById('est-annee').value || '-'),
+        'Kilométrage: ' + (document.getElementById('est-km') && document.getElementById('est-km').value || '-') + ' km',
+        'État mécanique: ' + (meca ? meca.value : '-'),
+        'État carrosserie: ' + (carr ? carr.value : '-')
+      ];
+      estimationBody.value = lines.join('\n');
+      var btn = document.getElementById('EstimationSubmitBtn');
+      if (btn) btn.disabled = true;
+      fetch(estimationForm.action, { method: 'POST', body: new FormData(estimationForm), headers: { 'Accept': 'text/html' } })
+        .then(function () {
+          var grid = estimationForm.querySelector('.estimation-grid');
+          if (grid) grid.style.display = 'none';
+          estimationForm.querySelectorAll('.estimation-form__block').forEach(function (el) { el.style.display = 'none'; });
+          var submitWrap = estimationForm.querySelector('.estimation-form__submit');
+          if (submitWrap) submitWrap.style.display = 'none';
+          if (estimationSuccess) estimationSuccess.style.display = 'block';
+        })
+        .catch(function () { if (btn) btn.disabled = false; })
+        .finally(function () { if (btn) btn.disabled = false; });
+    });
+  }
+
   /* ── Search within checklist ─────────────────────────── */
   document.querySelectorAll('.filter-search').forEach(function (input) {
     var targetId = input.dataset.target;

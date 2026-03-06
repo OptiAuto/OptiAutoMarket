@@ -1325,6 +1325,27 @@ textarea.contact-form__input { resize: vertical; min-height: 120px; }
 .contact-form__success h4 { font-size: 18px; color: var(--gray-900); margin-bottom: 8px; }
 .contact-form__success p { color: var(--gray-600); font-size: 14px; }
 
+/* ── Page Estimation (Vendre) ─────────────────────────── */
+.estimation-page { padding: 40px 0 80px; }
+.estimation-header { text-align: center; margin-bottom: 40px; }
+.estimation-header h1 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; color: var(--gray-900); margin-bottom: 12px; }
+.estimation-header p { color: var(--gray-600); font-size: 16px; max-width: 560px; margin: 0 auto; }
+.estimation-form { max-width: 640px; margin: 0 auto; background: var(--white); padding: 32px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--gray-200); }
+.estimation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+@media (max-width: 600px) { .estimation-grid { grid-template-columns: 1fr; } .estimation-form { padding: 24px; } }
+.estimation-form__group label { display: block; font-size: 14px; font-weight: 600; color: var(--gray-800); margin-bottom: 6px; }
+.estimation-form__group .required { color: var(--red); }
+.estimation-form__input { width: 100%; padding: 12px 14px; border: 1px solid var(--gray-300); border-radius: var(--radius); font-size: 15px; color: var(--gray-900); font-family: inherit; }
+.estimation-form__input:focus { outline: none; border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(48,104,200,.1); }
+.estimation-form__block { margin-bottom: 24px; }
+.estimation-form__block-label { display: block; font-size: 14px; font-weight: 600; color: var(--gray-800); margin-bottom: 10px; }
+.estimation-form__radios { display: flex; flex-wrap: wrap; gap: 12px; }
+.estimation-form__radio { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; color: var(--gray-700); cursor: pointer; }
+.estimation-form__radio input { width: 18px; height: 18px; accent-color: var(--blue-700); }
+.estimation-form__submit { margin-top: 32px; }
+.estimation-form__submit .btn { width: 100%; min-height: 50px; font-size: 16px; }
+.estimation-form__success { margin-top: 24px; padding: 20px; background: var(--blue-50); border-radius: var(--radius); color: var(--blue-800); }
+
 /* ════════════════════════════════════════════════════════
    UTILITY & RESPONSIVE
    ════════════════════════════════════════════════════════ */

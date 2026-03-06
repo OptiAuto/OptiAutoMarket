@@ -1,3 +1,6 @@
+{% if page.handle == 'vendre' %}
+  {% render 'estimation-form' %}
+{% else %}
 <div class="page-content">
   <div class="container">
     <h1 class="page-content__title">{{ page.title }}</h1>
@@ -29,3 +32,4 @@
   .page-content__body li { margin-bottom: 8px; }
   .page-content__body a { color: #1B3C87; text-decoration: underline; }
 </style>
+{% endif %}
