@@ -43,13 +43,13 @@
         "type": "text",
         "id": "phone",
         "label": "Telephone",
-        "default": "01 86 65 00 00"
+        "default": "06 02 54 18 25"
       },
       {
         "type": "text",
         "id": "email",
         "label": "Email",
-        "default": "contact@optiauto.fr"
+        "default": "contact.optiauto@gmail.com"
       }
     ]
   },

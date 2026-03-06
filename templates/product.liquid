@@ -150,7 +150,48 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>
               Appeler : {{ settings.phone }}
             </a>
-            <a href="mailto:{{ settings.email }}" class="btn btn--ghost btn--lg">Envoyer un message</a>
+            <button type="button" class="btn btn--ghost btn--lg" id="OpenContactModal">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Envoyer un message
+            </button>
+          </div>
+        </div>
+
+        <div class="contact-overlay" id="ContactOverlay">
+          <div class="contact-modal">
+            <button type="button" class="contact-modal__close" id="CloseContactModal">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+            <h3>Envoyer un message</h3>
+            <p>Concernant : {{ product.vendor }} {{ product.metafields.custom.model | default: product.title }}</p>
+            <form id="ContactForm" action="/contact#contact_form" method="post">
+              <input type="hidden" name="form_type" value="contact">
+              <input type="hidden" name="utf8" value="✓">
+              <input type="hidden" name="contact[subject]" value="Demande pour {{ product.vendor }} {{ product.metafields.custom.model | default: product.title }}">
+              <div class="contact-form__group">
+                <label>Email</label>
+                <input type="email" name="contact[email]" class="contact-form__input" placeholder="votre@email.com">
+              </div>
+              <div class="contact-form__group">
+                <label>Téléphone <span class="required">*</span></label>
+                <input type="tel" name="contact[phone]" class="contact-form__input" placeholder="06 XX XX XX XX" required>
+                <div class="contact-form__error" id="phoneError">Veuillez renseigner votre numéro de téléphone</div>
+              </div>
+              <div class="contact-form__group">
+                <label>Message <span class="required">*</span></label>
+                <textarea name="contact[body]" class="contact-form__input" placeholder="Bonjour, je suis intéressé(e) par ce véhicule..." required></textarea>
+                <div class="contact-form__error" id="messageError">Veuillez rédiger votre message</div>
+              </div>
+              <button type="submit" class="btn btn--primary btn--lg" style="width:100%" id="ContactSubmitBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13"/><polygon points="22 2 15 22 11 13 2 9"/></svg>
+                Envoyer
+              </button>
+            </form>
+            <div class="contact-form__success" id="ContactSuccess" style="display:none;">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <h4>Message envoyé !</h4>
+              <p>Nous vous répondrons dans les plus brefs délais.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -214,6 +255,69 @@
   document.addEventListener('keydown', function(e) {
     if (e.key === 'ArrowLeft') goTo(current - 1);
     if (e.key === 'ArrowRight') goTo(current + 1);
+  });
+})();
+
+(function() {
+  var overlay = document.getElementById('ContactOverlay');
+  var openBtn = document.getElementById('OpenContactModal');
+  var closeBtn = document.getElementById('CloseContactModal');
+  var form = document.getElementById('ContactForm');
+  var success = document.getElementById('ContactSuccess');
+
+  if (!overlay || !openBtn) return;
+
+  function open() { overlay.classList.add('is-open'); document.body.style.overflow = 'hidden'; }
+  function close() { overlay.classList.remove('is-open'); document.body.style.overflow = ''; }
+
+  openBtn.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && overlay.classList.contains('is-open')) close(); });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var phone = form.querySelector('[name="contact[phone]"]');
+    var msg = form.querySelector('[name="contact[body]"]');
+    var phoneErr = document.getElementById('phoneError');
+    var msgErr = document.getElementById('messageError');
+    var valid = true;
+
+    phoneErr.style.display = 'none';
+    msgErr.style.display = 'none';
+    phone.classList.remove('contact-form__input--error');
+    msg.classList.remove('contact-form__input--error');
+
+    if (!phone.value.trim()) {
+      phoneErr.style.display = 'block';
+      phone.classList.add('contact-form__input--error');
+      valid = false;
+    }
+    if (!msg.value.trim()) {
+      msgErr.style.display = 'block';
+      msg.classList.add('contact-form__input--error');
+      valid = false;
+    }
+    if (!valid) return;
+
+    var btn = document.getElementById('ContactSubmitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours...';
+
+    var formData = new FormData(form);
+    fetch('/contact#contact_form', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'text/html' }
+    }).then(function() {
+      form.style.display = 'none';
+      success.style.display = 'block';
+      setTimeout(close, 3000);
+    }).catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'Envoyer';
+      alert('Une erreur est survenue. Veuillez réessayer.');
+    });
   });
 })();
 </script>

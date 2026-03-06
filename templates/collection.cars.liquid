@@ -14,7 +14,7 @@
 <div class="collection-page">
   <div class="container">
 
-    <div class="collection-header">
+    <div class="collection-header collection-header--center">
       <h1 class="collection-header__title">Voitures d'occasion en vente</h1>
     </div>
 
@@ -98,7 +98,7 @@
         <div class="filter-block">
           <div class="filter-block__label">Carburant</div>
           <div class="filter-block__body">
-            <div class="filter-checklist" id="filter-fuel-list">
+            <div class="filter-checklist filter-checklist--noscroll" id="filter-fuel-list">
               {% for fu in filter_fuels %}
                 <label class="filter-check"><input type="checkbox" name="fuel" value="{{ fu | handleize }}"><span>{{ fu }}</span></label>
               {% endfor %}
@@ -110,7 +110,7 @@
         <div class="filter-block">
           <div class="filter-block__label">Boîte de vitesse</div>
           <div class="filter-block__body">
-            <div class="filter-checklist" id="filter-gearbox-list">
+            <div class="filter-checklist filter-checklist--noscroll" id="filter-gearbox-list">
               {% for gb in filter_gearboxes %}
                 <label class="filter-check"><input type="checkbox" name="gearbox" value="{{ gb | handleize }}"><span>{{ gb }}</span></label>
               {% endfor %}
@@ -189,7 +189,7 @@
         <div class="filter-block">
           <div class="filter-block__label">TVA récupérable</div>
           <div class="filter-block__body">
-            <div class="filter-checklist" id="filter-tva-list">
+            <div class="filter-checklist filter-checklist--noscroll" id="filter-tva-list">
               {% for t in filter_tva %}
                 <label class="filter-check"><input type="checkbox" name="tva" value="{{ t | handleize }}"><span>{{ t }}</span></label>
               {% endfor %}
