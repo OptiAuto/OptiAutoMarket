@@ -295,7 +295,7 @@ ul { list-style: none; }
   pointer-events: none;
 }
 .hero__title {
-  font-size: clamp(1.8rem, 4.5vw, 3rem);
+  font-size: clamp(1.4rem, 3.2vw, 2.4rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.2;
