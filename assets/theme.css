@@ -207,9 +207,9 @@ ul { list-style: none; }
 }
 .header-nav__link {
   position: relative;
-  padding: 20px 16px;
+  padding: 22px 18px;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--gray-600);
   text-decoration: none;
   transition: color .2s ease;
@@ -217,15 +217,16 @@ ul { list-style: none; }
 .header-nav__link::after {
   content: '';
   position: absolute;
-  left: 16px;
-  right: 16px;
+  left: 8px;
+  right: 8px;
   bottom: 0;
-  height: 2px;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
   background: var(--blue-600);
   transform: scaleX(0);
   transition: transform .25s ease;
 }
-.header-nav__link:hover { color: var(--gray-900); }
+.header-nav__link:hover { color: var(--gray-900); font-weight: 600; }
 .header-nav__link:hover::after { transform: scaleX(1); }
 .header-nav__link.is-active { color: var(--blue-700); font-weight: 600; }
 .header-nav__link.is-active::after { transform: scaleX(1); }
