@@ -1202,8 +1202,10 @@ ul { list-style: none; }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.5fr repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 40px;
+  justify-items: center;
+  text-align: center;
 }
 
 @media (max-width: 900px) {
@@ -1213,13 +1215,8 @@ ul { list-style: none; }
   .footer-grid { grid-template-columns: 1fr; }
 }
 
-.footer-brand .footer-logo {
-  color: var(--white);
-  font-size: 18px;
-  font-weight: 700;
-  text-decoration: none;
-}
-.footer-brand .footer-logo:hover { color: rgba(255,255,255,.9); }
+.footer-col { text-align: center; }
+.footer-col ul { list-style: none; padding-left: 0; }
 
 .footer-col h4 {
   color: var(--white);
@@ -1242,7 +1239,7 @@ ul { list-style: none; }
   padding: 24px 0;
   border-top: 1px solid rgba(255,255,255,.1);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
