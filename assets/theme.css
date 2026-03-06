@@ -209,7 +209,7 @@ ul { list-style: none; }
   position: relative;
   padding: 22px 18px;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 17px;
   color: var(--gray-600);
   text-decoration: none;
   transition: color .2s ease;
