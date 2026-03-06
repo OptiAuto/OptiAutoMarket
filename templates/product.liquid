@@ -177,11 +177,15 @@
 
   function goTo(idx) {
     current = (idx + images.length) % images.length;
-    mainImg.style.opacity = '0';
-    setTimeout(function() {
-      mainImg.src = images[current];
-      mainImg.style.opacity = '1';
-    }, 150);
+    var newImg = new Image();
+    newImg.src = images[current];
+    newImg.onload = function() {
+      mainImg.style.opacity = '0';
+      setTimeout(function() {
+        mainImg.src = images[current];
+        mainImg.style.opacity = '1';
+      }, 200);
+    };
     if (counter) counter.textContent = (current + 1) + ' / ' + images.length;
     thumbs.forEach(function(t, i) {
       t.classList.toggle('is-active', i === current);

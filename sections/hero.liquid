@@ -1,7 +1,6 @@
 <section class="hero">
   <div class="hero__content container">
     <h1 class="hero__title">{{ section.settings.title | default: "Trouvez votre prochaine voiture d'occasion" }}</h1>
-    <p class="hero__subtitle">{{ section.settings.subtitle | default: "Véhicules inspectés, garantis et au meilleur prix. Nous vous accompagnons de la sélection à la remise des clés." }}</p>
     <div class="hero__actions">
       <a href="/collections/voitures-doccasion" class="btn btn--white btn--lg">Voir les véhicules</a>
       <a href="/pages/vendre" class="btn btn--outline-white btn--lg">Vendre ma voiture</a>
@@ -20,8 +19,7 @@
   "name": "Hero",
   "class": "section-hero",
   "settings": [
-    { "type": "text", "id": "title", "label": "Titre", "default": "Trouvez votre prochaine voiture d'occasion" },
-    { "type": "textarea", "id": "subtitle", "label": "Sous-titre", "default": "Véhicules inspectés, garantis et au meilleur prix. Nous vous accompagnons de la sélection à la remise des clés." }
+    { "type": "text", "id": "title", "label": "Titre", "default": "Trouvez votre prochaine voiture d'occasion" }
   ]
 }
 {% endschema %}

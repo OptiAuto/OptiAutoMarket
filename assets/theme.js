@@ -24,66 +24,72 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ── Filter Accordion ────────────────────────────────── */
-  document.querySelectorAll('.filter-block__toggle').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var body = this.nextElementSibling;
-      var isOpen = this.classList.toggle('is-open');
-      body.style.display = isOpen ? '' : 'none';
-    });
-  });
-
-  /* ── Search within brand select ──────────────────────── */
+  /* ── Search within checklist ─────────────────────────── */
   document.querySelectorAll('.filter-search').forEach(function (input) {
-    var targetId = input.dataset.search;
-    var select = document.getElementById(targetId);
-    if (!select) return;
-    var options = Array.from(select.options);
+    var targetId = input.dataset.target;
+    var list = document.getElementById(targetId);
+    if (!list) return;
+    var labels = Array.from(list.querySelectorAll('.filter-check'));
     input.addEventListener('input', function () {
       var term = this.value.toLowerCase();
-      options.forEach(function (opt) {
-        if (opt.value === '') { opt.style.display = ''; return; }
-        opt.style.display = opt.textContent.toLowerCase().indexOf(term) >= 0 ? '' : 'none';
+      labels.forEach(function (label) {
+        var text = label.querySelector('span').textContent.toLowerCase();
+        label.style.display = text.indexOf(term) >= 0 ? '' : 'none';
       });
     });
   });
 
-  /* ── Brand → Model dynamic filter ───────────────────── */
+  /* ── Brand → Model dynamic checkboxes ───────────────── */
   var modelsScript = document.getElementById('ModelsData');
-  var brandSelect = document.getElementById('f-brand');
-  var modelSelect = document.getElementById('f-model');
+  var brandList = document.getElementById('filter-brand-list');
+  var modelList = document.getElementById('filter-model-list');
   var modelsData = {};
 
   if (modelsScript) {
     try { modelsData = JSON.parse(modelsScript.textContent); } catch (e) { /* noop */ }
   }
 
-  if (brandSelect && modelSelect) {
-    brandSelect.addEventListener('change', function () {
-      var brand = this.options[this.selectedIndex].text;
-      modelSelect.innerHTML = '<option value="">Tous les modèles</option>';
-      if (brand && modelsData[brand]) {
-        modelsData[brand].forEach(function (m) {
-          var opt = document.createElement('option');
-          opt.value = m.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-          opt.textContent = m;
-          modelSelect.appendChild(opt);
-        });
-        modelSelect.disabled = false;
-      } else {
-        modelSelect.innerHTML = '<option value="">Sélectionnez d\'abord une marque</option>';
-        modelSelect.disabled = true;
+  if (brandList && modelList) {
+    brandList.addEventListener('change', function () {
+      var checked = Array.from(brandList.querySelectorAll('input:checked'));
+      modelList.innerHTML = '';
+
+      if (checked.length === 0) {
+        modelList.innerHTML = '<span class="filter-hint">Sélectionnez d\'abord une marque</span>';
+        applyFilters();
+        return;
       }
+
+      checked.forEach(function (cb) {
+        var brandName = cb.parentElement.querySelector('span').textContent;
+        var models = modelsData[brandName] || [];
+        models.forEach(function (m) {
+          var label = document.createElement('label');
+          label.className = 'filter-check';
+          var input = document.createElement('input');
+          input.type = 'checkbox';
+          input.name = 'model';
+          input.value = m.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+          var span = document.createElement('span');
+          span.textContent = m;
+          label.appendChild(input);
+          label.appendChild(span);
+          modelList.appendChild(label);
+          input.addEventListener('change', applyFilters);
+        });
+      });
+
+      applyFilters();
     });
   }
 
-  /* ── Shortcut buttons (< 20000 km, < 5000€, etc.) ───── */
+  /* ── Shortcut buttons ────────────────────────────────── */
   document.querySelectorAll('.filter-shortcuts button').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var targetId = this.dataset.max;
       var val = this.dataset.val;
       var target = document.getElementById(targetId);
-      if (target) target.value = val;
+      if (target) { target.value = val; applyFilters(); }
     });
   });
 
@@ -111,33 +117,43 @@ document.addEventListener('DOMContentLoaded', function () {
     overlay.addEventListener('click', closeMobileFilters);
   }
 
-  /* ── Client-side Filtering ───────────────────────────── */
+  /* ── Client-side Filtering (auto on change) ──────────── */
   var cards = Array.from(document.querySelectorAll('#VehicleGrid .vcard'));
   var noResults = document.getElementById('NoResults');
   var countEl = document.getElementById('ResultsCount');
-  var applyBtn = document.getElementById('ApplyFilters');
   var resetBtn = document.getElementById('ResetFilters');
 
-  function getVal(id) {
-    var el = document.getElementById(id);
-    return el ? el.value : '';
+  function getChecked(name) {
+    return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked')).map(function (cb) { return cb.value; });
   }
   function getNum(id) {
-    var v = getVal(id);
+    var el = document.getElementById(id);
+    var v = el ? el.value : '';
     return v === '' ? null : Number(v);
   }
 
+  function matchesFuel(cardFuel, checkedFuels) {
+    if (checkedFuels.length === 0) return true;
+    var hasAutre = checkedFuels.indexOf('autre') >= 0;
+    var mainFuels = checkedFuels.filter(function(f) { return f !== 'autre'; });
+    if (mainFuels.indexOf(cardFuel) >= 0) return true;
+    if (hasAutre) {
+      var knownFuels = ['essence', 'diesel', 'hybride', 'hybride-rechargeable', 'electrique'];
+      return knownFuels.indexOf(cardFuel) < 0;
+    }
+    return false;
+  }
+
   function applyFilters() {
-    var brand = getVal('f-brand');
-    var model = getVal('f-model');
-    var body = getVal('f-body');
-    var fuel = getVal('f-fuel');
-    var gearbox = getVal('f-gearbox');
-    var seats = getVal('f-seats');
-    var critair = getVal('f-critair');
-    var color = getVal('f-color');
-    var guarantee = getVal('f-guarantee');
-    var tva = getVal('f-tva');
+    var brands = getChecked('brand');
+    var models = getChecked('model');
+    var bodies = getChecked('body');
+    var fuels = getChecked('fuel');
+    var gearboxes = getChecked('gearbox');
+    var seats = getChecked('seats');
+    var critairs = getChecked('critair');
+    var colors = getChecked('color');
+    var tvas = getChecked('tva');
 
     var priceMin = getNum('f-price-min');
     var priceMax = getNum('f-price-max');
@@ -154,16 +170,15 @@ document.addEventListener('DOMContentLoaded', function () {
       var show = true;
       var d = c.dataset;
 
-      if (brand && d.brand !== brand) show = false;
-      if (model && d.model !== model) show = false;
-      if (body && d.body !== body) show = false;
-      if (fuel && d.fuel !== fuel) show = false;
-      if (gearbox && d.gearbox !== gearbox) show = false;
-      if (seats && d.seats !== seats) show = false;
-      if (critair && d.critair !== critair) show = false;
-      if (color && d.color !== color) show = false;
-      if (guarantee && d.guarantee !== guarantee) show = false;
-      if (tva && d.tva !== tva) show = false;
+      if (brands.length && brands.indexOf(d.brand) < 0) show = false;
+      if (models.length && models.indexOf(d.model) < 0) show = false;
+      if (bodies.length && bodies.indexOf(d.body) < 0) show = false;
+      if (!matchesFuel(d.fuel, fuels)) show = false;
+      if (gearboxes.length && gearboxes.indexOf(d.gearbox) < 0) show = false;
+      if (seats.length && seats.indexOf(d.seats) < 0) show = false;
+      if (critairs.length && critairs.indexOf(d.critair) < 0) show = false;
+      if (colors.length && colors.indexOf(d.color) < 0) show = false;
+      if (tvas.length && tvas.indexOf(d.tva) < 0) show = false;
 
       var price = parseInt(d.price, 10) / 100;
       if (priceMin !== null && price < priceMin) show = false;
@@ -187,20 +202,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (noResults) noResults.style.display = (shown === 0 && cards.length > 0) ? '' : 'none';
     if (countEl) countEl.textContent = shown + ' véhicule' + (shown > 1 ? 's' : '');
-
-    if (typeof closeMobileFilters === 'function') closeMobileFilters();
   }
 
-  if (applyBtn) applyBtn.addEventListener('click', applyFilters);
+  // Auto-apply on any checkbox change
+  document.querySelectorAll('.filters-sidebar input[type="checkbox"]').forEach(function (cb) {
+    cb.addEventListener('change', applyFilters);
+  });
+
+  // Auto-apply on range input change (debounced)
+  var rangeTimer;
+  document.querySelectorAll('.filters-sidebar input[type="number"]').forEach(function (input) {
+    input.addEventListener('input', function () {
+      clearTimeout(rangeTimer);
+      rangeTimer = setTimeout(applyFilters, 400);
+    });
+  });
 
   if (resetBtn) {
     resetBtn.addEventListener('click', function () {
-      document.querySelectorAll('.filters-sidebar select').forEach(function (s) { s.selectedIndex = 0; });
-      document.querySelectorAll('.filters-sidebar input').forEach(function (i) { i.value = ''; });
-      if (modelSelect) {
-        modelSelect.innerHTML = '<option value="">Sélectionnez d\'abord une marque</option>';
-        modelSelect.disabled = true;
-      }
+      document.querySelectorAll('.filters-sidebar input[type="checkbox"]').forEach(function (cb) { cb.checked = false; });
+      document.querySelectorAll('.filters-sidebar input[type="number"]').forEach(function (i) { i.value = ''; });
+      document.querySelectorAll('.filter-search').forEach(function (s) { s.value = ''; s.dispatchEvent(new Event('input')); });
+      if (modelList) modelList.innerHTML = '<span class="filter-hint">Sélectionnez d\'abord une marque</span>';
       cards.forEach(function (c) { c.style.display = ''; });
       if (noResults) noResults.style.display = 'none';
       if (countEl) countEl.textContent = cards.length + ' véhicule' + (cards.length > 1 ? 's' : '');

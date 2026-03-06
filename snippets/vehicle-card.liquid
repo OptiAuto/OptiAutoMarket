@@ -1,5 +1,5 @@
 <a href="{{ product.url }}"
-   class="vcard"
+   class="vcard {% if product.metafields.custom.sold == true %}vcard--sold{% endif %}"
    data-brand="{{ product.vendor | handleize }}"
    data-model="{{ product.metafields.custom.model | handleize }}"
    data-fuel="{{ product.metafields.custom.fuel | handleize }}"
@@ -12,7 +12,6 @@
    data-color="{{ product.metafields.custom.color | handleize }}"
    data-transmission="{{ product.metafields.custom.transmission | handleize }}"
    data-power="{{ product.metafields.custom.power_ch }}"
-   data-guarantee="{{ product.metafields.custom.guarantee | handleize }}"
    data-tva="{{ product.metafields.custom.tva_recoverable | handleize }}"
    data-price="{{ product.price }}">
 
@@ -24,9 +23,17 @@
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
       </div>
     {% endif %}
-    {% if product.metafields.custom.badge != blank %}
-      <span class="vcard__badge">{{ product.metafields.custom.badge }}</span>
-    {% endif %}
+    <div class="vcard__badges">
+      {% if product.metafields.custom.badge != blank %}
+        <span class="vcard__badge">{{ product.metafields.custom.badge }}</span>
+      {% endif %}
+      {% if product.metafields.custom.guarantee_type == 'constructeur' %}
+        <span class="vcard__badge vcard__badge--green">Garantie Constructeur</span>
+      {% endif %}
+      {% if product.available == false or product.metafields.custom.sold == true %}
+        <span class="vcard__badge vcard__badge--red">VENDU</span>
+      {% endif %}
+    </div>
   </div>
 
   <div class="vcard__body">

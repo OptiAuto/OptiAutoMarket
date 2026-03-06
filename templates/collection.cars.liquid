@@ -1,11 +1,10 @@
 {% assign filter_brands = "Abarth,Alfa Romeo,Alpine,Aston Martin,Audi,Bentley,BMW,Cadillac,Chevrolet,Chrysler,Citroën,Cupra,Dacia,DS,Ferrari,Fiat,Ford,Honda,Hyundai,Infiniti,Jaguar,Jeep,Kia,Lamborghini,Land Rover,Lexus,Lotus,Maserati,Mazda,McLaren,Mercedes-Benz,MG,Mini,Mitsubishi,Nissan,Opel,Peugeot,Porsche,Renault,Rolls-Royce,Seat,Skoda,Smart,SsangYong,Subaru,Suzuki,Tesla,Toyota,Volkswagen,Volvo" | split: "," %}
 {% assign filter_body_types = "Berline,Break,Cabriolet,Citadine,Compact,Coupé,Crossover,Ludospace,Micro-citadine,Monospace,Monospace compact,Pick-up,Roadster,SUV,SUV compact,SUV coupé,4x4,Utilitaire,Van" | split: "," %}
-{% assign filter_fuels = "Essence,Diesel,Électrique,Hybride,Hybride rechargeable,GPL,E85 (Flexfuel),Hydrogène,Bicarburation essence/GPL" | split: "," %}
+{% assign filter_fuels = "Essence,Diesel,Hybride,Hybride rechargeable,Électrique,Autre" | split: "," %}
 {% assign filter_gearboxes = "Manuelle,Automatique,Semi-automatique,Robotisée" | split: "," %}
 {% assign filter_seats = "2,4,5,6,7,8,9" | split: "," %}
 {% assign filter_critairs = "Crit'Air 0 (Électrique),Crit'Air 1,Crit'Air 2,Crit'Air 3,Crit'Air 4,Crit'Air 5,Non classé" | split: "," %}
 {% assign filter_colors = "Noir,Blanc,Gris,Gris foncé,Argent,Bleu,Bleu foncé,Bleu clair,Rouge,Bordeaux,Vert,Vert foncé,Marron,Beige,Orange,Jaune,Violet,Rose,Or,Bronze" | split: "," %}
-{% assign filter_guarantees = "Garantie constructeur,Garantie 6 mois,Garantie 12 mois,Garantie 24 mois,Garantie 36 mois,Sans garantie" | split: "," %}
 {% assign filter_tva = "Oui,Non" | split: "," %}
 
 <script id="ModelsData" type="application/json">
@@ -16,10 +15,7 @@
   <div class="container">
 
     <div class="collection-header">
-      <div>
-        <h1 class="collection-header__title">Voitures d'occasion en vente</h1>
-        <p class="collection-header__subtitle">Trouvez votre prochaine voiture au meilleur prix, contrôlée et garantie.</p>
-      </div>
+      <h1 class="collection-header__title">Voitures d'occasion en vente</h1>
     </div>
 
     <div class="collection-layout">
@@ -37,13 +33,12 @@
         <div class="filter-block">
           <div class="filter-block__label">Marque</div>
           <div class="filter-block__body">
-            <input type="text" class="filter-search" placeholder="Rechercher une marque..." data-search="f-brand">
-            <select id="f-brand" class="filter-select" size="6">
-              <option value="">Toutes les marques</option>
+            <input type="text" class="filter-search" placeholder="Rechercher..." data-target="filter-brand-list">
+            <div class="filter-checklist" id="filter-brand-list">
               {% for b in filter_brands %}
-                <option value="{{ b | handleize }}">{{ b }}</option>
+                <label class="filter-check"><input type="checkbox" name="brand" value="{{ b | handleize }}"><span>{{ b }}</span></label>
               {% endfor %}
-            </select>
+            </div>
           </div>
         </div>
 
@@ -51,9 +46,9 @@
         <div class="filter-block">
           <div class="filter-block__label">Modèle</div>
           <div class="filter-block__body">
-            <select id="f-model" class="filter-select" size="5" disabled>
-              <option value="">Sélectionnez d'abord une marque</option>
-            </select>
+            <div class="filter-checklist" id="filter-model-list">
+              <span class="filter-hint">Sélectionnez d'abord une marque</span>
+            </div>
           </div>
         </div>
 
@@ -61,12 +56,11 @@
         <div class="filter-block">
           <div class="filter-block__label">Catégorie</div>
           <div class="filter-block__body">
-            <select id="f-body" class="filter-select" size="6">
-              <option value="">Tous les types</option>
+            <div class="filter-checklist" id="filter-body-list">
               {% for bt in filter_body_types %}
-                <option value="{{ bt | handleize }}">{{ bt }}</option>
+                <label class="filter-check"><input type="checkbox" name="body" value="{{ bt | handleize }}"><span>{{ bt }}</span></label>
               {% endfor %}
-            </select>
+            </div>
           </div>
         </div>
 
@@ -104,12 +98,11 @@
         <div class="filter-block">
           <div class="filter-block__label">Carburant</div>
           <div class="filter-block__body">
-            <select id="f-fuel" class="filter-select" size="6">
-              <option value="">Tous</option>
+            <div class="filter-checklist" id="filter-fuel-list">
               {% for fu in filter_fuels %}
-                <option value="{{ fu | handleize }}">{{ fu }}</option>
+                <label class="filter-check"><input type="checkbox" name="fuel" value="{{ fu | handleize }}"><span>{{ fu }}</span></label>
               {% endfor %}
-            </select>
+            </div>
           </div>
         </div>
 
@@ -117,12 +110,11 @@
         <div class="filter-block">
           <div class="filter-block__label">Boîte de vitesse</div>
           <div class="filter-block__body">
-            <select id="f-gearbox" class="filter-select" size="4">
-              <option value="">Toutes</option>
+            <div class="filter-checklist" id="filter-gearbox-list">
               {% for gb in filter_gearboxes %}
-                <option value="{{ gb | handleize }}">{{ gb }}</option>
+                <label class="filter-check"><input type="checkbox" name="gearbox" value="{{ gb | handleize }}"><span>{{ gb }}</span></label>
               {% endfor %}
-            </select>
+            </div>
           </div>
         </div>
 
@@ -149,12 +141,11 @@
         <div class="filter-block">
           <div class="filter-block__label">Nombre de places</div>
           <div class="filter-block__body">
-            <select id="f-seats" class="filter-select" size="5">
-              <option value="">Toutes</option>
+            <div class="filter-checklist" id="filter-seats-list">
               {% for s in filter_seats %}
-                <option value="{{ s }}">{{ s }} places</option>
+                <label class="filter-check"><input type="checkbox" name="seats" value="{{ s }}"><span>{{ s }} places</span></label>
               {% endfor %}
-            </select>
+            </div>
           </div>
         </div>
 
@@ -162,12 +153,11 @@
         <div class="filter-block">
           <div class="filter-block__label">Crit'Air</div>
           <div class="filter-block__body">
-            <select id="f-critair" class="filter-select" size="5">
-              <option value="">Tous</option>
+            <div class="filter-checklist" id="filter-critair-list">
               {% for ca in filter_critairs %}
-                <option value="{{ ca | handleize }}">{{ ca }}</option>
+                <label class="filter-check"><input type="checkbox" name="critair" value="{{ ca | handleize }}"><span>{{ ca }}</span></label>
               {% endfor %}
-            </select>
+            </div>
           </div>
         </div>
 
@@ -175,12 +165,11 @@
         <div class="filter-block">
           <div class="filter-block__label">Couleur</div>
           <div class="filter-block__body">
-            <select id="f-color" class="filter-select" size="6">
-              <option value="">Toutes</option>
+            <div class="filter-checklist" id="filter-color-list">
               {% for co in filter_colors %}
-                <option value="{{ co | handleize }}">{{ co }}</option>
+                <label class="filter-check"><input type="checkbox" name="color" value="{{ co | handleize }}"><span>{{ co }}</span></label>
               {% endfor %}
-            </select>
+            </div>
           </div>
         </div>
 
@@ -193,47 +182,21 @@
               <span class="filter-range__sep">à</span>
               <input type="number" id="f-power-max" class="filter-input" placeholder="Max ch" min="0" step="10">
             </div>
-            <div class="filter-shortcuts">
-              <button type="button" data-max="f-power-max" data-val="100">&lt; 100 ch</button>
-              <button type="button" data-max="f-power-max" data-val="150">&lt; 150 ch</button>
-              <button type="button" data-max="f-power-max" data-val="200">&lt; 200 ch</button>
-              <button type="button" data-max="f-power-max" data-val="300">&lt; 300 ch</button>
+          </div>
+        </div>
+
+        {%- comment -%} 13. TVA RÉCUPÉRABLE {%- endcomment -%}
+        <div class="filter-block">
+          <div class="filter-block__label">TVA récupérable</div>
+          <div class="filter-block__body">
+            <div class="filter-checklist" id="filter-tva-list">
+              {% for t in filter_tva %}
+                <label class="filter-check"><input type="checkbox" name="tva" value="{{ t | handleize }}"><span>{{ t }}</span></label>
+              {% endfor %}
             </div>
           </div>
         </div>
 
-        {%- comment -%} 13. GARANTIE {%- endcomment -%}
-        <div class="filter-block">
-          <div class="filter-block__label">Garantie</div>
-          <div class="filter-block__body">
-            <select id="f-guarantee" class="filter-select" size="5">
-              <option value="">Toutes</option>
-              {% for g in filter_guarantees %}
-                <option value="{{ g | handleize }}">{{ g }}</option>
-              {% endfor %}
-            </select>
-          </div>
-        </div>
-
-        {%- comment -%} 14. TVA RÉCUPÉRABLE {%- endcomment -%}
-        <div class="filter-block">
-          <div class="filter-block__label">TVA récupérable</div>
-          <div class="filter-block__body">
-            <select id="f-tva" class="filter-select" size="3">
-              <option value="">Indifférent</option>
-              {% for t in filter_tva %}
-                <option value="{{ t | handleize }}">{{ t }}</option>
-              {% endfor %}
-            </select>
-          </div>
-        </div>
-
-        <div class="filters-sidebar__apply">
-          <button type="button" class="btn btn--primary btn--lg" id="ApplyFilters" style="width:100%;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            Rechercher
-          </button>
-        </div>
       </aside>
 
       <div class="collection-results">
