@@ -5,11 +5,11 @@
 document.addEventListener('DOMContentLoaded', function () {
 
   /* ── Mobile Menu ─────────────────────────────────────── */
-  const burger = document.getElementById('MenuToggle');
-  const mobile = document.getElementById('MobileMenu');
+  var burger = document.getElementById('MenuToggle');
+  var mobile = document.getElementById('MobileMenu');
   if (burger && mobile) {
     burger.addEventListener('click', function () {
-      const open = mobile.classList.toggle('is-open');
+      var open = mobile.classList.toggle('is-open');
       burger.classList.toggle('is-open', open);
       burger.setAttribute('aria-expanded', open);
       document.body.style.overflow = open ? 'hidden' : '';
@@ -24,10 +24,34 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ── Filter Accordion ────────────────────────────────── */
+  document.querySelectorAll('.filter-block__toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var body = this.nextElementSibling;
+      var isOpen = this.classList.toggle('is-open');
+      body.style.display = isOpen ? '' : 'none';
+    });
+  });
+
+  /* ── Search within brand select ──────────────────────── */
+  document.querySelectorAll('.filter-search').forEach(function (input) {
+    var targetId = input.dataset.search;
+    var select = document.getElementById(targetId);
+    if (!select) return;
+    var options = Array.from(select.options);
+    input.addEventListener('input', function () {
+      var term = this.value.toLowerCase();
+      options.forEach(function (opt) {
+        if (opt.value === '') { opt.style.display = ''; return; }
+        opt.style.display = opt.textContent.toLowerCase().indexOf(term) >= 0 ? '' : 'none';
+      });
+    });
+  });
+
   /* ── Brand → Model dynamic filter ───────────────────── */
-  const modelsScript = document.getElementById('ModelsData');
-  const brandSelect = document.getElementById('f-brand');
-  const modelSelect = document.getElementById('f-model');
+  var modelsScript = document.getElementById('ModelsData');
+  var brandSelect = document.getElementById('f-brand');
+  var modelSelect = document.getElementById('f-model');
   var modelsData = {};
 
   if (modelsScript) {
@@ -47,20 +71,44 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         modelSelect.disabled = false;
       } else {
+        modelSelect.innerHTML = '<option value="">Sélectionnez d\'abord une marque</option>';
         modelSelect.disabled = true;
       }
     });
   }
 
-  /* ── Toggle more filters ─────────────────────────────── */
-  var moreBtn = document.getElementById('ToggleMoreFilters');
-  var extraRow = document.getElementById('ExtraFilters');
-  if (moreBtn && extraRow) {
-    moreBtn.addEventListener('click', function () {
-      var visible = extraRow.style.display !== 'none';
-      extraRow.style.display = visible ? 'none' : 'flex';
-      moreBtn.textContent = visible ? 'Plus de filtres' : 'Moins de filtres';
+  /* ── Shortcut buttons (< 20000 km, < 5000€, etc.) ───── */
+  document.querySelectorAll('.filter-shortcuts button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var targetId = this.dataset.max;
+      var val = this.dataset.val;
+      var target = document.getElementById(targetId);
+      if (target) target.value = val;
     });
+  });
+
+  /* ── Mobile filters toggle ───────────────────────────── */
+  var mobileToggle = document.getElementById('FiltersMobileToggle');
+  var sidebar = document.getElementById('FiltersSidebar');
+  var overlay = null;
+
+  if (mobileToggle && sidebar) {
+    overlay = document.createElement('div');
+    overlay.className = 'filters-overlay';
+    document.body.appendChild(overlay);
+
+    function openMobileFilters() {
+      sidebar.classList.add('is-open');
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileFilters() {
+      sidebar.classList.remove('is-open');
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+    mobileToggle.addEventListener('click', openMobileFilters);
+    overlay.addEventListener('click', closeMobileFilters);
   }
 
   /* ── Client-side Filtering ───────────────────────────── */
@@ -85,16 +133,20 @@ document.addEventListener('DOMContentLoaded', function () {
     var body = getVal('f-body');
     var fuel = getVal('f-fuel');
     var gearbox = getVal('f-gearbox');
-    var trans = getVal('f-transmission');
     var seats = getVal('f-seats');
     var critair = getVal('f-critair');
     var color = getVal('f-color');
+    var guarantee = getVal('f-guarantee');
+    var tva = getVal('f-tva');
+
     var priceMin = getNum('f-price-min');
     var priceMax = getNum('f-price-max');
     var kmMin = getNum('f-km-min');
     var kmMax = getNum('f-km-max');
     var yearMin = getNum('f-year-min');
     var yearMax = getNum('f-year-max');
+    var powerMin = getNum('f-power-min');
+    var powerMax = getNum('f-power-max');
 
     var shown = 0;
 
@@ -107,10 +159,11 @@ document.addEventListener('DOMContentLoaded', function () {
       if (body && d.body !== body) show = false;
       if (fuel && d.fuel !== fuel) show = false;
       if (gearbox && d.gearbox !== gearbox) show = false;
-      if (trans && d.transmission !== trans) show = false;
       if (seats && d.seats !== seats) show = false;
       if (critair && d.critair !== critair) show = false;
       if (color && d.color !== color) show = false;
+      if (guarantee && d.guarantee !== guarantee) show = false;
+      if (tva && d.tva !== tva) show = false;
 
       var price = parseInt(d.price, 10) / 100;
       if (priceMin !== null && price < priceMin) show = false;
@@ -124,21 +177,30 @@ document.addEventListener('DOMContentLoaded', function () {
       if (yearMin !== null && year < yearMin) show = false;
       if (yearMax !== null && year > yearMax) show = false;
 
+      var power = parseInt(d.power, 10);
+      if (powerMin !== null && !isNaN(power) && power < powerMin) show = false;
+      if (powerMax !== null && !isNaN(power) && power > powerMax) show = false;
+
       c.style.display = show ? '' : 'none';
       if (show) shown++;
     });
 
     if (noResults) noResults.style.display = (shown === 0 && cards.length > 0) ? '' : 'none';
     if (countEl) countEl.textContent = shown + ' véhicule' + (shown > 1 ? 's' : '');
+
+    if (typeof closeMobileFilters === 'function') closeMobileFilters();
   }
 
   if (applyBtn) applyBtn.addEventListener('click', applyFilters);
 
   if (resetBtn) {
     resetBtn.addEventListener('click', function () {
-      document.querySelectorAll('.filters select').forEach(function (s) { s.selectedIndex = 0; });
-      document.querySelectorAll('.filters input').forEach(function (i) { i.value = ''; });
-      if (modelSelect) modelSelect.disabled = true;
+      document.querySelectorAll('.filters-sidebar select').forEach(function (s) { s.selectedIndex = 0; });
+      document.querySelectorAll('.filters-sidebar input').forEach(function (i) { i.value = ''; });
+      if (modelSelect) {
+        modelSelect.innerHTML = '<option value="">Sélectionnez d\'abord une marque</option>';
+        modelSelect.disabled = true;
+      }
       cards.forEach(function (c) { c.style.display = ''; });
       if (noResults) noResults.style.display = 'none';
       if (countEl) countEl.textContent = cards.length + ' véhicule' + (cards.length > 1 ? 's' : '');
