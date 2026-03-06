@@ -3,28 +3,65 @@
     "name": "theme_info",
     "theme_name": "OptiAuto",
     "theme_version": "2.1.0",
-    "theme_author": "OptiAuto"
+    "theme_author": "OptiAuto",
+    "theme_documentation_url": "https://optiauto.fr",
+    "theme_support_url": "https://optiauto.fr/contact"
   },
   {
-    "name": "Couleurs",
+    "name": "Colors",
     "settings": [
-      { "type": "color", "id": "color_primary", "label": "Couleur primaire", "default": "#1B3C87" },
-      { "type": "color", "id": "color_accent", "label": "Couleur accent", "default": "#2196F3" },
-      { "type": "color", "id": "color_bg", "label": "Fond de page", "default": "#f5f7fa" },
-      { "type": "color", "id": "color_text", "label": "Texte", "default": "#2d3748" }
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Couleur primaire",
+        "default": "#1B3C87"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Couleur accent",
+        "default": "#2196F3"
+      },
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Fond de page",
+        "default": "#f5f7fa"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Texte",
+        "default": "#2d3748"
+      }
     ]
   },
   {
     "name": "Contact",
     "settings": [
-      { "type": "text", "id": "phone", "label": "Téléphone", "default": "01 86 65 00 00" },
-      { "type": "text", "id": "email", "label": "Email", "default": "contact@optiauto.fr" }
+      {
+        "type": "text",
+        "id": "phone",
+        "label": "Telephone",
+        "default": "01 86 65 00 00"
+      },
+      {
+        "type": "text",
+        "id": "email",
+        "label": "Email",
+        "default": "contact@optiauto.fr"
+      }
     ]
   },
   {
-    "name": "Pied de page",
+    "name": "Footer",
     "settings": [
-      { "type": "text", "id": "footer_copyright", "label": "Copyright", "default": "OptiAuto. Tous droits réservés." }
+      {
+        "type": "text",
+        "id": "footer_copyright",
+        "label": "Copyright",
+        "default": "OptiAuto. Tous droits reserves."
+      }
     ]
   }
 ]
