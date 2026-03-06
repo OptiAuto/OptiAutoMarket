@@ -1,3 +1,29 @@
+# Secrets
 .env
-.vs/
+.env.*
+*.pem
+*.key
+
+# Dependencies
 node_modules/
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build
+dist/
+.cache/
