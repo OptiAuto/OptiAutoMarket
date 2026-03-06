@@ -1,7 +1,7 @@
 <section class="latest-vehicles">
   <div class="container">
     <div class="vgrid">
-      {% assign col = collections['voitures-doccasion'] | default: collections.all %}
+      {% assign col = collections['voitures'] | default: collections.all %}
       {% for product in col.products limit: section.settings.limit %}
         {% render 'vehicle-card', product: product %}
       {% else %}
@@ -10,7 +10,7 @@
     </div>
 
     <div class="section-cta">
-      <a href="/collections/voitures-doccasion" class="btn btn--primary btn--lg">Voir tout le catalogue</a>
+      <a href="/collections/voitures" class="btn btn--primary btn--lg">Voir tout le catalogue</a>
     </div>
   </div>
 </section>
