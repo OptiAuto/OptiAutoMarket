@@ -19,7 +19,6 @@
         <a href="{{ routes.root_url }}" class="header-nav__link {% if request.path == '/' %}is-active{% endif %}">Accueil</a>
         <a href="/collections/voitures-doccasion" class="header-nav__link {% if request.path contains 'voitures' %}is-active{% endif %}">Acheter</a>
         <a href="/pages/vendre" class="header-nav__link {% if request.path contains 'vendre' %}is-active{% endif %}">Vendre</a>
-        <a href="/pages/comment-ca-marche" class="header-nav__link">Comment ça marche</a>
         <a href="/pages/garanties" class="header-nav__link">Garanties</a>
         <a href="/pages/contact" class="header-nav__link">Contact</a>
       </nav>
@@ -42,7 +41,6 @@
       <a href="{{ routes.root_url }}">Accueil</a>
       <a href="/collections/voitures-doccasion">Acheter</a>
       <a href="/pages/vendre">Vendre ma voiture</a>
-      <a href="/pages/comment-ca-marche">Comment ça marche</a>
       <a href="/pages/garanties">Nos garanties</a>
       <a href="/pages/contact">Contact</a>
       <a href="tel:{{ settings.phone }}" class="header-mobile__phone">{{ settings.phone }}</a>
