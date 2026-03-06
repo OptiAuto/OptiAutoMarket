@@ -1,0 +1,15 @@
+{
+  "name": "optiauto-admin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "OptiAuto - Panneau d'administration des véhicules",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "multer": "^1.4.5-lts.1",
+    "dotenv": "^16.4.5",
+    "node-fetch": "^2.7.0"
+  }
+}
