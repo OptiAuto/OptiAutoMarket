@@ -9,11 +9,10 @@
  */
 {
   "sections": {
-    "hero": { "type": "hero", "settings": {} },
     "vehicle-grid": { "type": "vehicle-grid", "settings": { "limit": 8 } },
     "features": { "type": "features", "settings": {} },
     "stats": { "type": "stats", "settings": {} },
     "testimonials": { "type": "testimonials", "settings": {} }
   },
-  "order": ["hero", "vehicle-grid", "features", "stats", "testimonials"]
+  "order": ["vehicle-grid", "features", "stats", "testimonials"]
 }

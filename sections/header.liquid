@@ -6,11 +6,10 @@
       </a>
 
       <nav class="header-nav" id="MainNav" aria-label="Navigation principale">
-        <a href="{{ routes.root_url }}" class="header-nav__link {% if request.path == '/' %}is-active{% endif %}">Accueil</a>
-        <a href="/collections/voitures-doccasion" class="header-nav__link {% if request.path contains 'voitures' %}is-active{% endif %}">Acheter</a>
+        <a href="/collections/voitures-doccasion" class="header-nav__link {% if request.path contains 'voitures' or request.path == '/' %}is-active{% endif %}">Recherche</a>
         <a href="/pages/vendre" class="header-nav__link {% if request.path contains 'vendre' %}is-active{% endif %}">Vendre</a>
-        <a href="/pages/garanties" class="header-nav__link">Garanties</a>
-        <a href="/pages/contact" class="header-nav__link">Contact</a>
+        <a href="/pages/garanties" class="header-nav__link {% if request.path contains 'garanties' %}is-active{% endif %}">Garanties</a>
+        <a href="/pages/contact" class="header-nav__link {% if request.path contains 'contact' %}is-active{% endif %}">Contact</a>
       </nav>
 
       <div class="header-actions">
@@ -27,10 +26,21 @@
     </div>
   </div>
 
+  <div class="header-search-ribbon">
+    <div class="container">
+      <p class="header-search-ribbon__title">Votre prochain véhicule, révisé, garanti et au meilleur prix</p>
+      <form action="{{ routes.search_url }}" method="get" class="header-search-ribbon__form">
+        <input type="hidden" name="type" value="product">
+        <svg class="header-search-ribbon__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="search" name="q" placeholder="Rechercher par marque, modèle..." class="header-search-ribbon__input" aria-label="Rechercher">
+        <button type="submit" class="btn btn--white btn--sm">Rechercher</button>
+      </form>
+    </div>
+  </div>
+
   <div class="header-mobile" id="MobileMenu" aria-hidden="true">
     <nav class="header-mobile__nav">
-      <a href="{{ routes.root_url }}">Accueil</a>
-      <a href="/collections/voitures-doccasion">Acheter</a>
+      <a href="/collections/voitures-doccasion">Recherche</a>
       <a href="/pages/vendre">Vendre ma voiture</a>
       <a href="/pages/garanties">Nos garanties</a>
       <a href="/pages/contact">Contact</a>
