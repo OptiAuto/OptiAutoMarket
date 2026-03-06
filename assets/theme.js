@@ -90,24 +90,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ── Estimation form (page Vendre) ─────────────────────── */
+  /* ── Estimation form (page Vendre / Estimation / Reprise) ── */
   var estimationForm = document.getElementById('EstimationForm');
   var estimationBody = document.getElementById('EstimationBody');
   var estimationSuccess = document.getElementById('EstimationSuccess');
-  if (estimationForm && estimationBody) {
+  if (estimationForm && estimationForm.action.indexOf('/contact') !== -1 && estimationBody) {
     estimationForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      var meca = estimationForm.querySelector('input[name="est-mecanique"]:checked');
-      var carr = estimationForm.querySelector('input[name="est-carrosserie"]:checked');
+      var get = function (id) { var el = document.getElementById(id); return el ? el.value : ''; };
       var lines = [
-        'Plaque: ' + (document.getElementById('est-plaque') && document.getElementById('est-plaque').value || '-'),
-        'Modèle: ' + (document.getElementById('est-modele') && document.getElementById('est-modele').value || '-'),
-        'Carburant: ' + (document.getElementById('est-carburant') && document.getElementById('est-carburant').value || '-'),
-        'Boîte de vitesse: ' + (document.getElementById('est-boite') && document.getElementById('est-boite').value || '-'),
-        'Année: ' + (document.getElementById('est-annee') && document.getElementById('est-annee').value || '-'),
-        'Kilométrage: ' + (document.getElementById('est-km') && document.getElementById('est-km').value || '-') + ' km',
-        'État mécanique: ' + (meca ? meca.value : '-'),
-        'État carrosserie: ' + (carr ? carr.value : '-')
+        'Email: ' + get('est-email'),
+        'Téléphone: ' + get('est-phone'),
+        'Immatriculation: ' + get('est-plaque'),
+        'Modèle: ' + get('est-modele'),
+        'Kilométrage: ' + get('est-km') + (get('est-km') ? ' km' : ''),
+        'Année: ' + get('est-annee'),
+        'Carburant: ' + (document.getElementById('est-carburant') ? document.getElementById('est-carburant').value : ''),
+        'Boîte de vitesse: ' + (document.getElementById('est-boite') ? document.getElementById('est-boite').value : '')
       ];
       estimationBody.value = lines.join('\n');
       var btn = document.getElementById('EstimationSubmitBtn');

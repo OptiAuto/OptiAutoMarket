@@ -1350,6 +1350,7 @@ textarea.contact-form__input { resize: vertical; min-height: 120px; }
 .estimation-form__input:focus { outline: none; border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(48,104,200,.1); }
 .estimation-form__block { margin-bottom: 24px; }
 .estimation-form__block-label { display: block; font-size: 14px; font-weight: 600; color: var(--gray-800); margin-bottom: 10px; }
+.estimation-form__hint { font-size: 13px; color: var(--gray-600); margin-top: 8px; }
 .estimation-form__radios { display: flex; flex-wrap: wrap; gap: 12px; }
 .estimation-form__radio { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; color: var(--gray-700); cursor: pointer; }
 .estimation-form__radio input { width: 18px; height: 18px; accent-color: var(--blue-700); }

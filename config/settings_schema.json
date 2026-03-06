@@ -50,6 +50,12 @@
         "id": "email",
         "label": "Email",
         "default": "contact.optiauto@gmail.com"
+      },
+      {
+        "type": "text",
+        "id": "formspree_estimation_id",
+        "label": "Formspree Form ID (formulaire avec photos)",
+        "info": "Pour activer l'upload de photos : créez un formulaire sur formspree.io avec l'email contact.optiauto@gmail.com, puis collez l'ID ici (ex. xyzabc). Sinon laissez vide : envoi par Shopify sans pièces jointes."
       }
     ]
   },
