@@ -34,11 +34,13 @@
         <span class="vcard__badge vcard__badge--red">VENDU</span>
       {% endif %}
     </div>
-    <div class="vcard__price-tag">{{ product.price | money_without_trailing_zeros }}</div>
   </div>
 
   <div class="vcard__info">
-    <h3 class="vcard__name">{{ product.vendor }} {{ product.metafields.custom.model | default: product.title }}</h3>
+    <div class="vcard__head">
+      <h3 class="vcard__name">{{ product.vendor }} {{ product.metafields.custom.model | default: product.title }}</h3>
+      <div class="vcard__price">{{ product.price | money_without_trailing_zeros }}</div>
+    </div>
 
     {% if product.metafields.custom.trim != blank or product.metafields.custom.engine != blank %}
       <p class="vcard__detail">{{ product.metafields.custom.trim }}{% if product.metafields.custom.trim != blank and product.metafields.custom.engine != blank %} · {% endif %}{{ product.metafields.custom.engine }}</p>
@@ -46,16 +48,16 @@
 
     <div class="vcard__meta">
       {% if product.metafields.custom.year != blank %}
-        <span>{{ product.metafields.custom.year }}</span>
+        <span class="vcard__meta-item">{{ product.metafields.custom.year }}</span>
       {% endif %}
       {% if product.metafields.custom.mileage != blank %}
-        <span>{{ product.metafields.custom.mileage }} km</span>
+        <span class="vcard__meta-item">{{ product.metafields.custom.mileage }} km</span>
       {% endif %}
       {% if product.metafields.custom.fuel != blank %}
-        <span>{{ product.metafields.custom.fuel }}</span>
+        <span class="vcard__meta-item">{{ product.metafields.custom.fuel }}</span>
       {% endif %}
       {% if product.metafields.custom.gearbox != blank %}
-        <span>{{ product.metafields.custom.gearbox }}</span>
+        <span class="vcard__meta-item">{{ product.metafields.custom.gearbox }}</span>
       {% endif %}
     </div>
   </div>
