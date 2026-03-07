@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>{{ page_title }} – {{ shop.name }}</title>
-  <meta name="description" content="{{ page_description | escape }}">
+  {% render 'seo-head' %}
   {% if request.path == '/' %}<meta http-equiv="refresh" content="0;url=/collections/voitures">{% endif %}
   {{ content_for_header }}
   <link rel="icon" type="image/png" href="{{ 'logo.png' | asset_url }}">

@@ -60,6 +60,18 @@
     ]
   },
   {
+    "name": "SEO",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "seo_default_description",
+        "label": "Description par défaut (meta description)",
+        "default": "Vente de véhicules d'occasion contrôlés et garantis. Achat, reprise et estimation gratuite. OptiAuto – votre prochain véhicule au meilleur prix.",
+        "info": "Utilisée quand la page n'a pas de description (max ~160 caractères)."
+      }
+    ]
+  },
+  {
     "name": "Footer",
     "settings": [
       {

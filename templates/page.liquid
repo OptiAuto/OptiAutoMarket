@@ -1,4 +1,4 @@
-{% if page.handle == 'vendre' or page.handle == 'estimation' or page.handle == 'reprise' %}
+{% if page.handle contains 'vendre' or page.handle contains 'estimation' or page.handle contains 'reprise' %}
   {% render 'estimation-form' %}
 {% else %}
 <div class="page-content">
