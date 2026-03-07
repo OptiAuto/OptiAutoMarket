@@ -1341,7 +1341,7 @@ textarea.contact-form__input { resize: vertical; min-height: 120px; }
 .estimation-header { text-align: center; margin-bottom: 40px; }
 .estimation-header h1 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; color: var(--gray-900); margin-bottom: 12px; }
 .estimation-header p { color: var(--gray-600); font-size: 16px; max-width: 560px; margin: 0 auto; }
-.estimation-header__intro { color: var(--blue-700); font-weight: 700; font-size: 17px; }
+.estimation-header__intro { font-weight: 700; font-size: 17px; }
 .estimation-form { max-width: 640px; margin: 0 auto; background: var(--white); padding: 32px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--gray-200); }
 .estimation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
 @media (max-width: 600px) { .estimation-grid { grid-template-columns: 1fr; } .estimation-form { padding: 24px; } }
