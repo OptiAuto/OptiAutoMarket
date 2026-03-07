@@ -9,8 +9,7 @@
 <div class="estimation-page">
   <div class="container">
     <header class="estimation-header">
-      <h1>Vendre ma voiture</h1>
-      <p>Demande d'estimation, vente ou reprise. Renseignez les informations de votre véhicule.</p>
+      <p class="estimation-header__intro">Complétez les champs ci-dessous pour une estimation ou une reprise.</p>
     </header>
 
     <form class="estimation-form" id="EstimationForm" action="{{ form_action }}" method="post" {% if form_enctype != '' %}enctype="multipart/form-data"{% endif %}>
@@ -73,17 +72,15 @@
         </div>
       </div>
 
-      {% if form_enctype != '' %}
-        <div class="estimation-form__block">
-          <label for="est-photos" class="estimation-form__block-label">Photos (formats image, max 5 Mo par fichier)</label>
-          <input type="file" id="est-photos" name="photos" class="estimation-form__input" accept="image/*" multiple>
-          <p class="estimation-form__hint">Formats acceptés : JPG, PNG, GIF, WebP. Taille max 5 Mo par image.</p>
-        </div>
-      {% else %}
-        <div class="estimation-form__block">
-          <p class="estimation-form__hint">Pour envoyer des photos, contactez-nous à {{ settings.email }} après l'envoi du formulaire.</p>
-        </div>
-      {% endif %}
+      <div class="estimation-form__block">
+        <label for="est-photos" class="estimation-form__block-label">Photos (formats image, max 5 Mo par fichier)</label>
+        <input type="file" id="est-photos" name="{% if form_enctype != '' %}photos{% endif %}" class="estimation-form__input" accept="image/*" multiple {% if form_enctype == '' %}disabled{% endif %}>
+        {% if form_enctype != '' %}
+          <p class="estimation-form__hint">JPG, PNG, GIF ou WebP. Max 5 Mo par fichier.</p>
+        {% else %}
+          <p class="estimation-form__hint">Pour envoyer des pièces jointes par e-mail, renseignez l’ID Formspree dans Paramètres du thème &gt; Contact.</p>
+        {% endif %}
+      </div>
 
       <div class="estimation-form__submit">
         <button type="submit" class="btn btn--primary btn--lg" id="EstimationSubmitBtn">Envoyer</button>
