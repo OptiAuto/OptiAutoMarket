@@ -252,8 +252,8 @@
               <input type="hidden" name="utf8" value="✓">
               <input type="hidden" name="contact[subject]" value="Demande pour {{ product.vendor }} {{ product.metafields.custom.model | default: product.title }}">
               <div class="contact-form__group">
-                <label>Email</label>
-                <input type="email" name="contact[email]" class="contact-form__input" placeholder="votre@email.com">
+                <label>Email <span class="required">*</span></label>
+                <input type="email" name="contact[email]" class="contact-form__input" placeholder="votre@email.com" required>
               </div>
               <div class="contact-form__group">
                 <label>Téléphone <span class="required">*</span></label>
