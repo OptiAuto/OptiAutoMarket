@@ -85,4 +85,4 @@ L'administrateur, ne doit pas venir sur shopify pour modifier quoi que ce soit �
 4) Y'a beaucoup de blanc dans l'image, enleve le blanc resize la pour qu'on voit clairement le texte à l'intérieur
 5) Change le numéro de téléphone au 06 02 54 18 25
 6) Quand on clique sur Envoyer un message, une popup doit s'ouvrir avec les champ Email, Téléphone, Message, 
-(le message est obligatoire, le numéro de téléphone aussi) en cliquant le bouton dans la popup un message doit envoyé à contact.optiauto@gmail.com
+(le message est obligatoire, le numéro de téléphone aussi) en cliquant le bouton dans la popup un message doit envoyé à contact@optiauto.fr

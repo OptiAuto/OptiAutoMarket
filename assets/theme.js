@@ -106,7 +106,8 @@ document.addEventListener('DOMContentLoaded', function () {
         'Kilométrage: ' + get('est-km') + (get('est-km') ? ' km' : ''),
         'Année: ' + get('est-annee'),
         'Carburant: ' + (document.getElementById('est-carburant') ? document.getElementById('est-carburant').value : ''),
-        'Boîte de vitesse: ' + (document.getElementById('est-boite') ? document.getElementById('est-boite').value : '')
+        'Boîte de vitesse: ' + (document.getElementById('est-boite') ? document.getElementById('est-boite').value : ''),
+        'Description: ' + get('est-description')
       ];
       estimationBody.value = lines.join('\n');
       var btn = document.getElementById('EstimationSubmitBtn');

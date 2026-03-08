@@ -1,56 +1,43 @@
-{% if settings.formspree_estimation_id != blank %}
-  {% assign form_action = 'https://formspree.io/f/' | append: settings.formspree_estimation_id %}
-  {% assign form_enctype = 'multipart/form-data' %}
-{% else %}
-  {% assign form_action = '/contact#contact_form' %}
-  {% assign form_enctype = '' %}
-{% endif %}
-
 <div class="estimation-page">
   <div class="container">
     <header class="estimation-header">
       <p class="estimation-header__intro" style="color: {{ settings.color_primary }}; font-weight: 700; font-size: 17px;">Complétez les champs ci-dessous pour une estimation, vente ou une reprise.</p>
     </header>
 
-    <form class="estimation-form" id="EstimationForm" action="{{ form_action }}" method="post" {% if form_enctype != '' %}enctype="multipart/form-data"{% endif %}>
+    <form class="estimation-form" id="EstimationForm" action="/contact#contact_form" method="post">
       <input type="hidden" name="form_type" value="contact">
       <input type="hidden" name="utf8" value="✓">
-      {% if form_enctype == '' %}
-        <input type="hidden" name="contact[subject]" value="Demande estimation / reprise - OptiAuto">
-        <input type="hidden" name="contact[body]" id="EstimationBody" value="">
-      {% else %}
-        <input type="hidden" name="_subject" value="Demande estimation / reprise - OptiAuto">
-        <input type="hidden" name="_next" value="{{ request.origin }}{{ request.path }}#envoye">
-      {% endif %}
+      <input type="hidden" name="contact[subject]" value="Demande estimation / reprise - OptiAuto">
+      <input type="hidden" name="contact[body]" id="EstimationBody" value="">
 
       <div class="estimation-grid">
         <div class="estimation-form__group">
           <label for="est-email">Email <span class="required">*</span></label>
-          <input type="email" id="est-email" name="{% if form_enctype != '' %}_replyto{% else %}contact[email]{% endif %}" class="estimation-form__input" required>
+          <input type="email" id="est-email" name="contact[email]" class="estimation-form__input" required>
         </div>
         <div class="estimation-form__group">
           <label for="est-phone">Téléphone <span class="required">*</span></label>
-          <input type="tel" id="est-phone" name="{% if form_enctype != '' %}telephone{% else %}contact[phone]{% endif %}" class="estimation-form__input" required>
+          <input type="tel" id="est-phone" name="contact[phone]" class="estimation-form__input" required>
         </div>
         <div class="estimation-form__group">
           <label for="est-plaque">Immatriculation</label>
-          <input type="text" id="est-plaque" name="{% if form_enctype != '' %}immatriculation{% endif %}" class="estimation-form__input" maxlength="20">
+          <input type="text" id="est-plaque"  class="estimation-form__input" maxlength="20">
         </div>
         <div class="estimation-form__group">
           <label for="est-modele">Modèle <span class="required">*</span></label>
-          <input type="text" id="est-modele" name="{% if form_enctype != '' %}modele{% endif %}" class="estimation-form__input" maxlength="120" required>
+          <input type="text" id="est-modele"  class="estimation-form__input" maxlength="120" required>
         </div>
         <div class="estimation-form__group">
           <label for="est-km">Kilométrage <span class="required">*</span></label>
-          <input type="number" id="est-km" name="{% if form_enctype != '' %}kilometrage{% endif %}" class="estimation-form__input" min="0" step="1000" required>
+          <input type="number" id="est-km"  class="estimation-form__input" min="0" step="1000" required>
         </div>
         <div class="estimation-form__group">
           <label for="est-annee">Année <span class="required">*</span></label>
-          <input type="number" id="est-annee" name="{% if form_enctype != '' %}annee{% endif %}" class="estimation-form__input" min="1990" max="2030" required>
+          <input type="number" id="est-annee"  class="estimation-form__input" min="1990" max="2030" required>
         </div>
         <div class="estimation-form__group">
           <label for="est-carburant">Carburant <span class="required">*</span></label>
-          <select id="est-carburant" name="{% if form_enctype != '' %}carburant{% endif %}" class="estimation-form__input" required>
+          <select id="est-carburant" class="estimation-form__input" required>
             <option value=""></option>
             <option value="Essence">Essence</option>
             <option value="Diesel">Diesel</option>
@@ -62,7 +49,7 @@
         </div>
         <div class="estimation-form__group">
           <label for="est-boite">Boîte de vitesse <span class="required">*</span></label>
-          <select id="est-boite" name="{% if form_enctype != '' %}boite_vitesse{% endif %}" class="estimation-form__input" required>
+          <select id="est-boite"  class="estimation-form__input" required>
             <option value=""></option>
             <option value="Manuelle">Manuelle</option>
             <option value="Automatique">Automatique</option>
@@ -74,12 +61,17 @@
 
           {% comment %} removed l’ID Formspree dans admin Shopify → Boutique en ligne → Thèmes → Personnaliser. En bas du panneau de gauche : {% endcomment %}
 
+      <div class="estimation-form__block estimation-form__block--description">
+        <label for="est-description" class="estimation-form__block-label">Description</label>
+        <textarea id="est-description" class="estimation-form__input estimation-form__textarea" rows="4" placeholder="Décrivez votre véhicule ou votre demande (optionnel)"></textarea>
+      </div>
+
       <div class="estimation-form__submit">
         <button type="submit" class="btn btn--primary btn--lg" id="EstimationSubmitBtn">Envoyer</button>
       </div>
 
       <div class="estimation-form__success" id="EstimationSuccess" style="display:none;">
-        <p><strong>Demande envoyée.</strong> Nous vous recontacterons rapidement à l'adresse contact.optiauto@gmail.com.</p>
+        <p><strong>Demande envoyée.</strong> Nous vous recontacterons rapidement à l'adresse contact@optiauto.fr.</p>
       </div>
     </form>
   </div>
