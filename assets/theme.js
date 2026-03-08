@@ -56,7 +56,11 @@ document.addEventListener('DOMContentLoaded', function () {
   if (openGlobalMobile) openGlobalMobile.addEventListener('click', function (e) { e.preventDefault(); openGlobalContact(); });
   var closeGlobalBtn = document.getElementById('CloseGlobalContact');
   if (closeGlobalBtn) closeGlobalBtn.addEventListener('click', closeGlobalContact);
-  if (globalOverlay) globalOverlay.addEventListener('click', function (e) { if (e.target === globalOverlay) closeGlobalContact(); });
+  if (globalOverlay) globalOverlay.addEventListener('click', function (e) {
+    if (e.target !== globalOverlay) return;
+    if (globalSuccess && globalSuccess.style.display === 'block') return;
+    closeGlobalContact();
+  });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && globalOverlay && globalOverlay.classList.contains('is-open')) closeGlobalContact();
   });
@@ -83,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(function () {
           globalForm.style.display = 'none';
           if (globalSuccess) globalSuccess.style.display = 'block';
-          setTimeout(closeGlobalContact, 2500);
+          setTimeout(closeGlobalContact, 4000);
         })
         .catch(function () { if (submitBtn) submitBtn.disabled = false; })
         .finally(function () { if (submitBtn) submitBtn.disabled = false; });
@@ -123,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
             estimationSuccess.style.display = 'block';
             window.setTimeout(function () {
               estimationSuccess.style.display = 'none';
-            }, 3000);
+            }, 4000);
           }
         })
         .catch(function () { if (btn) btn.disabled = false; })

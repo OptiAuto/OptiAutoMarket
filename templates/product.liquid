@@ -262,7 +262,7 @@
               </div>
               <div class="contact-form__group">
                 <label>Message <span class="required">*</span></label>
-                <textarea name="contact[body]" class="contact-form__input" placeholder="Bonjour, je suis intéressé(e) par ce véhicule..." required></textarea>
+                <textarea name="contact[body]" class="contact-form__input" required></textarea>
                 <div class="contact-form__error" id="messageError">Veuillez rédiger votre message</div>
               </div>
               <button type="submit" class="btn btn--primary btn--lg" style="width:100%" id="ContactSubmitBtn">
@@ -355,7 +355,11 @@
 
   openBtn.addEventListener('click', open);
   closeBtn.addEventListener('click', close);
-  overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+  overlay.addEventListener('click', function(e) {
+    if (e.target !== overlay) return;
+    if (success && success.style.display === 'block') return;
+    close();
+  });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && overlay.classList.contains('is-open')) close(); });
 
   form.addEventListener('submit', function(e) {
@@ -395,7 +399,7 @@
     }).then(function() {
       form.style.display = 'none';
       success.style.display = 'block';
-      setTimeout(close, 3000);
+      setTimeout(close, 4000);
     }).catch(function() {
       btn.disabled = false;
       btn.textContent = 'Envoyer';
