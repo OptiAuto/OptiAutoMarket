@@ -1,6 +1,6 @@
 <section class="hero">
   <div class="hero__content container">
-    <h1 class="hero__title">{{ section.settings.title | default: "Votre prochain véhicule, révisé, garanti et au meilleur prix" }}</h1>
+    <h1 class="hero__title">{{ section.settings.title | default: "Véhicules révisés, garantis et au meilleur prix" }}</h1>
     <form action="{{ routes.search_url }}" method="get" class="hero__search">
       <input type="hidden" name="type" value="product">
       <svg class="hero__search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -15,7 +15,7 @@
   "name": "Hero",
   "class": "section-hero",
   "settings": [
-    { "type": "text", "id": "title", "label": "Titre", "default": "Votre prochain véhicule, révisé, garanti et au meilleur prix" }
+    { "type": "text", "id": "title", "label": "Titre", "default": "Véhicules révisés, garantis et au meilleur prix" }
   ]
 }
 {% endschema %}
