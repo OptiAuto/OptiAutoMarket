@@ -121,6 +121,89 @@
           </div>
         {% endif %}
 
+        {% assign maintenance = product.metafields.custom.maintenance_history %}
+        {% if maintenance != blank and maintenance.value != blank and maintenance.value.size > 0 %}
+          <div class="product-info__maintenance product-info__block">
+            <h2>Historique d'entretien</h2>
+            <div class="maintenance-list">
+              <div class="maintenance-list__head">
+                <span>Date</span>
+                <span>Entretien</span>
+              </div>
+              {% for entry in maintenance.value %}
+                {% assign parts = entry | split: ' | ' %}
+                <div class="maintenance-list__row">
+                  <span class="maintenance-list__date">{{ parts[0] | strip }}</span>
+                  <span class="maintenance-list__desc">{{ parts[1] | default: entry | strip }}</span>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% assign has_tires = false %}
+        {% if product.metafields.custom.tire_ag_marque != blank or product.metafields.custom.tire_ag_dimensions != blank or product.metafields.custom.tire_ag_profondeur != blank or product.metafields.custom.tire_ag_type != blank %}
+          {% assign has_tires = true %}
+        {% endif %}
+        {% if product.metafields.custom.tire_ad_marque != blank or product.metafields.custom.tire_ad_dimensions != blank or product.metafields.custom.tire_ad_profondeur != blank or product.metafields.custom.tire_ad_type != blank %}
+          {% assign has_tires = true %}
+        {% endif %}
+        {% if product.metafields.custom.tire_rg_marque != blank or product.metafields.custom.tire_rg_dimensions != blank or product.metafields.custom.tire_rg_profondeur != blank or product.metafields.custom.tire_rg_type != blank %}
+          {% assign has_tires = true %}
+        {% endif %}
+        {% if product.metafields.custom.tire_rd_marque != blank or product.metafields.custom.tire_rd_dimensions != blank or product.metafields.custom.tire_rd_profondeur != blank or product.metafields.custom.tire_rd_type != blank %}
+          {% assign has_tires = true %}
+        {% endif %}
+        {% if has_tires %}
+          <div class="product-info__mechanical product-info__block">
+            <h2>État mécanique</h2>
+            <div class="mechanical-card">
+              <h3 class="mechanical-card__title">
+                <svg class="mechanical-card__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 6v6l4 2"/></svg>
+                Pneumatiques
+              </h3>
+              <div class="pneumatiques-grid">
+                <div class="pneu-block">
+                  <h4 class="pneu-block__position">Avant Gauche</h4>
+                  <dl class="pneu-block__specs">
+                    {% if product.metafields.custom.tire_ag_marque != blank %}<div><dt>Marque</dt><dd>{{ product.metafields.custom.tire_ag_marque }}</dd></div>{% endif %}
+                    {% if product.metafields.custom.tire_ag_dimensions != blank %}<div><dt>Dimensions</dt><dd>{{ product.metafields.custom.tire_ag_dimensions }}</dd></div>{% endif %}
+                    {% if product.metafields.custom.tire_ag_profondeur != blank %}<div><dt>Profondeur restante</dt><dd>{{ product.metafields.custom.tire_ag_profondeur }}</dd></div>{% endif %}
+                    {% if product.metafields.custom.tire_ag_type != blank %}<div><dt>Type de pneu</dt><dd>{{ product.metafields.custom.tire_ag_type }}</dd></div>{% endif %}
+                  </dl>
+                </div>
+                <div class="pneu-block">
+                  <h4 class="pneu-block__position">Avant Droit</h4>
+                  <dl class="pneu-block__specs">
+                    {% if product.metafields.custom.tire_ad_marque != blank %}<div><dt>Marque</dt><dd>{{ product.metafields.custom.tire_ad_marque }}</dd></div>{% endif %}
+                    {% if product.metafields.custom.tire_ad_dimensions != blank %}<div><dt>Dimensions</dt><dd>{{ product.metafields.custom.tire_ad_dimensions }}</dd></div>{% endif %}
+                    {% if product.metafields.custom.tire_ad_profondeur != blank %}<div><dt>Profondeur restante</dt><dd>{{ product.metafields.custom.tire_ad_profondeur }}</dd></div>{% endif %}
+                    {% if product.metafields.custom.tire_ad_type != blank %}<div><dt>Type de pneu</dt><dd>{{ product.metafields.custom.tire_ad_type }}</dd></div>{% endif %}
+                  </dl>
+                </div>
+                <div class="pneu-block">
+                  <h4 class="pneu-block__position">Arrière Gauche</h4>
+                  <dl class="pneu-block__specs">
+                    {% if product.metafields.custom.tire_rg_marque != blank %}<div><dt>Marque</dt><dd>{{ product.metafields.custom.tire_rg_marque }}</dd></div>{% endif %}
+                    {% if product.metafields.custom.tire_rg_dimensions != blank %}<div><dt>Dimensions</dt><dd>{{ product.metafields.custom.tire_rg_dimensions }}</dd></div>{% endif %}
+                    {% if product.metafields.custom.tire_rg_profondeur != blank %}<div><dt>Profondeur restante</dt><dd>{{ product.metafields.custom.tire_rg_profondeur }}</dd></div>{% endif %}
+                    {% if product.metafields.custom.tire_rg_type != blank %}<div><dt>Type de pneu</dt><dd>{{ product.metafields.custom.tire_rg_type }}</dd></div>{% endif %}
+                  </dl>
+                </div>
+                <div class="pneu-block">
+                  <h4 class="pneu-block__position">Arrière Droit</h4>
+                  <dl class="pneu-block__specs">
+                    {% if product.metafields.custom.tire_rd_marque != blank %}<div><dt>Marque</dt><dd>{{ product.metafields.custom.tire_rd_marque }}</dd></div>{% endif %}
+                    {% if product.metafields.custom.tire_rd_dimensions != blank %}<div><dt>Dimensions</dt><dd>{{ product.metafields.custom.tire_rd_dimensions }}</dd></div>{% endif %}
+                    {% if product.metafields.custom.tire_rd_profondeur != blank %}<div><dt>Profondeur restante</dt><dd>{{ product.metafields.custom.tire_rd_profondeur }}</dd></div>{% endif %}
+                    {% if product.metafields.custom.tire_rd_type != blank %}<div><dt>Type de pneu</dt><dd>{{ product.metafields.custom.tire_rd_type }}</dd></div>{% endif %}
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
         {% if product.description != blank %}
           <div class="product-info__desc">
             <h2>Description</h2>

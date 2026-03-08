@@ -213,6 +213,28 @@ async function shopifyAPI(endpoint, method = 'GET', body = null) {
   }
 }
 
+/* ─── Shopify GraphQL (métachamps) ───────────────────────── */
+const GRAPHQL_URL = `https://${process.env.SHOPIFY_SHOP}/admin/api/${API_VER}/graphql.json`;
+
+async function shopifyGraphQL(query, variables = {}) {
+  if (!SHOPIFY_TOKEN) return { data: null, errors: [{ message: 'SHOPIFY_ACCESS_TOKEN manquant' }] };
+  try {
+    const resp = await fetch(GRAPHQL_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Access-Token': SHOPIFY_TOKEN,
+      },
+      body: JSON.stringify({ query, variables }),
+      timeout: 15000,
+    });
+    const json = await resp.json();
+    return { data: json.data, errors: json.errors || [] };
+  } catch (err) {
+    return { data: null, errors: [{ message: err.message || 'Erreur GraphQL' }] };
+  }
+}
+
 /* ─── Audit Logging ─────────────────────────────────────── */
 function auditLog(action, details, req) {
   const ts = new Date().toISOString();
@@ -253,6 +275,57 @@ app.post('/api/login', loginLimiter, (req, res) => {
 app.get('/api/csrf', authMiddleware, (req, res) => {
   const csrfToken = generateCsrf(req.sessionId);
   res.json({ csrfToken });
+});
+
+/* ─── Créer les définitions de métachamps (entretien + pneumatiques) ── */
+app.all('/api/setup-metafields', apiLimiter, authMiddleware, async (req, res) => {
+  const mutation = `
+    mutation CreateMetafieldDefinition($definition: MetafieldDefinitionInput!) {
+      metafieldDefinitionCreate(definition: $definition) {
+        createdDefinition { id name key }
+        userErrors { field message code }
+      }
+    }
+  `;
+  const definitions = [
+    { name: 'Historique entretien', namespace: 'custom', key: 'maintenance_history', type: 'list.single_line_text_field', description: 'Entrées au format : Date | Description (une par ligne)' },
+    { name: 'Pneu AG - Marque', namespace: 'custom', key: 'tire_ag_marque', type: 'single_line_text_field', description: 'Avant gauche - marque' },
+    { name: 'Pneu AG - Dimensions', namespace: 'custom', key: 'tire_ag_dimensions', type: 'single_line_text_field', description: 'Avant gauche - ex. 215/45 R16' },
+    { name: 'Pneu AG - Profondeur', namespace: 'custom', key: 'tire_ag_profondeur', type: 'single_line_text_field', description: 'Avant gauche - ex. 4 mm' },
+    { name: 'Pneu AG - Type', namespace: 'custom', key: 'tire_ag_type', type: 'single_line_text_field', description: 'Avant gauche : Été, Hiver ou 4 Saisons' },
+    { name: 'Pneu AD - Marque', namespace: 'custom', key: 'tire_ad_marque', type: 'single_line_text_field' },
+    { name: 'Pneu AD - Dimensions', namespace: 'custom', key: 'tire_ad_dimensions', type: 'single_line_text_field' },
+    { name: 'Pneu AD - Profondeur', namespace: 'custom', key: 'tire_ad_profondeur', type: 'single_line_text_field' },
+    { name: 'Pneu AD - Type', namespace: 'custom', key: 'tire_ad_type', type: 'single_line_text_field' },
+    { name: 'Pneu RG - Marque', namespace: 'custom', key: 'tire_rg_marque', type: 'single_line_text_field' },
+    { name: 'Pneu RG - Dimensions', namespace: 'custom', key: 'tire_rg_dimensions', type: 'single_line_text_field' },
+    { name: 'Pneu RG - Profondeur', namespace: 'custom', key: 'tire_rg_profondeur', type: 'single_line_text_field' },
+    { name: 'Pneu RG - Type', namespace: 'custom', key: 'tire_rg_type', type: 'single_line_text_field' },
+    { name: 'Pneu RD - Marque', namespace: 'custom', key: 'tire_rd_marque', type: 'single_line_text_field' },
+    { name: 'Pneu RD - Dimensions', namespace: 'custom', key: 'tire_rd_dimensions', type: 'single_line_text_field' },
+    { name: 'Pneu RD - Profondeur', namespace: 'custom', key: 'tire_rd_profondeur', type: 'single_line_text_field' },
+    { name: 'Pneu RD - Type', namespace: 'custom', key: 'tire_rd_type', type: 'single_line_text_field' },
+  ].map(d => ({ ...d, ownerType: 'PRODUCT' }));
+
+  const results = { created: [], skipped: [], errors: [] };
+  for (const def of definitions) {
+    const { data, errors } = await shopifyGraphQL(mutation, { definition: def });
+    if (errors.length) {
+      results.errors.push({ key: def.key, errors });
+      continue;
+    }
+    const payload = data?.metafieldDefinitionCreate;
+    const userErrors = payload?.userErrors || [];
+    if (userErrors.length) {
+      const alreadyExists = userErrors.some(e => (e.message || '').toLowerCase().includes('already') || e.code === 'TAKEN');
+      if (alreadyExists) results.skipped.push(def.key);
+      else results.errors.push({ key: def.key, userErrors });
+    } else if (payload?.createdDefinition) {
+      results.created.push(payload.createdDefinition.name || def.key);
+    }
+  }
+  auditLog('SETUP_METAFIELDS', { created: results.created.length, skipped: results.skipped.length, errors: results.errors.length }, req);
+  res.json({ ok: true, message: `${results.created.length} définition(s) créée(s), ${results.skipped.length} déjà existante(s).`, ...results });
 });
 
 /* ─── All API routes: auth + rate limit ─────────────────── */
