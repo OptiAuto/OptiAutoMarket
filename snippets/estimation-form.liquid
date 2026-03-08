@@ -80,6 +80,12 @@
         {% else %}
           <p class="estimation-form__hint">Pour envoyer des pièces jointes par e-mail, renseignez l’ID Formspree dans admin Shopify → Boutique en ligne → Thèmes → Personnaliser. En bas du panneau de gauche : Paramètres du thème (icône engrenage) → onglet Contact → champ Formspree Form ID.</p>
         {% endif %}
+        {% if settings.uploadly_photos_url != blank %}
+          <div class="estimation-form__uploadly-cta">
+            <p class="estimation-form__uploadly-label">Ou envoyez vos photos via Uploadly (recommandé) :</p>
+            <a href="{{ settings.uploadly_photos_url }}" class="btn btn--ghost" target="_blank" rel="noopener">Envoyer les photos avec Uploadly</a>
+          </div>
+        {% endif %}
       </div>
 
       <div class="estimation-form__submit">

@@ -56,6 +56,12 @@
         "id": "formspree_estimation_id",
         "label": "Formspree Form ID (formulaire avec photos)",
         "info": "Pour activer l'upload de photos : créez un formulaire sur formspree.io avec l'email contact.optiauto@gmail.com, puis collez l'ID ici (ex. xyzabc). Sinon laissez vide : envoi par Shopify sans pièces jointes."
+      },
+      {
+        "type": "url",
+        "id": "uploadly_photos_url",
+        "label": "URL page Uploadly (photos)",
+        "info": "Si vous utilisez l'app Uploadly : créez une page produit dédiée (ex. « Photos pour estimation »), ajoutez le bloc Uploadly sur cette page (Personnaliser le thème > produit), puis collez ici l’URL de ce produit. Un lien « Envoyer les photos via Uploadly » apparaîtra sous le champ Photos."
       }
     ]
   },
