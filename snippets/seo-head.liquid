@@ -6,7 +6,7 @@
   {% assign seo_title = seo_title | append: ' – Page ' | append: current_page %}
 {% endif %}
 {% assign seo_title = seo_title | append: ' | ' | append: shop.name %}
-{% assign seo_desc = page_description | default: settings.seo_default_description | default: 'Vente de véhicules d''occasion contrôlés et garantis. Achat, reprise et estimation gratuite. OptiAuto – votre prochain véhicule au meilleur prix.' %}
+{% assign seo_desc = page_description | default: settings.seo_default_description | default: 'Voitures d''occasion révisées et garanties. Achat, reprise, estimation gratuite. OptiAuto – véhicules contrôlés, garantie incluse, au meilleur prix.' %}
 {% assign canonical_url_value = canonical_url | default: shop.secure_url | append: request.path %}
 {% assign og_image = page_image %}
 {% if template.name == 'product' and product.featured_image %}
