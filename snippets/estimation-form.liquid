@@ -72,21 +72,7 @@
         </div>
       </div>
 
-      <div class="estimation-form__block">
-        <label for="est-photos" class="estimation-form__block-label">Photos (formats image, max 5 Mo par fichier)</label>
-        <input type="file" id="est-photos" name="{% if form_enctype != '' %}photos{% endif %}" class="estimation-form__input" accept="image/*" multiple {% if form_enctype == '' %}disabled{% endif %}>
-        {% if form_enctype != '' %}
-          <p class="estimation-form__hint">JPG, PNG, GIF ou WebP. Max 5 Mo par fichier.</p>
-        {% else %}
-          <p class="estimation-form__hint">Pour envoyer des pièces jointes par e-mail, renseignez l’ID Formspree dans admin Shopify → Boutique en ligne → Thèmes → Personnaliser. En bas du panneau de gauche : Paramètres du thème (icône engrenage) → onglet Contact → champ Formspree Form ID.</p>
-        {% endif %}
-        {% if settings.uploadly_photos_url != blank %}
-          <div class="estimation-form__uploadly-cta">
-            <p class="estimation-form__uploadly-label">Ou envoyez vos photos via Uploadly (recommandé) :</p>
-            <a href="{{ settings.uploadly_photos_url }}" class="btn btn--ghost" target="_blank" rel="noopener">Envoyer les photos avec Uploadly</a>
-          </div>
-        {% endif %}
-      </div>
+          {% comment %} removed l’ID Formspree dans admin Shopify → Boutique en ligne → Thèmes → Personnaliser. En bas du panneau de gauche : {% endcomment %}
 
       <div class="estimation-form__submit">
         <button type="submit" class="btn btn--primary btn--lg" id="EstimationSubmitBtn">Envoyer</button>
@@ -99,21 +85,3 @@
   </div>
 </div>
 
-<script>
-  (function() {
-    var form = document.getElementById('EstimationForm');
-    if (!form) return;
-    var maxSize = 5 * 1024 * 1024;
-    var photosInput = document.getElementById('est-photos');
-    if (photosInput) {
-      photosInput.addEventListener('change', function() {
-        var files = Array.from(this.files || []);
-        var invalid = files.filter(function(f) { return f.size > maxSize; });
-        if (invalid.length) {
-          alert('Certains fichiers dépassent 5 Mo. Veuillez les réduire.');
-          this.value = '';
-        }
-      });
-    }
-  })();
-</script>
