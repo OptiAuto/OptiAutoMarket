@@ -163,15 +163,13 @@ ul { list-style: none; }
 /* ════════════════════════════════════════════════════════
    HEADER
    ════════════════════════════════════════════════════════ */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
 .header-main {
   background: var(--white);
   border-bottom: 1px solid var(--gray-200);
   box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 .header-main__inner {
   display: flex;
