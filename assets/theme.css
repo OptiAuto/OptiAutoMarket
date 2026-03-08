@@ -1509,7 +1509,33 @@ textarea.contact-form__input { resize: vertical; min-height: 120px; }
 .estimation-form__radio input { width: 18px; height: 18px; accent-color: var(--blue-700); }
 .estimation-form__submit { margin-top: 32px; }
 .estimation-form__submit .btn { width: 100%; min-height: 50px; font-size: 16px; }
-.estimation-form__success { margin-top: 24px; padding: 20px; background: var(--blue-50); border-radius: var(--radius); color: var(--blue-800); }
+.estimation-form__success {
+  margin-top: 24px;
+  padding: 24px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--gray-800);
+}
+.estimation-form__success-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  color: var(--green);
+}
+.estimation-form__success-icon svg { width: 48px; height: 48px; }
+.estimation-form__success-text {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
 
 /* ════════════════════════════════════════════════════════
    UTILITY & RESPONSIVE

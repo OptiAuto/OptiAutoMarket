@@ -119,7 +119,12 @@ document.addEventListener('DOMContentLoaded', function () {
           estimationForm.querySelectorAll('.estimation-form__block').forEach(function (el) { el.style.display = 'none'; });
           var submitWrap = estimationForm.querySelector('.estimation-form__submit');
           if (submitWrap) submitWrap.style.display = 'none';
-          if (estimationSuccess) estimationSuccess.style.display = 'block';
+          if (estimationSuccess) {
+            estimationSuccess.style.display = 'block';
+            window.setTimeout(function () {
+              estimationSuccess.style.display = 'none';
+            }, 3000);
+          }
         })
         .catch(function () { if (btn) btn.disabled = false; })
         .finally(function () { if (btn) btn.disabled = false; });
