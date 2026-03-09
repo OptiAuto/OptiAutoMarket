@@ -66,11 +66,32 @@ La section **État mécanique > Pneumatiques** s’affiche dès qu’au moins un
 
 ---
 
+## Vidéos YouTube du véhicule
+
+Pour chaque véhicule, vous pouvez ajouter jusqu'à **3 vidéos YouTube** (essai routier, présentation, intérieur, etc.). Les vidéos apparaîtront dans la **galerie principale** du produit, après les 2–3 premières photos.
+
+### Métachamps vidéos
+
+Créez les métachamps suivants (type **URL**) :
+
+| Nom (clé) | Type | Exemple de valeur |
+|-----------|------|-------------------|
+| `video_1` | URL | `https://www.youtube.com/watch?v=XXXXXXXXXXX` |
+| `video_2` | URL | `https://youtu.be/YYYYYYYYYYY` |
+| `video_3` | URL | `https://www.youtube.com/watch?v=ZZZZZZZZZZZ` |
+
+Formats acceptés : `https://www.youtube.com/watch?v=ID`, `https://youtu.be/ID`, ou `https://www.youtube.com/embed/ID`.
+
+La galerie affiche automatiquement les vidéos sous forme de **vignettes avec icône “lecture”**. Un clic ouvre le lecteur YouTube dans le cadre principal, au même endroit que les photos.
+
+---
+
 ## Création dans Shopify
 
 1. **Paramètres** > **Données personnalisées** > **Produits** > **Définir des métachamps** (ou **Ajouter une définition**).
 2. Créez d’abord le métachamp **Liste** pour `maintenance_history` (type d’élément : Ligne de texte).
 3. Créez les 16 métachamps **Ligne de texte** pour les pneumatiques (`tire_ag_marque`, `tire_ag_dimensions`, etc.) avec les noms (clés) indiqués ci-dessus.
-4. Sur chaque fiche produit (Admin > Produits > [véhicule] > Métachamps), remplissez les champs souhaités.
+4. Créez les 3 métachamps **URL** pour les vidéos (`video_1`, `video_2`, `video_3`).
+5. Sur chaque fiche produit (Admin > Produits > [véhicule] > Métachamps), remplissez les champs souhaités.
 
 Les sections apparaissent automatiquement sur la page détail du thème dès que les données sont renseignées.

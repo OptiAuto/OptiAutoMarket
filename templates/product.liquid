@@ -20,6 +20,20 @@
               <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
             </div>
           {% endif %}
+
+          <div class="product-gallery__video" id="MainVideoWrapper" style="display:none;">
+            <div class="product-gallery__video-inner">
+              <iframe id="MainVideo"
+                      width="100%"
+                      height="100%"
+                      src=""
+                      title="Vidéo du véhicule"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen></iframe>
+            </div>
+          </div>
+
           {% if product.images.size > 1 %}
             <button class="gallery-arrow gallery-arrow--prev" id="GalleryPrev" aria-label="Photo précédente">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
@@ -30,13 +44,49 @@
             <div class="gallery-counter" id="GalleryCounter">1 / {{ product.images.size }}</div>
           {% endif %}
         </div>
-        {% if product.images.size > 1 %}
+
+        {% assign has_video_1 = product.metafields.custom.video_1 %}
+        {% assign has_video_2 = product.metafields.custom.video_2 %}
+        {% assign has_video_3 = product.metafields.custom.video_3 %}
+
+        {% if product.images.size > 1 or has_video_1 or has_video_2 or has_video_3 %}
           <div class="product-gallery__thumbs" id="GalleryThumbs">
             {% for image in product.images %}
               <button class="product-gallery__thumb {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}" data-src="{{ image | image_url: width: 900 }}">
                 <img src="{{ image | image_url: width: 120, height: 90, crop: 'center' }}" alt="Photo {{ forloop.index }}" loading="lazy" width="120" height="90">
               </button>
             {% endfor %}
+
+            {% if has_video_1 %}
+              <button class="product-gallery__thumb product-gallery__thumb--video" data-video-url="{{ product.metafields.custom.video_1 }}">
+                <span class="product-gallery__thumb-video">
+                  <span class="product-gallery__thumb-video-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  </span>
+                  <span class="product-gallery__thumb-video-label">Vidéo 1</span>
+                </span>
+              </button>
+            {% endif %}
+            {% if has_video_2 %}
+              <button class="product-gallery__thumb product-gallery__thumb--video" data-video-url="{{ product.metafields.custom.video_2 }}">
+                <span class="product-gallery__thumb-video">
+                  <span class="product-gallery__thumb-video-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  </span>
+                  <span class="product-gallery__thumb-video-label">Vidéo 2</span>
+                </span>
+              </button>
+            {% endif %}
+            {% if has_video_3 %}
+              <button class="product-gallery__thumb product-gallery__thumb--video" data-video-url="{{ product.metafields.custom.video_3 }}">
+                <span class="product-gallery__thumb-video">
+                  <span class="product-gallery__thumb-video-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  </span>
+                  <span class="product-gallery__thumb-video-label">Vidéo 3</span>
+                </span>
+              </button>
+            {% endif %}
           </div>
         {% endif %}
       </div>
@@ -303,12 +353,48 @@
 
   var current = 0;
   var mainImg = document.getElementById('MainImg');
+  var videoWrapper = document.getElementById('MainVideoWrapper');
+  var mainVideo = document.getElementById('MainVideo');
   var counter = document.getElementById('GalleryCounter');
   var thumbs = document.querySelectorAll('.product-gallery__thumb');
+  var videoThumbs = document.querySelectorAll('.product-gallery__thumb--video');
   var prevBtn = document.getElementById('GalleryPrev');
   var nextBtn = document.getElementById('GalleryNext');
 
+  function hideVideo() {
+    if (videoWrapper && mainVideo) {
+      videoWrapper.style.display = 'none';
+      mainVideo.src = '';
+    }
+    if (mainImg) mainImg.style.display = 'block';
+  }
+
+  function showVideo(url) {
+    if (!videoWrapper || !mainVideo) return;
+    var id = null;
+    if (!url) return;
+    try {
+      var yt = new URL(url);
+      if (yt.hostname.indexOf('youtu.be') !== -1) {
+        id = yt.pathname.replace('/', '');
+      } else if (yt.searchParams.get('v')) {
+        id = yt.searchParams.get('v');
+      } else if (yt.pathname.indexOf('/embed/') !== -1) {
+        id = yt.pathname.split('/embed/')[1];
+      }
+    } catch (e) {
+      // ignore parsing errors
+    }
+    if (!id) return;
+    var embed = 'https://www.youtube.com/embed/' + id + '?rel=0&showinfo=0';
+    mainVideo.src = embed;
+    if (mainImg) mainImg.style.display = 'none';
+    videoWrapper.style.display = 'block';
+    if (counter) counter.textContent = 'Vidéo';
+  }
+
   function goTo(idx) {
+    hideVideo();
     current = (idx + images.length) % images.length;
     var newImg = new Image();
     newImg.src = images[current];
@@ -331,8 +417,20 @@
   if (nextBtn) nextBtn.addEventListener('click', function() { goTo(current + 1); });
 
   thumbs.forEach(function(thumb) {
+    var idx = thumb.dataset.index;
+    if (typeof idx !== 'undefined') {
+      thumb.addEventListener('click', function() {
+        goTo(parseInt(this.dataset.index, 10));
+      });
+    }
+  });
+
+  videoThumbs.forEach(function(thumb) {
     thumb.addEventListener('click', function() {
-      goTo(parseInt(this.dataset.index, 10));
+      var url = thumb.getAttribute('data-video-url');
+      thumbs.forEach(function(t) { t.classList.remove('is-active'); });
+      thumb.classList.add('is-active');
+      showVideo(url);
     });
   });
 

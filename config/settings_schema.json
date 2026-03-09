@@ -66,6 +66,15 @@
     ]
   },
   {
+    "name": "Vidéos produit",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Ajoutez jusqu'à 3 vidéos YouTube par véhicule (ex. essai routier, visite extérieure, intérieur). Collez l'URL complète de la vidéo dans les métachamps du produit."
+      }
+    ]
+  },
+  {
     "name": "SEO",
     "settings": [
       {
