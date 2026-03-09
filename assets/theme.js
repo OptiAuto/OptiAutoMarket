@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', function () {
     burger.addEventListener('click', function () {
       var open = mobile.classList.toggle('is-open');
       burger.classList.toggle('is-open', open);
-      burger.setAttribute('aria-expanded', open);
+      burger.setAttribute('aria-expanded', String(open));
       document.body.style.overflow = open ? 'hidden' : '';
     });
     mobile.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function (e) {
+      a.addEventListener('click', function () {
         if (a.id === 'OpenGlobalContactMobile') return;
         mobile.classList.remove('is-open');
         burger.classList.remove('is-open');
@@ -89,8 +89,9 @@ document.addEventListener('DOMContentLoaded', function () {
           if (globalSuccess) globalSuccess.style.display = 'block';
           setTimeout(closeGlobalContact, 4000);
         })
-        .catch(function () { if (submitBtn) submitBtn.disabled = false; })
-        .finally(function () { if (submitBtn) submitBtn.disabled = false; });
+        .catch(function () {
+          if (submitBtn) submitBtn.disabled = false;
+        });
     });
   }
 
@@ -125,13 +126,14 @@ document.addEventListener('DOMContentLoaded', function () {
           if (submitWrap) submitWrap.style.display = 'none';
           if (estimationSuccess) {
             estimationSuccess.style.display = 'block';
-            window.setTimeout(function () {
+            setTimeout(function () {
               estimationSuccess.style.display = 'none';
             }, 4000);
           }
         })
-        .catch(function () { if (btn) btn.disabled = false; })
-        .finally(function () { if (btn) btn.disabled = false; });
+        .catch(function () {
+          if (btn) btn.disabled = false;
+        });
     });
   }
 
@@ -157,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var modelsData = {};
 
   if (modelsScript) {
-    try { modelsData = JSON.parse(modelsScript.textContent); } catch (e) { /* noop */ }
+    try { modelsData = JSON.parse(modelsScript.textContent); } catch (e) { modelsData = {}; }
   }
 
   if (brandList && modelList) {
@@ -228,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function () {
     overlay.addEventListener('click', closeMobileFilters);
   }
 
-  /* ── Client-side Filtering (auto on change) ──────────── */
+  /* ── Client-side Filtering ──────────────────────────── */
   var cards = Array.from(document.querySelectorAll('#VehicleGrid .vcard'));
   var noResults = document.getElementById('NoResults');
   var countEl = document.getElementById('ResultsCount');
@@ -246,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function matchesFuel(cardFuel, checkedFuels) {
     if (checkedFuels.length === 0) return true;
     var hasAutre = checkedFuels.indexOf('autre') >= 0;
-    var mainFuels = checkedFuels.filter(function(f) { return f !== 'autre'; });
+    var mainFuels = checkedFuels.filter(function (f) { return f !== 'autre'; });
     if (mainFuels.indexOf(cardFuel) >= 0) return true;
     if (hasAutre) {
       var knownFuels = ['essence', 'diesel', 'hybride', 'hybride-rechargeable', 'electrique'];
@@ -315,12 +317,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (countEl) countEl.textContent = shown + ' véhicule' + (shown > 1 ? 's' : '');
   }
 
-  // Auto-apply on any checkbox change
   document.querySelectorAll('.filters-sidebar input[type="checkbox"]').forEach(function (cb) {
     cb.addEventListener('change', applyFilters);
   });
 
-  // Auto-apply on range input change (debounced)
   var rangeTimer;
   document.querySelectorAll('.filters-sidebar input[type="number"]').forEach(function (input) {
     input.addEventListener('input', function () {
@@ -350,11 +350,11 @@ document.addEventListener('DOMContentLoaded', function () {
       var key = this.value;
       var sorted = cards.slice().sort(function (a, b) {
         switch (key) {
-          case 'price-asc': return parseInt(a.dataset.price) - parseInt(b.dataset.price);
-          case 'price-desc': return parseInt(b.dataset.price) - parseInt(a.dataset.price);
-          case 'km-asc': return parseInt(a.dataset.km) - parseInt(b.dataset.km);
-          case 'km-desc': return parseInt(b.dataset.km) - parseInt(a.dataset.km);
-          case 'date-desc': return parseInt(b.dataset.year) - parseInt(a.dataset.year);
+          case 'price-asc': return parseInt(a.dataset.price, 10) - parseInt(b.dataset.price, 10);
+          case 'price-desc': return parseInt(b.dataset.price, 10) - parseInt(a.dataset.price, 10);
+          case 'km-asc': return parseInt(a.dataset.km, 10) - parseInt(b.dataset.km, 10);
+          case 'km-desc': return parseInt(b.dataset.km, 10) - parseInt(a.dataset.km, 10);
+          case 'date-desc': return parseInt(b.dataset.year, 10) - parseInt(a.dataset.year, 10);
           default: return 0;
         }
       });

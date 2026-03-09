@@ -29,7 +29,10 @@
                       src=""
                       title="Vidéo du véhicule"
                       frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      loading="lazy"
+                      sandbox="allow-scripts allow-same-origin allow-presentation"
+                      allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerpolicy="strict-origin-when-cross-origin"
                       allowfullscreen></iframe>
             </div>
           </div>
@@ -299,7 +302,7 @@
           </div>
         </div>
 
-        <div class="contact-overlay" id="ContactOverlay">
+        <div class="contact-overlay" id="ContactOverlay" aria-hidden="true">
           <div class="contact-modal">
             <button type="button" class="contact-modal__close" id="CloseContactModal">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
@@ -375,6 +378,8 @@
     if (!url) return;
     try {
       var yt = new URL(url);
+      var allowed = ['www.youtube.com', 'youtube.com', 'youtu.be', 'www.youtu.be'];
+      if (allowed.indexOf(yt.hostname) === -1) return;
       if (yt.hostname.indexOf('youtu.be') !== -1) {
         id = yt.pathname.replace('/', '');
       } else if (yt.searchParams.get('v')) {
@@ -383,10 +388,10 @@
         id = yt.pathname.split('/embed/')[1];
       }
     } catch (e) {
-      // ignore parsing errors
+      return;
     }
-    if (!id) return;
-    var embed = 'https://www.youtube.com/embed/' + id + '?rel=0&showinfo=0';
+    if (!id || !/^[\w-]{11}$/.test(id)) return;
+    var embed = 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0&modestbranding=1';
     mainVideo.src = embed;
     if (mainImg) mainImg.style.display = 'none';
     videoWrapper.style.display = 'block';
@@ -457,8 +462,8 @@
 
   if (!overlay || !openBtn) return;
 
-  function open() { overlay.classList.add('is-open'); document.body.style.overflow = 'hidden'; }
-  function close() { overlay.classList.remove('is-open'); document.body.style.overflow = ''; }
+  function open() { overlay.classList.add('is-open'); overlay.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
+  function close() { overlay.classList.remove('is-open'); overlay.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
 
   openBtn.addEventListener('click', open);
   closeBtn.addEventListener('click', close);

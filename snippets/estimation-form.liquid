@@ -21,11 +21,11 @@
         </div>
         <div class="estimation-form__group">
           <label for="est-plaque">Immatriculation</label>
-          <input type="text" id="est-plaque"  class="estimation-form__input" maxlength="20">
+          <input type="text" id="est-plaque" class="estimation-form__input" maxlength="20" autocomplete="off">
         </div>
         <div class="estimation-form__group">
           <label for="est-modele">Modèle <span class="required">*</span></label>
-          <input type="text" id="est-modele"  class="estimation-form__input" maxlength="120" required>
+          <input type="text" id="est-modele" class="estimation-form__input" maxlength="120" required>
         </div>
         <div class="estimation-form__group">
           <label for="est-km">Kilométrage <span class="required">*</span></label>
@@ -33,7 +33,7 @@
         </div>
         <div class="estimation-form__group">
           <label for="est-annee">Année <span class="required">*</span></label>
-          <input type="number" id="est-annee"  class="estimation-form__input" min="1990" max="2030" required>
+          <input type="number" id="est-annee" class="estimation-form__input" min="1990" max="2030" required>
         </div>
         <div class="estimation-form__group">
           <label for="est-carburant">Carburant <span class="required">*</span></label>
@@ -49,7 +49,7 @@
         </div>
         <div class="estimation-form__group">
           <label for="est-boite">Boîte de vitesse <span class="required">*</span></label>
-          <select id="est-boite"  class="estimation-form__input" required>
+          <select id="est-boite" class="estimation-form__input" required>
             <option value=""></option>
             <option value="Manuelle">Manuelle</option>
             <option value="Automatique">Automatique</option>
@@ -58,8 +58,6 @@
           </select>
         </div>
       </div>
-
-          {% comment %} removed l’ID Formspree dans admin Shopify → Boutique en ligne → Thèmes → Personnaliser. En bas du panneau de gauche : {% endcomment %}
 
       <div class="estimation-form__block estimation-form__block--description">
         <label for="est-description" class="estimation-form__block-label">Description</label>
@@ -79,4 +77,3 @@
     </form>
   </div>
 </div>
-

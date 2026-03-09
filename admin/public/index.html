@@ -3,108 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="robots" content="noindex, nofollow">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>OptiAuto – Administration</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root {
-  --blue-900:#0f2255; --blue-800:#152d6b; --blue-700:#1B3C87; --blue-600:#2550a3;
-  --blue-500:#3068c8; --blue-400:#5b8be0; --blue-100:#e3edfd; --blue-50:#f0f5ff;
-  --gray-900:#1a202c; --gray-800:#2d3748; --gray-700:#4a5568; --gray-600:#718096;
-  --gray-500:#a0aec0; --gray-400:#cbd5e0; --gray-300:#e2e8f0; --gray-200:#edf2f7;
-  --gray-100:#f7fafc; --gray-50:#fafbfc; --white:#fff; --red:#dc2626; --green:#16a34a;
-  --font:'Inter',system-ui,sans-serif; --radius:10px; --shadow:0 2px 8px rgba(0,0,0,.08);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font);font-size:14px;color:var(--gray-800);background:var(--gray-100);min-height:100vh}
-a{color:var(--blue-600);text-decoration:none}
-button{cursor:pointer;border:none;background:none;font:inherit}
-.login-page{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
-.login-box{background:var(--white);border-radius:16px;padding:48px;max-width:400px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,.1);text-align:center}
-.login-box h1{font-size:24px;font-weight:800;color:var(--blue-900);margin-bottom:8px}
-.login-box p{color:var(--gray-600);margin-bottom:32px}
-.login-box input{width:100%;padding:14px 18px;border:1px solid var(--gray-300);border-radius:var(--radius);font-size:15px;outline:none;margin-bottom:16px;transition:.2s}
-.login-box input:focus{border-color:var(--blue-500);box-shadow:0 0 0 3px rgba(48,104,200,.12)}
-.login-error{color:var(--red);font-size:13px;margin-bottom:12px;display:none}
-.app{display:none}
-.topbar{background:var(--blue-900);color:var(--white);padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
-.topbar h1{font-size:16px;font-weight:700;letter-spacing:-.02em}
-.topbar-actions{display:flex;gap:12px;align-items:center}
-.topbar-actions button{color:rgba(255,255,255,.7);font-size:13px;font-weight:600;padding:6px 14px;border-radius:8px;transition:.2s}
-.topbar-actions button:hover{background:rgba(255,255,255,.1);color:#fff}
-.topbar-session{font-size:11px;color:rgba(255,255,255,.4);margin-right:8px}
-.main{max-width:1200px;margin:0 auto;padding:32px 24px}
-.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;border-radius:var(--radius);padding:10px 22px;font-size:14px;transition:.2s;white-space:nowrap}
-.btn--primary{background:var(--blue-700);color:var(--white);box-shadow:0 2px 6px rgba(27,60,135,.25)}
-.btn--primary:hover{background:var(--blue-600);transform:translateY(-1px)}
-.btn--danger{background:var(--red);color:var(--white)}
-.btn--danger:hover{opacity:.9}
-.btn--ghost{color:var(--blue-700);border:1px solid var(--gray-300);background:var(--white)}
-.btn--ghost:hover{border-color:var(--blue-500);background:var(--blue-50)}
-.btn--sm{padding:7px 14px;font-size:12px}
-.btn--green{background:var(--green);color:var(--white)}
-.page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:16px}
-.page-header h2{font-size:22px;font-weight:800;color:var(--blue-900)}
-.stats-bar{display:flex;gap:16px;margin-bottom:24px}
-.stat-card{background:var(--white);border-radius:12px;padding:20px 24px;flex:1;box-shadow:var(--shadow)}
-.stat-card__num{font-size:28px;font-weight:800;color:var(--blue-700)}
-.stat-card__label{font-size:12px;color:var(--gray-600);font-weight:500;margin-top:2px}
-.products-table{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
-.products-table table{width:100%;border-collapse:collapse}
-.products-table th{background:var(--gray-50);font-size:11px;font-weight:700;color:var(--gray-600);text-transform:uppercase;letter-spacing:.05em;padding:12px 16px;text-align:left;border-bottom:1px solid var(--gray-200)}
-.products-table td{padding:12px 16px;border-bottom:1px solid var(--gray-100);vertical-align:middle}
-.products-table tr:hover td{background:var(--blue-50)}
-.products-table img{width:56px;height:42px;object-fit:cover;border-radius:6px;background:var(--gray-100)}
-.product-name{font-weight:600;color:var(--gray-900)}
-.product-meta{font-size:12px;color:var(--gray-500)}
-.status-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase}
-.status-badge--active{background:#dcfce7;color:#166534}
-.status-badge--draft{background:#fef3c7;color:#92400e}
-.actions-cell{display:flex;gap:6px}
-.form-page{display:none}
-.form-card{background:var(--white);border-radius:12px;padding:32px;box-shadow:var(--shadow);margin-bottom:24px}
-.form-card h3{font-size:17px;font-weight:700;color:var(--blue-900);margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--blue-100)}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-grid--3{grid-template-columns:1fr 1fr 1fr}
-.form-group{margin-bottom:0}
-.form-group--full{grid-column:1/-1}
-.form-group label{display:block;font-size:12px;font-weight:600;color:var(--gray-700);margin-bottom:6px}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 14px;border:1px solid var(--gray-300);border-radius:8px;font-size:14px;outline:none;transition:.2s;font-family:var(--font)}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue-500);box-shadow:0 0 0 3px rgba(48,104,200,.1)}
-.form-group textarea{resize:vertical;min-height:80px}
-.form-group select{background:var(--white)}
-.images-grid{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
-.img-thumb{position:relative;width:120px;height:90px;border-radius:8px;overflow:hidden;border:1px solid var(--gray-200)}
-.img-thumb img{width:100%;height:100%;object-fit:cover}
-.img-thumb__delete{position:absolute;top:4px;right:4px;width:24px;height:24px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;transition:.2s}
-.img-thumb__delete:hover{background:var(--red)}
-.img-upload-btn{width:120px;height:90px;border:2px dashed var(--gray-300);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--gray-500);font-size:12px;transition:.2s;cursor:pointer}
-.img-upload-btn:hover{border-color:var(--blue-400);color:var(--blue-600);background:var(--blue-50)}
-.img-upload-btn svg{margin-bottom:4px}
-.form-actions{display:flex;gap:12px;margin-top:24px}
-.toast{position:fixed;bottom:24px;right:24px;background:var(--blue-900);color:var(--white);padding:14px 24px;border-radius:var(--radius);font-weight:600;font-size:14px;box-shadow:0 8px 30px rgba(0,0,0,.2);transform:translateY(100px);opacity:0;transition:.3s;z-index:100}
-.toast.show{transform:translateY(0);opacity:1}
-.toast--error{background:var(--red)}
-.toast--success{background:var(--green)}
-.loading{text-align:center;padding:48px;color:var(--gray-500)}
-.spinner{width:32px;height:32px;border:3px solid var(--gray-200);border-top-color:var(--blue-600);border-radius:50%;animation:spin .6s linear infinite;margin:0 auto 12px}
-@keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:768px){
-  .form-grid,.form-grid--3{grid-template-columns:1fr}
-  .stats-bar{flex-direction:column}
-  .products-table{overflow-x:auto}
-  .main{padding:16px}
-}
-</style>
+<link rel="stylesheet" href="admin.css">
 </head>
 <body>
 
 <div class="login-page" id="loginPage">
   <div class="login-box">
+    <div class="login-box__logo">OA</div>
     <h1>OptiAuto Admin</h1>
-    <p>Gestion des véhicules</p>
+    <p>Gestion complète des véhicules</p>
     <div class="login-error" id="loginError"></div>
     <input type="password" id="loginPassword" placeholder="Mot de passe" autocomplete="current-password" autofocus>
     <button class="btn btn--primary" style="width:100%" id="loginBtn">Se connecter</button>
@@ -113,481 +26,209 @@ button{cursor:pointer;border:none;background:none;font:inherit}
 
 <div class="app" id="app">
   <div class="topbar">
-    <h1>OptiAuto Admin</h1>
+    <h1>OptiAuto <span>Admin</span></h1>
     <div class="topbar-actions">
       <span class="topbar-session" id="sessionInfo"></span>
       <button id="navList">Véhicules</button>
       <button id="navAdd">+ Ajouter</button>
-      <button id="navLogout">Déconnexion</button>
+      <button id="navLogout" class="topbar-logout">Déconnexion</button>
     </div>
   </div>
+
   <div class="main">
+
+    <!-- LIST PAGE -->
     <div id="listPage">
       <div class="page-header">
         <h2>Véhicules</h2>
-        <button class="btn btn--primary" id="addBtn">+ Ajouter un véhicule</button>
+        <div class="page-header__actions">
+          <input type="text" id="searchInput" class="search-input" placeholder="Rechercher un véhicule...">
+          <button class="btn btn--primary" id="addBtn">+ Ajouter un véhicule</button>
+        </div>
       </div>
-      <div class="stats-bar"><div class="stat-card"><div class="stat-card__num" id="statTotal">-</div><div class="stat-card__label">Total</div></div><div class="stat-card"><div class="stat-card__num" id="statActive">-</div><div class="stat-card__label">En ligne</div></div><div class="stat-card"><div class="stat-card__num" id="statDraft">-</div><div class="stat-card__label">Hors ligne</div></div></div>
-      <div class="products-table" id="productsTable"><div class="loading"><div class="spinner"></div>Chargement...</div></div>
+      <div class="stats-bar">
+        <div class="stat-card"><div class="stat-card__num" id="statTotal">-</div><div class="stat-card__label">Total</div></div>
+        <div class="stat-card stat-card--green"><div class="stat-card__num" id="statActive">-</div><div class="stat-card__label">En ligne</div></div>
+        <div class="stat-card stat-card--orange"><div class="stat-card__num" id="statDraft">-</div><div class="stat-card__label">Hors ligne</div></div>
+      </div>
+      <div class="products-table" id="productsTable">
+        <div class="loading"><div class="spinner"></div>Chargement...</div>
+      </div>
     </div>
+
+    <!-- FORM PAGE -->
     <div class="form-page" id="formPage">
-      <div class="page-header"><h2 id="formTitle">Ajouter un véhicule</h2><button class="btn btn--ghost" id="backBtn">Retour</button></div>
-      <form id="vehicleForm">
-        <input type="hidden" id="fId"><input type="hidden" id="fVariantId">
-        <div class="form-card"><h3>Informations générales</h3><div class="form-grid">
-          <div class="form-group"><label>Marque</label><input id="fVendor" required placeholder="Peugeot, Renault..." maxlength="100"></div>
-          <div class="form-group"><label>Modèle</label><input id="fModel" required placeholder="308, Clio..." maxlength="100"></div>
-          <div class="form-group"><label>Finition</label><input id="fTrim" placeholder="Allure, Intens..." maxlength="200"></div>
-          <div class="form-group"><label>Motorisation</label><input id="fEngine" placeholder="1.5 BlueHDi 130" maxlength="200"></div>
-          <div class="form-group"><label>Prix (€)</label><input type="number" id="fPrice" required min="0" max="9999999" step="1" placeholder="15000"></div>
-          <div class="form-group"><label>Statut</label><select id="fStatus"><option value="active">En ligne</option><option value="draft">Hors ligne</option></select></div>
-        </div></div>
-        <div class="form-card"><h3>Caractéristiques</h3><div class="form-grid form-grid--3">
-          <div class="form-group"><label>Année</label><input type="number" id="fYear" min="1950" max="2030" placeholder="2022"></div>
-          <div class="form-group"><label>Kilométrage</label><input type="number" id="fMileage" min="0" max="9999999" placeholder="45000"></div>
-          <div class="form-group"><label>Carburant</label><select id="fFuel"><option value="">--</option><option>Essence</option><option>Diesel</option><option>Hybride</option><option>Hybride rechargeable</option><option>Électrique</option><option>Autre</option></select></div>
-          <div class="form-group"><label>Boîte de vitesse</label><select id="fGearbox"><option value="">--</option><option>Manuelle</option><option>Automatique</option><option>Semi-automatique</option><option>Robotisée</option></select></div>
-          <div class="form-group"><label>Catégorie</label><select id="fBodyType"><option value="">--</option><option>Berline</option><option>Break</option><option>Cabriolet</option><option>Citadine</option><option>Compact</option><option>Coupé</option><option>Crossover</option><option>Ludospace</option><option>Monospace</option><option>SUV</option><option>SUV compact</option><option>4x4</option><option>Utilitaire</option><option>Van</option></select></div>
-          <div class="form-group"><label>Transmission</label><select id="fTransmission"><option value="">--</option><option>Traction</option><option>Propulsion</option><option>Intégrale</option></select></div>
-          <div class="form-group"><label>Puissance (ch)</label><input type="number" id="fPower" min="0" max="2000" placeholder="130"></div>
-          <div class="form-group"><label>Puissance (description)</label><input id="fPowerDesc" placeholder="130 ch (96 kW)" maxlength="100"></div>
-          <div class="form-group"><label>Places</label><select id="fSeats"><option value="">--</option><option>2</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option></select></div>
-          <div class="form-group"><label>Portes</label><input type="number" id="fDoors" min="2" max="5" placeholder="5"></div>
-          <div class="form-group"><label>Couleur</label><input id="fColor" placeholder="Noir, Blanc..." maxlength="50"></div>
-          <div class="form-group"><label>Crit'Air</label><select id="fCritair"><option value="">--</option><option>Crit'Air 0 (Électrique)</option><option>Crit'Air 1</option><option>Crit'Air 2</option><option>Crit'Air 3</option><option>Crit'Air 4</option><option>Crit'Air 5</option><option>Non classé</option></select></div>
-          <div class="form-group"><label>CO2 (g/km)</label><input type="number" id="fCo2" min="0" max="500" placeholder="120"></div>
-          <div class="form-group"><label>Garantie</label><select id="fGuaranteeType"><option value="">--</option><option value="constructeur">Garantie Constructeur</option><option value="6mois">6 mois</option><option value="12mois">12 mois</option><option value="24mois">24 mois</option><option value="sans">Sans</option></select></div>
-          <div class="form-group"><label>TVA récupérable</label><select id="fTva"><option value="">--</option><option value="Oui">Oui</option><option value="Non">Non</option></select></div>
-        </div></div>
-        <div class="form-card"><h3>Options et description</h3><div class="form-grid">
-          <div class="form-group form-group--full"><label>Équipements (virgules)</label><textarea id="fOptions" maxlength="5000" placeholder="Climatisation, GPS..."></textarea></div>
-          <div class="form-group form-group--full"><label>Description</label><textarea id="fDescription" maxlength="10000" placeholder="Description détaillée..."></textarea></div>
-          <div class="form-group"><label>Badge</label><input id="fBadge" maxlength="50" placeholder="Bonne affaire..."></div>
-          <div class="form-group"><label>Tags</label><input id="fTags" maxlength="500" placeholder="garantie-constructeur, promo..."></div>
-        </div></div>
-        <div class="form-card" id="imagesCard" style="display:none"><h3>Photos</h3><p style="font-size:13px;color:var(--gray-600);margin-bottom:12px">Max 8 Mo par photo. Formats: JPG, PNG, WebP, GIF.</p><div class="images-grid" id="imagesGrid"></div></div>
-        <div class="form-actions"><button type="submit" class="btn btn--primary" id="saveBtn">Enregistrer</button><button type="button" class="btn btn--ghost" id="cancelBtn">Annuler</button></div>
+      <div class="page-header">
+        <h2 id="formTitle">Ajouter un véhicule</h2>
+        <button class="btn btn--ghost" id="backBtn">← Retour à la liste</button>
+      </div>
+
+      <form id="vehicleForm" novalidate>
+        <input type="hidden" id="fId">
+        <input type="hidden" id="fVariantId">
+
+        <!-- TABS -->
+        <div class="tabs" id="formTabs">
+          <button type="button" class="tab is-active" data-tab="tab-general">Général</button>
+          <button type="button" class="tab" data-tab="tab-specs">Caractéristiques</button>
+          <button type="button" class="tab" data-tab="tab-tires">Pneumatiques</button>
+          <button type="button" class="tab" data-tab="tab-maintenance">Entretien</button>
+          <button type="button" class="tab" data-tab="tab-images">Photos</button>
+          <button type="button" class="tab" data-tab="tab-videos">Vidéos</button>
+        </div>
+
+        <!-- TAB: GENERAL -->
+        <div class="tab-panel is-active" id="tab-general">
+          <div class="form-card">
+            <h3>Informations générales</h3>
+            <div class="form-grid">
+              <div class="form-group"><label>Marque *</label><input id="fVendor" required placeholder="Peugeot, Renault..." maxlength="100"></div>
+              <div class="form-group"><label>Modèle *</label><input id="fModel" required placeholder="308, Clio..." maxlength="100"></div>
+              <div class="form-group"><label>Finition</label><input id="fTrim" placeholder="Allure, Intens..." maxlength="200"></div>
+              <div class="form-group"><label>Motorisation</label><input id="fEngine" placeholder="1.5 BlueHDi 130" maxlength="200"></div>
+              <div class="form-group"><label>Prix (€) *</label><input type="number" id="fPrice" required min="0" step="1" placeholder="15000"></div>
+              <div class="form-group"><label>Statut</label><select id="fStatus"><option value="active">En ligne</option><option value="draft">Hors ligne (brouillon)</option></select></div>
+            </div>
+          </div>
+          <div class="form-card">
+            <h3>Options et description</h3>
+            <div class="form-grid">
+              <div class="form-group form-group--full"><label>Équipements (séparés par des virgules)</label><textarea id="fOptions" rows="3" maxlength="5000" placeholder="Climatisation, GPS, Caméra de recul, Radar de stationnement..."></textarea></div>
+              <div class="form-group form-group--full"><label>Description</label><textarea id="fDescription" rows="5" maxlength="10000" placeholder="Description détaillée du véhicule..."></textarea></div>
+              <div class="form-group"><label>Badge</label><input id="fBadge" maxlength="50" placeholder="Bonne affaire, Nouveauté..."></div>
+              <div class="form-group"><label>Tags</label><input id="fTags" maxlength="500" placeholder="garantie-constructeur, promo..."></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB: SPECS -->
+        <div class="tab-panel" id="tab-specs">
+          <div class="form-card">
+            <h3>Caractéristiques techniques</h3>
+            <div class="form-grid form-grid--3">
+              <div class="form-group"><label>Année</label><input type="number" id="fYear" min="1950" max="2030" placeholder="2022"></div>
+              <div class="form-group"><label>Kilométrage</label><input type="number" id="fMileage" min="0" placeholder="45000"></div>
+              <div class="form-group"><label>Carburant</label><select id="fFuel"><option value="">--</option><option>Essence</option><option>Diesel</option><option>Hybride</option><option>Hybride rechargeable</option><option>Électrique</option><option>Autre</option></select></div>
+              <div class="form-group"><label>Boîte de vitesse</label><select id="fGearbox"><option value="">--</option><option>Manuelle</option><option>Automatique</option><option>Semi-automatique</option><option>Robotisée</option></select></div>
+              <div class="form-group"><label>Catégorie</label><select id="fBodyType"><option value="">--</option><option>Berline</option><option>Break</option><option>Cabriolet</option><option>Citadine</option><option>Compact</option><option>Coupé</option><option>Crossover</option><option>Ludospace</option><option>Monospace</option><option>SUV</option><option>SUV compact</option><option>4x4</option><option>Utilitaire</option><option>Van</option></select></div>
+              <div class="form-group"><label>Transmission</label><select id="fTransmission"><option value="">--</option><option>Traction</option><option>Propulsion</option><option>Intégrale</option></select></div>
+              <div class="form-group"><label>Puissance (ch)</label><input type="number" id="fPower" min="0" max="2000" placeholder="130"></div>
+              <div class="form-group"><label>Puissance (description)</label><input id="fPowerDesc" placeholder="130 ch (96 kW)" maxlength="100"></div>
+              <div class="form-group"><label>Places</label><select id="fSeats"><option value="">--</option><option>2</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option></select></div>
+              <div class="form-group"><label>Portes</label><input type="number" id="fDoors" min="2" max="5" placeholder="5"></div>
+              <div class="form-group"><label>Couleur</label><input id="fColor" placeholder="Noir, Blanc..." maxlength="50"></div>
+              <div class="form-group"><label>Crit'Air</label><select id="fCritair"><option value="">--</option><option>Crit'Air 0 (Électrique)</option><option>Crit'Air 1</option><option>Crit'Air 2</option><option>Crit'Air 3</option><option>Crit'Air 4</option><option>Crit'Air 5</option><option>Non classé</option></select></div>
+              <div class="form-group"><label>CO2 (g/km)</label><input type="number" id="fCo2" min="0" max="500" placeholder="120"></div>
+              <div class="form-group"><label>Garantie</label><select id="fGuaranteeType"><option value="">--</option><option value="constructeur">Garantie Constructeur</option><option value="6mois">6 mois</option><option value="12mois">12 mois</option><option value="24mois">24 mois</option><option value="sans">Sans</option></select></div>
+              <div class="form-group"><label>TVA récupérable</label><select id="fTva"><option value="">--</option><option value="Oui">Oui</option><option value="Non">Non</option></select></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB: TIRES -->
+        <div class="tab-panel" id="tab-tires">
+          <div class="form-card">
+            <h3>Pneumatiques</h3>
+            <p class="form-hint">Renseignez l'état des pneumatiques pour chaque position.</p>
+            <div class="tires-grid">
+              <div class="tire-block">
+                <h4>Avant Gauche</h4>
+                <div class="form-grid">
+                  <div class="form-group"><label>Marque</label><input id="fTireAgMarque" placeholder="Continental" maxlength="50"></div>
+                  <div class="form-group"><label>Dimensions</label><input id="fTireAgDims" placeholder="215/45 R17" maxlength="30"></div>
+                  <div class="form-group"><label>Profondeur restante</label><input id="fTireAgProf" placeholder="4 mm" maxlength="50"></div>
+                  <div class="form-group"><label>Type</label><select id="fTireAgType"><option value="">--</option><option>Été</option><option>Hiver</option><option>4 Saisons</option></select></div>
+                </div>
+              </div>
+              <div class="tire-block">
+                <h4>Avant Droit</h4>
+                <div class="form-grid">
+                  <div class="form-group"><label>Marque</label><input id="fTireAdMarque" placeholder="Continental" maxlength="50"></div>
+                  <div class="form-group"><label>Dimensions</label><input id="fTireAdDims" placeholder="215/45 R17" maxlength="30"></div>
+                  <div class="form-group"><label>Profondeur restante</label><input id="fTireAdProf" placeholder="4 mm" maxlength="50"></div>
+                  <div class="form-group"><label>Type</label><select id="fTireAdType"><option value="">--</option><option>Été</option><option>Hiver</option><option>4 Saisons</option></select></div>
+                </div>
+              </div>
+              <div class="tire-block">
+                <h4>Arrière Gauche</h4>
+                <div class="form-grid">
+                  <div class="form-group"><label>Marque</label><input id="fTireRgMarque" placeholder="Dunlop" maxlength="50"></div>
+                  <div class="form-group"><label>Dimensions</label><input id="fTireRgDims" placeholder="215/45 R17" maxlength="30"></div>
+                  <div class="form-group"><label>Profondeur restante</label><input id="fTireRgProf" placeholder="5.5 mm" maxlength="50"></div>
+                  <div class="form-group"><label>Type</label><select id="fTireRgType"><option value="">--</option><option>Été</option><option>Hiver</option><option>4 Saisons</option></select></div>
+                </div>
+              </div>
+              <div class="tire-block">
+                <h4>Arrière Droit</h4>
+                <div class="form-grid">
+                  <div class="form-group"><label>Marque</label><input id="fTireRdMarque" placeholder="Dunlop" maxlength="50"></div>
+                  <div class="form-group"><label>Dimensions</label><input id="fTireRdDims" placeholder="215/45 R17" maxlength="30"></div>
+                  <div class="form-group"><label>Profondeur restante</label><input id="fTireRdProf" placeholder="5.5 mm" maxlength="50"></div>
+                  <div class="form-group"><label>Type</label><select id="fTireRdType"><option value="">--</option><option>Été</option><option>Hiver</option><option>4 Saisons</option></select></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB: MAINTENANCE -->
+        <div class="tab-panel" id="tab-maintenance">
+          <div class="form-card">
+            <h3>Historique d'entretien</h3>
+            <p class="form-hint">Ajoutez les entrées d'entretien (date et description).</p>
+            <div id="maintenanceList"></div>
+            <button type="button" class="btn btn--ghost" id="addMaintenanceBtn" style="margin-top:12px">+ Ajouter une entrée</button>
+          </div>
+        </div>
+
+        <!-- TAB: IMAGES -->
+        <div class="tab-panel" id="tab-images">
+          <div class="form-card">
+            <h3>Photos du véhicule</h3>
+            <p class="form-hint">Max 8 Mo par photo. Formats : JPG, PNG, WebP, GIF.</p>
+            <div class="images-grid" id="imagesGrid"></div>
+            <div id="imagesNotSaved" class="form-hint" style="display:none;margin-top:12px;color:var(--blue-700);font-weight:600">Enregistrez d'abord le véhicule pour ajouter des photos.</div>
+          </div>
+        </div>
+
+        <!-- TAB: VIDEOS -->
+        <div class="tab-panel" id="tab-videos">
+          <div class="form-card">
+            <h3>Vidéos YouTube</h3>
+            <p class="form-hint">Collez les URL complètes des vidéos YouTube (max 3).</p>
+            <div class="form-grid">
+              <div class="form-group form-group--full"><label>Vidéo 1</label><input id="fVideo1" type="url" placeholder="https://www.youtube.com/watch?v=..." maxlength="500"></div>
+              <div class="form-group form-group--full"><label>Vidéo 2</label><input id="fVideo2" type="url" placeholder="https://www.youtube.com/watch?v=..." maxlength="500"></div>
+              <div class="form-group form-group--full"><label>Vidéo 3</label><input id="fVideo3" type="url" placeholder="https://www.youtube.com/watch?v=..." maxlength="500"></div>
+            </div>
+            <div id="videoPreview" class="video-preview-grid"></div>
+          </div>
+        </div>
+
+        <!-- FORM ACTIONS -->
+        <div class="form-actions">
+          <button type="submit" class="btn btn--primary btn--lg" id="saveBtn">Enregistrer</button>
+          <button type="button" class="btn btn--ghost" id="cancelBtn">Annuler</button>
+          <button type="button" class="btn btn--danger" id="deleteBtn" style="display:none;margin-left:auto">Supprimer ce véhicule</button>
+        </div>
       </form>
     </div>
+
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <h3 id="confirmTitle">Confirmation</h3>
+    <p id="confirmMsg"></p>
+    <div class="confirm-actions">
+      <button class="btn btn--danger" id="confirmYes">Confirmer</button>
+      <button class="btn btn--ghost" id="confirmNo">Annuler</button>
+    </div>
+  </div>
+</div>
 
-<script>
-(function() {
-  'use strict';
-
-  let jwtToken = '';
-  let csrfToken = '';
-  let allProducts = [];
-  let editingId = null;
-  let sessionTimer = null;
-
-  const $ = id => document.getElementById(id);
-
-  /* ─── XSS-safe text escape ──────────────── */
-  function esc(s) {
-    if (!s) return '';
-    const d = document.createElement('div');
-    d.textContent = String(s);
-    return d.innerHTML;
-  }
-
-  /* ─── Toast ─────────────────────────────── */
-  function toast(msg, type) {
-    const t = $('toast');
-    t.textContent = msg;
-    t.className = 'toast show' + (type ? ' toast--' + type : '');
-    setTimeout(() => t.className = 'toast', 3000);
-  }
-
-  /* ─── API helper ────────────────────────── */
-  function api(url, opts = {}) {
-    const headers = { ...(opts.headers || {}), 'Authorization': 'Bearer ' + jwtToken };
-    if (csrfToken) headers['X-CSRF-Token'] = csrfToken;
-    if (opts.body && typeof opts.body === 'object' && !(opts.body instanceof FormData)) {
-      headers['Content-Type'] = 'application/json';
-      opts.body = JSON.stringify(opts.body);
-    }
-    opts.headers = headers;
-    return fetch(url, opts).then(r => {
-      if (r.status === 401) { logout(); throw new Error('Session expirée'); }
-      if (r.status === 403) { refreshCsrf(); throw new Error('Token CSRF expiré, réessayez'); }
-      return r.json();
-    });
-  }
-
-  async function refreshCsrf() {
-    try {
-      const r = await fetch('/api/csrf', { headers: { 'Authorization': 'Bearer ' + jwtToken } });
-      const d = await r.json();
-      if (d.csrfToken) csrfToken = d.csrfToken;
-    } catch { /* noop */ }
-  }
-
-  /* ─── Auth ──────────────────────────────── */
-  function doLogin() {
-    const pw = $('loginPassword').value;
-    if (!pw) return;
-    const btn = $('loginBtn');
-    btn.disabled = true;
-    btn.textContent = 'Connexion...';
-
-    fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password: pw })
-    })
-    .then(r => r.json())
-    .then(d => {
-      if (d.ok && d.token) {
-        jwtToken = d.token;
-        csrfToken = d.csrfToken || '';
-        sessionStorage.setItem('oa_jwt', jwtToken);
-        sessionStorage.setItem('oa_csrf', csrfToken);
-        showApp();
-      } else {
-        const err = $('loginError');
-        err.textContent = d.error || 'Mot de passe incorrect';
-        err.style.display = 'block';
-      }
-    })
-    .catch(e => {
-      const err = $('loginError');
-      err.textContent = e.message || 'Erreur de connexion';
-      err.style.display = 'block';
-    })
-    .finally(() => { btn.disabled = false; btn.textContent = 'Se connecter'; });
-  }
-
-  function logout() {
-    jwtToken = '';
-    csrfToken = '';
-    sessionStorage.removeItem('oa_jwt');
-    sessionStorage.removeItem('oa_csrf');
-    clearInterval(sessionTimer);
-    $('app').style.display = 'none';
-    $('loginPage').style.display = 'flex';
-    $('loginPassword').value = '';
-    $('loginError').style.display = 'none';
-  }
-
-  function showApp() {
-    $('loginPage').style.display = 'none';
-    $('app').style.display = 'block';
-    updateSessionInfo();
-    sessionTimer = setInterval(updateSessionInfo, 60000);
-    loadProducts();
-  }
-
-  function updateSessionInfo() {
-    try {
-      const payload = JSON.parse(atob(jwtToken.split('.')[1]));
-      const exp = payload.exp * 1000;
-      const remaining = Math.max(0, Math.round((exp - Date.now()) / 60000));
-      $('sessionInfo').textContent = remaining > 0 ? `Session: ${remaining} min` : '';
-      if (remaining <= 0) logout();
-    } catch { /* noop */ }
-  }
-
-  /* Auto-restore session */
-  (function() {
-    const t = sessionStorage.getItem('oa_jwt');
-    const c = sessionStorage.getItem('oa_csrf');
-    if (t) {
-      try {
-        const payload = JSON.parse(atob(t.split('.')[1]));
-        if (payload.exp * 1000 > Date.now()) {
-          jwtToken = t;
-          csrfToken = c || '';
-          showApp();
-          return;
-        }
-      } catch { /* invalid token */ }
-      sessionStorage.removeItem('oa_jwt');
-      sessionStorage.removeItem('oa_csrf');
-    }
-  })();
-
-  /* ─── Navigation ────────────────────────── */
-  function showList() {
-    $('listPage').style.display = 'block';
-    $('formPage').style.display = 'none';
-    editingId = null;
-    loadProducts();
-  }
-
-  function showForm(id) {
-    $('listPage').style.display = 'none';
-    $('formPage').style.display = 'block';
-    $('formTitle').textContent = id ? 'Modifier le véhicule' : 'Ajouter un véhicule';
-    $('imagesCard').style.display = id ? 'block' : 'none';
-    editingId = id || null;
-    resetForm();
-    if (id) loadProduct(id);
-  }
-
-  /* ─── Products List ─────────────────────── */
-  async function loadProducts() {
-    $('productsTable').innerHTML = '<div class="loading"><div class="spinner"></div>Chargement...</div>';
-    try {
-      allProducts = await api('/api/products');
-      renderProducts();
-    } catch (e) { toast(e.message, 'error'); }
-  }
-
-  function renderProducts() {
-    const active = allProducts.filter(p => p.status === 'active').length;
-    $('statTotal').textContent = allProducts.length;
-    $('statActive').textContent = active;
-    $('statDraft').textContent = allProducts.length - active;
-
-    if (!allProducts.length) {
-      $('productsTable').innerHTML = '<div class="loading">Aucun véhicule</div>';
-      return;
-    }
-
-    const table = document.createElement('table');
-    const thead = document.createElement('thead');
-    thead.innerHTML = '<tr><th></th><th>Véhicule</th><th>Prix</th><th>Année</th><th>Km</th><th>Statut</th><th>Actions</th></tr>';
-    table.appendChild(thead);
-
-    const tbody = document.createElement('tbody');
-    allProducts.forEach(p => {
-      const tr = document.createElement('tr');
-      const img = document.createElement('img');
-      img.src = p.image || 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2242%22><rect fill=%22%23edf2f7%22 width=%2256%22 height=%2242%22 rx=%226%22/></svg>';
-      img.alt = '';
-      img.loading = 'lazy';
-
-      const tdImg = document.createElement('td');
-      tdImg.appendChild(img);
-
-      const tdName = document.createElement('td');
-      const nameDiv = document.createElement('div');
-      nameDiv.className = 'product-name';
-      nameDiv.textContent = `${p.vendor} ${p.meta?.model || ''}`;
-      const metaDiv = document.createElement('div');
-      metaDiv.className = 'product-meta';
-      metaDiv.textContent = `${p.meta?.trim || ''} ${p.meta?.engine || ''}`.trim();
-      tdName.appendChild(nameDiv);
-      tdName.appendChild(metaDiv);
-
-      const tdPrice = document.createElement('td');
-      const strong = document.createElement('strong');
-      strong.textContent = p.price ? new Intl.NumberFormat('fr-FR').format(p.price) + ' €' : '-';
-      tdPrice.appendChild(strong);
-
-      const tdYear = document.createElement('td');
-      tdYear.textContent = p.meta?.year || '-';
-
-      const tdKm = document.createElement('td');
-      tdKm.textContent = p.meta?.mileage ? new Intl.NumberFormat('fr-FR').format(p.meta.mileage) + ' km' : '-';
-
-      const tdStatus = document.createElement('td');
-      const badge = document.createElement('span');
-      badge.className = 'status-badge ' + (p.status === 'active' ? 'status-badge--active' : 'status-badge--draft');
-      badge.textContent = p.status === 'active' ? 'En ligne' : 'Hors ligne';
-      tdStatus.appendChild(badge);
-
-      const tdActions = document.createElement('td');
-      const actDiv = document.createElement('div');
-      actDiv.className = 'actions-cell';
-
-      const editBtn = document.createElement('button');
-      editBtn.className = 'btn btn--ghost btn--sm';
-      editBtn.textContent = 'Modifier';
-      editBtn.addEventListener('click', () => showForm(p.id));
-
-      const toggleBtn = document.createElement('button');
-      toggleBtn.className = 'btn btn--sm ' + (p.status === 'active' ? 'btn--ghost' : 'btn--green');
-      toggleBtn.textContent = p.status === 'active' ? 'Désactiver' : 'Activer';
-      toggleBtn.addEventListener('click', () => toggleStatus(p.id, p.status === 'active' ? 'draft' : 'active'));
-
-      actDiv.appendChild(editBtn);
-      actDiv.appendChild(toggleBtn);
-      tdActions.appendChild(actDiv);
-
-      tr.appendChild(tdImg);
-      tr.appendChild(tdName);
-      tr.appendChild(tdPrice);
-      tr.appendChild(tdYear);
-      tr.appendChild(tdKm);
-      tr.appendChild(tdStatus);
-      tr.appendChild(tdActions);
-      tbody.appendChild(tr);
-    });
-    table.appendChild(tbody);
-
-    $('productsTable').innerHTML = '';
-    $('productsTable').appendChild(table);
-  }
-
-  async function toggleStatus(id, status) {
-    try {
-      await api('/api/products/' + id + '/status', { method: 'PATCH', body: { status } });
-      toast(status === 'active' ? 'Activé' : 'Désactivé', 'success');
-      loadProducts();
-    } catch (e) { toast(e.message, 'error'); }
-  }
-
-  /* ─── Form ──────────────────────────────── */
-  function resetForm() {
-    $('vehicleForm').reset();
-    $('fId').value = '';
-    $('fVariantId').value = '';
-    $('imagesGrid').innerHTML = '';
-    $('saveBtn').textContent = 'Enregistrer';
-    $('saveBtn').disabled = false;
-    window._editMetaIds = {};
-  }
-
-  async function loadProduct(id) {
-    try {
-      const p = await api('/api/products/' + id);
-      $('fId').value = p.id;
-      $('fVariantId').value = p.variant_id || '';
-      $('fVendor').value = p.vendor || '';
-      $('fModel').value = p.meta?.model || '';
-      $('fTrim').value = p.meta?.trim || '';
-      $('fEngine').value = p.meta?.engine || '';
-      $('fPrice').value = p.price || '';
-      $('fStatus').value = p.status || 'active';
-      $('fYear').value = p.meta?.year || '';
-      $('fMileage').value = p.meta?.mileage || '';
-      $('fFuel').value = p.meta?.fuel || '';
-      $('fGearbox').value = p.meta?.gearbox || '';
-      $('fBodyType').value = p.meta?.body_type || '';
-      $('fTransmission').value = p.meta?.transmission || '';
-      $('fPower').value = p.meta?.power_ch || '';
-      $('fPowerDesc').value = p.meta?.power || '';
-      $('fSeats').value = p.meta?.seats || '';
-      $('fDoors').value = p.meta?.doors || '';
-      $('fColor').value = p.meta?.color || '';
-      $('fCritair').value = p.meta?.critair || '';
-      $('fCo2').value = p.meta?.co2 || '';
-      $('fGuaranteeType').value = p.meta?.guarantee_type || '';
-      $('fTva').value = p.meta?.tva_recoverable || '';
-      $('fOptions').value = p.meta?.options || '';
-      $('fDescription').value = (p.body_html || '').replace(/<[^>]*>/g, '');
-      $('fBadge').value = p.meta?.badge || '';
-      $('fTags').value = p.tags || '';
-      window._editMetaIds = p.metaIds || {};
-      renderImages(p.id, p.images || []);
-    } catch (e) { toast(e.message, 'error'); }
-  }
-
-  function renderImages(pid, images) {
-    const grid = $('imagesGrid');
-    grid.innerHTML = '';
-    images.forEach(img => {
-      const div = document.createElement('div');
-      div.className = 'img-thumb';
-      const im = document.createElement('img');
-      im.src = img.src;
-      im.alt = '';
-      im.loading = 'lazy';
-      const del = document.createElement('button');
-      del.className = 'img-thumb__delete';
-      del.innerHTML = '&times;';
-      del.title = 'Supprimer';
-      del.addEventListener('click', () => deleteImage(pid, img.id));
-      div.appendChild(im);
-      div.appendChild(del);
-      grid.appendChild(div);
-    });
-
-    const label = document.createElement('label');
-    label.className = 'img-upload-btn';
-    label.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Ajouter';
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/jpeg,image/png,image/webp,image/gif';
-    input.multiple = true;
-    input.hidden = true;
-    input.addEventListener('change', () => uploadImage(pid, input));
-    label.appendChild(input);
-    grid.appendChild(label);
-  }
-
-  async function uploadImage(pid, input) {
-    for (const file of input.files) {
-      if (file.size > 8 * 1024 * 1024) { toast('Fichier trop gros: ' + file.name, 'error'); continue; }
-      const fd = new FormData();
-      fd.append('image', file);
-      try { await api('/api/products/' + pid + '/images', { method: 'POST', body: fd }); }
-      catch (e) { toast('Erreur: ' + e.message, 'error'); }
-    }
-    toast('Photo(s) ajoutée(s)', 'success');
-    loadProduct(pid);
-  }
-
-  async function deleteImage(pid, iid) {
-    if (!confirm('Supprimer cette photo ?')) return;
-    try {
-      await api('/api/products/' + pid + '/images/' + iid, { method: 'DELETE' });
-      toast('Photo supprimée', 'success');
-      loadProduct(pid);
-    } catch (e) { toast(e.message, 'error'); }
-  }
-
-  async function saveVehicle(e) {
-    e.preventDefault();
-    const btn = $('saveBtn');
-    btn.disabled = true;
-    btn.textContent = 'Enregistrement...';
-
-    const data = {
-      vendor: $('fVendor').value,
-      title: ($('fVendor').value + ' ' + $('fModel').value).trim(),
-      price: $('fPrice').value,
-      status: $('fStatus').value,
-      body_html: $('fDescription').value.replace(/\n/g, '<br>'),
-      tags: $('fTags').value,
-      variant_id: $('fVariantId').value,
-      meta: {
-        model: $('fModel').value, trim: $('fTrim').value, engine: $('fEngine').value,
-        year: $('fYear').value, mileage: $('fMileage').value, fuel: $('fFuel').value,
-        gearbox: $('fGearbox').value, body_type: $('fBodyType').value,
-        transmission: $('fTransmission').value, power_ch: $('fPower').value,
-        power: $('fPowerDesc').value, seats: $('fSeats').value, doors: $('fDoors').value,
-        color: $('fColor').value, critair: $('fCritair').value, co2: $('fCo2').value,
-        guarantee_type: $('fGuaranteeType').value, tva_recoverable: $('fTva').value,
-        options: $('fOptions').value, badge: $('fBadge').value,
-      },
-      metaIds: window._editMetaIds || {},
-    };
-
-    try {
-      const id = $('fId').value;
-      if (id) {
-        await api('/api/products/' + id, { method: 'PUT', body: data });
-        toast('Véhicule mis à jour', 'success');
-        showForm(parseInt(id));
-      } else {
-        const result = await api('/api/products', { method: 'POST', body: data });
-        toast('Véhicule créé', 'success');
-        if (result.product?.id) showForm(result.product.id);
-        else showList();
-      }
-    } catch (e) { toast('Erreur: ' + e.message, 'error'); }
-    btn.disabled = false;
-    btn.textContent = 'Enregistrer';
-  }
-
-  /* ─── Event Bindings (no inline handlers) ── */
-  $('loginBtn').addEventListener('click', doLogin);
-  $('loginPassword').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
-  $('navList').addEventListener('click', showList);
-  $('navAdd').addEventListener('click', () => showForm());
-  $('addBtn').addEventListener('click', () => showForm());
-  $('navLogout').addEventListener('click', logout);
-  $('backBtn').addEventListener('click', showList);
-  $('cancelBtn').addEventListener('click', showList);
-  $('vehicleForm').addEventListener('submit', saveVehicle);
-
-})();
-</script>
+<script src="admin.js"></script>
 </body>
 </html>

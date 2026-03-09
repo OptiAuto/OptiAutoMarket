@@ -1,12 +1,14 @@
 /* ═══════════════════════════════════════════════════════════
    OptiAuto Admin – Secure Server
-   Security: Helmet, JWT, bcrypt, rate-limit, CSRF, HPP, CSP
+   Security: Helmet, JWT, bcrypt, rate-limit, CSRF, HPP, CSP, CORS
    ═══════════════════════════════════════════════════════════ */
 
+require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });
 
 const express    = require('express');
 const helmet     = require('helmet');
+const cors       = require('cors');
 const rateLimit  = require('express-rate-limit');
 const hpp        = require('hpp');
 const jwt        = require('jsonwebtoken');
@@ -19,15 +21,27 @@ const path       = require('path');
 /* ─── Configuration ─────────────────────────────────────── */
 const SHOP          = process.env.SHOPIFY_SHOP;
 const SHOPIFY_TOKEN = process.env.SHOPIFY_ACCESS_TOKEN || '';
-const ADMIN_PW      = process.env.ADMIN_PASSWORD || 'optiauto2026';
 const PORT          = process.env.ADMIN_PORT || 3000;
 const API_VER       = '2024-01';
 const BASE          = `https://${SHOP}/admin/api/${API_VER}`;
+const ALLOWED_ORIGIN = process.env.ADMIN_ORIGIN || `http://localhost:${PORT}`;
 
-const JWT_SECRET    = process.env.JWT_SECRET || crypto.randomBytes(64).toString('hex');
-const JWT_EXPIRY    = '4h';
+if (!process.env.ADMIN_PASSWORD) {
+  console.error('[FATAL] ADMIN_PASSWORD manquant dans .env. Arrêt du serveur.');
+  process.exit(1);
+}
+if (!process.env.JWT_SECRET) {
+  console.error('[FATAL] JWT_SECRET manquant dans .env. Arrêt du serveur.');
+  process.exit(1);
+}
+if (!SHOP || !SHOPIFY_TOKEN) {
+  console.warn('[WARN] SHOPIFY_SHOP ou SHOPIFY_ACCESS_TOKEN non configuré.');
+}
 
-const PW_HASH       = bcrypt.hashSync(ADMIN_PW, 12);
+const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_EXPIRY = '4h';
+
+const PW_HASH = bcrypt.hashSync(process.env.ADMIN_PASSWORD, 12);
 
 const ALLOWED_IMG_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
 const ALLOWED_IMG_MAGIC = {
@@ -39,24 +53,38 @@ const ALLOWED_IMG_MAGIC = {
 
 const app = express();
 
+app.set('trust proxy', 1);
+
 /* ─── Security Middleware ───────────────────────────────── */
+
+app.use(cors({
+  origin: ALLOWED_ORIGIN,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token'],
+  credentials: true,
+  maxAge: 600,
+}));
 
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc:  ["'self'"],
-      scriptSrc:   ["'self'", "'unsafe-inline'"],
+      scriptSrc:   ["'self'"],
       styleSrc:    ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc:     ["'self'", "https://fonts.gstatic.com"],
-      imgSrc:      ["'self'", "data:", "https://cdn.shopify.com", "https://*.shopifycdn.com"],
+      imgSrc:      ["'self'", "data:", "https://cdn.shopify.com", "https://*.shopifycdn.com", "https://img.youtube.com"],
       connectSrc:  ["'self'"],
       frameAncestors: ["'none'"],
       formAction:  ["'self'"],
       baseUri:     ["'self'"],
+      objectSrc:   ["'none'"],
+      upgradeInsecureRequests: [],
     },
   },
   crossOriginEmbedderPolicy: false,
-  hsts: { maxAge: 31536000, includeSubDomains: true, preload: true },
+  crossOriginOpenerPolicy: { policy: 'same-origin' },
+  crossOriginResourcePolicy: { policy: 'same-origin' },
+  hsts: { maxAge: 63072000, includeSubDomains: true, preload: true },
   referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
 }));
 
@@ -67,8 +95,7 @@ app.disable('x-powered-by');
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
-  res.setHeader('X-XSS-Protection', '1; mode=block');
-  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=(), usb=()');
   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
   res.setHeader('Pragma', 'no-cache');
   next();
@@ -80,7 +107,7 @@ const loginLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Trop de tentatives. Réessayez dans 15 minutes.' },
-  keyGenerator: (req) => req.ip,
+  validate: { trustProxy: false, xForwardedForHeader: false },
 });
 
 const apiLimiter = rateLimit({
@@ -129,7 +156,11 @@ function generateCsrf(sessionId) {
 function verifyCsrf(sessionId, token) {
   const entry = csrfTokens.get(sessionId);
   if (!entry || entry.exp < Date.now()) return false;
-  return crypto.timingSafeEqual(Buffer.from(entry.token), Buffer.from(token || ''.padEnd(64, '0')).slice(0, entry.token.length));
+  if (!token || typeof token !== 'string') return false;
+  const expected = Buffer.from(entry.token, 'utf8');
+  const received = Buffer.from(token, 'utf8');
+  if (expected.length !== received.length) return false;
+  return crypto.timingSafeEqual(expected, received);
 }
 
 /* ─── Auth Middleware ───────────────────────────────────── */
@@ -165,14 +196,21 @@ function csrfMiddleware(req, res, next) {
 /* ─── Sanitization ──────────────────────────────────────── */
 function sanitizeStr(s) {
   if (typeof s !== 'string') return '';
-  return s.replace(/[<>]/g, '').trim().slice(0, 1000);
+  return s.replace(/[<>"'`&]/g, '').replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '').trim().slice(0, 1000);
 }
 
 function sanitizeHtml(s) {
   if (typeof s !== 'string') return '';
   return s.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+          .replace(/<iframe[^>]*>[\s\S]*?<\/iframe>/gi, '')
+          .replace(/<object[^>]*>[\s\S]*?<\/object>/gi, '')
+          .replace(/<embed[^>]*>/gi, '')
+          .replace(/<link[^>]*>/gi, '')
           .replace(/on\w+\s*=/gi, '')
-          .replace(/javascript:/gi, '')
+          .replace(/javascript\s*:/gi, '')
+          .replace(/data\s*:/gi, 'blocked:')
+          .replace(/vbscript\s*:/gi, '')
+          .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '')
           .trim()
           .slice(0, 10000);
 }
@@ -278,7 +316,7 @@ app.get('/api/csrf', authMiddleware, (req, res) => {
 });
 
 /* ─── Créer les définitions de métachamps (entretien + pneumatiques) ── */
-app.all('/api/setup-metafields', apiLimiter, authMiddleware, async (req, res) => {
+app.post('/api/setup-metafields', apiLimiter, authMiddleware, csrfMiddleware, async (req, res) => {
   const mutation = `
     mutation CreateMetafieldDefinition($definition: MetafieldDefinitionInput!) {
       metafieldDefinitionCreate(definition: $definition) {
@@ -559,39 +597,66 @@ app.delete('/api/products/:id', async (req, res) => {
 });
 
 /* ─── Catch-all 404 ─────────────────────────────────────── */
-app.use((req, res) => {
+app.use((_req, res) => {
   res.status(404).json({ error: 'Route introuvable' });
 });
 
 /* ─── Global Error Handler ──────────────────────────────── */
 app.use((err, req, res, _next) => {
-  console.error(`[ERROR] ${new Date().toISOString()} | ${err.message}`);
+  const ts = new Date().toISOString();
+  console.error(`[ERROR] ${ts} | ${err.message}`);
+
   if (err.code === 'LIMIT_FILE_SIZE') {
     return res.status(413).json({ error: 'Fichier trop volumineux (max 8 Mo)' });
   }
+  if (err.type === 'entity.too.large') {
+    return res.status(413).json({ error: 'Requête trop volumineuse (max 1 Mo)' });
+  }
+  if (err.message && err.message.includes('Type de fichier non autorisé')) {
+    return res.status(400).json({ error: 'Type de fichier non autorisé' });
+  }
+
   res.status(500).json({ error: 'Erreur interne du serveur' });
 });
 
 /* ─── Metafield Builder ─────────────────────────────────── */
 function buildMetafields(meta) {
   const fields = [];
-  const allowed = [
+
+  const textFields = [
     'model','trim','engine','year','mileage','fuel','gearbox','body_type',
     'transmission','color','seats','critair','power_ch','power','doors',
     'co2','options','badge','guarantee_type','tva_recoverable',
+    'tire_ag_marque','tire_ag_dimensions','tire_ag_profondeur','tire_ag_type',
+    'tire_ad_marque','tire_ad_dimensions','tire_ad_profondeur','tire_ad_type',
+    'tire_rg_marque','tire_rg_dimensions','tire_rg_profondeur','tire_rg_type',
+    'tire_rd_marque','tire_rd_dimensions','tire_rd_profondeur','tire_rd_type',
   ];
 
-  for (const key of allowed) {
+  const urlFields = ['video_1', 'video_2', 'video_3'];
+  const listFields = ['maintenance_history'];
+
+  for (const key of textFields) {
     const val = meta[key];
     if (val !== undefined && val !== null && val !== '') {
-      fields.push({
-        namespace: 'custom',
-        key,
-        value: sanitizeStr(String(val)),
-        type: 'single_line_text_field',
-      });
+      fields.push({ namespace: 'custom', key, value: sanitizeStr(String(val)), type: 'single_line_text_field' });
     }
   }
+
+  for (const key of urlFields) {
+    const val = meta[key];
+    if (val && typeof val === 'string' && /^https?:\/\//.test(val)) {
+      fields.push({ namespace: 'custom', key, value: val.trim().slice(0, 500), type: 'url' });
+    }
+  }
+
+  for (const key of listFields) {
+    const val = meta[key];
+    if (val && Array.isArray(val) && val.length > 0) {
+      fields.push({ namespace: 'custom', key, value: JSON.stringify(val.map(v => sanitizeStr(String(v)))), type: 'list.single_line_text_field' });
+    }
+  }
+
   return fields;
 }
 
